@@ -1,0 +1,12 @@
+{
+  "name": "HomeTasks",
+  "rootNamespace": "HomeTasks",
+  "references": [
+    "Unity.InputSystem",
+    "Unity.TextMeshPro",
+    "Unity.ugui",
+    "Unity.XR.Interaction.Toolkit",
+    "Unity.XR.CoreUtils"
+  ],
+  "autoReferenced": true
+}

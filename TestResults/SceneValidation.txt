@@ -1,0 +1,24 @@
+PASS: Validation runs in Edit mode
+PASS: HomeFocus is the active saved scene
+PASS: No missing scripts in the saved scene
+PASS: Session, task settings, and meeting references are assigned
+PASS: All six dish references are saved
+PASS: All three trash references are saved
+PASS: Two dishes of each type are supplied
+PASS: All three racks have two saved slots and trigger volumes
+PASS: All meeting clips and captions are present
+PASS: The listening quiz contains three valid questions
+PASS: Tap and meeting keyboard actions have saved callbacks
+PASS: All interactive screen buttons have saved callbacks
+PASS: One EventSystem supports XR and desktop UI
+PASS: Both player modes are assigned
+PASS: The Quest rig has an input actions asset
+PASS: Both controllers use teleport and snap-turn, with continuous movement disabled
+PASS: VR wrist progress and feedback are wired
+PASS: House, garden, and patio floors use the rig's teleport layer
+PASS: Android initializes the saved OpenXR loader on startup
+PASS: Meta Quest and Touch controller OpenXR features are enabled
+PASS: Android is ARM64 with IL2CPP
+PASS: Android uses Vulkan graphics
+PASS: Station volumes accept interior points after rotation and non-uniform scaling
+PASS: Station volumes reject exterior points after rotation and scaling

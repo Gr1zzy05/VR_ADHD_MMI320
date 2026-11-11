@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077672a9565156242a921fb3d20dae3f, type: 3}
+  m_Name: NeighbourhoodMeeting
+  m_EditorClassIdentifier: HomeTasks::HomeTasks.MeetingContent
+  meetingTitle: Neighbourhood check-in
+  segments:
+  - speaker: Maya
+    transcript: Hi, welcome to our neighbourhood check-in. I am Maya, your host.
+      Thanks for joining from home. Keep listening as you work. At the end, I will
+      ask you three short questions about our community garden event.
+    voice: {fileID: 8300000, guid: 2c099807e9a9ee5499539420e5464dc1, type: 3}
+    minimumDuration: 4
+  - speaker: Maya
+    transcript: First, the schedule. Our community garden event is on Saturday. Please
+      arrive at ten thirty in the morning. That is Saturday at ten thirty A M. We
+      will plant herbs together and then share a short tea break.
+    voice: {fileID: 8300000, guid: c7db1c9d5b576b44f9e1d0e41dc6d0fe, type: 3}
+    minimumDuration: 4
+  - speaker: Maya
+    transcript: Next, what to bring. Please bring the blue folder with your volunteer
+      notes. You only need to remember the blue folder. Meet the group at the front
+      gate of the community garden. The front gate is our meeting point.
+    voice: {fileID: 8300000, guid: 2abfd55cb9b9301499bfdf8a7c0561af, type: 3}
+    minimumDuration: 4
+  - speaker: Maya
+    transcript: Before we finish, here is the plan once more. Saturday at ten thirty
+      in the morning. Bring the blue folder, and meet us at the front gate. Thanks
+      for listening. The briefing is over, and you can now answer the three questions
+      on the screen.
+    voice: {fileID: 8300000, guid: fb8a49f261f6b8044b8728df502b2973, type: 3}
+    minimumDuration: 4
+  questions:
+  - prompt: When should you arrive at the community garden?
+    answers:
+    - Saturday at 10:30 AM
+    - Sunday at 9:00 AM
+    - Saturday at 2:00 PM
+    correctAnswer: 0
+    explanation: Maya asked everyone to arrive on Saturday at 10:30 AM.
+  - prompt: What should you bring to the event?
+    answers:
+    - A red notebook
+    - The blue folder
+    - A yellow umbrella
+    correctAnswer: 1
+    explanation: Bring the blue folder with the volunteer notes.
+  - prompt: Where will the group meet?
+    answers:
+    - Inside the tea shop
+    - Beside the playground
+    - At the front gate
+    correctAnswer: 2
+    explanation: The group meets at the community garden's front gate.

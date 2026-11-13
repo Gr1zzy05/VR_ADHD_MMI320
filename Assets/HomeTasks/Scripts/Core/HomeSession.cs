@@ -6,9 +6,14 @@ using UnityEngine.SceneManagement;
 
 namespace HomeTasks
 {
+    public enum HomeQuest { Washing, Organizing, Trash, Meeting, Complete }
+
     public sealed class HomeSession : MonoBehaviour
     {
+        public const string GameplayScenePath = "Assets/HomeTasks/Scenes/HomeFocus.unity";
+        public const string ResultsScenePath = "Assets/HomeTasks/Scenes/HomeResults.unity";
         public static HomeSession Instance { get; private set; }
+        public static HomeSessionResult LastResult { get; private set; }
         public HomeTaskSettings settings;
         public List<DishItem> dishes = new List<DishItem>();
         public List<TrashItem> rubbish = new List<TrashItem>();
@@ -26,6 +31,16 @@ namespace HomeTasks
         public float Elapsed => finished ? finishTime : Time.time - startedAt;
         public bool Finished => finished;
         public string Toast => Time.unscaledTime < toastUntil ? toast : string.Empty;
+        public HomeQuest CurrentQuest => !WashingComplete ? HomeQuest.Washing : !SortingComplete ? HomeQuest.Organizing : !TrashComplete ? HomeQuest.Trash : meeting == null || !meeting.Completed ? HomeQuest.Meeting : HomeQuest.Complete;
+        public string CurrentQuestName => QuestName(CurrentQuest);
+        public string CurrentObjective => CurrentQuest switch
+        {
+            HomeQuest.Washing => $"Quest 1/4: Wash all {dishes.Count} dishes in the running sink.",
+            HomeQuest.Organizing => "Quest 2/4: Put all clean dishes on their matching shelves.",
+            HomeQuest.Trash => $"Quest 3/4: Take all {rubbish.Count} bags to the outdoor bin.",
+            HomeQuest.Meeting => "Quest 4/4: Join the meeting. Listen, then answer once.",
+            _ => "All four quests complete. Your results are ready."
+        };
 
         float startedAt;
         float finishTime;
@@ -34,10 +49,19 @@ namespace HomeTasks
         string toast;
         float toastUntil;
         AudioClip successTone;
+        HomeQuest previousQuest;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            Instance = null;
+            LastResult = null;
+        }
 
         void Awake()
         {
             Instance = this;
+            LastResult = null;
             startedAt = Time.time;
             successTone = AudioClip.Create("Small win", 6000, 1, 24000, false);
             var samples = new float[6000];
@@ -51,12 +75,50 @@ namespace HomeTasks
 
         void Update()
         {
+            var quest = CurrentQuest;
+            if (!finished && quest != previousQuest)
+            {
+                previousQuest = quest;
+                Notify(CurrentObjective, true);
+            }
             if (!finished && AllComplete)
             {
                 finished = true;
                 finishTime = Time.time - startedAt;
+                LastResult = new HomeSessionResult(this);
                 Notify("All four tasks complete. Your home is ready!", true);
+                StartCoroutine(ShowResults());
             }
+        }
+
+        public bool IsQuestActive(HomeQuest quest) => !finished && !restarting && CurrentQuest == quest;
+
+        public bool CanPerform(HomeQuest quest, bool showHint = false)
+        {
+            if (IsQuestActive(quest)) return true;
+            if (showHint) Notify(CurrentObjective);
+            return false;
+        }
+
+        public string QuestStatus(HomeQuest quest, string progress)
+        {
+            if (quest > CurrentQuest) return "LOCKED";
+            return quest < CurrentQuest ? "DONE" : progress;
+        }
+
+        public static string QuestName(HomeQuest quest) => quest switch
+        {
+            HomeQuest.Washing => "Wash dishes",
+            HomeQuest.Organizing => "Organize dishes",
+            HomeQuest.Trash => "Take trash outside",
+            HomeQuest.Meeting => "Meeting + quiz",
+            _ => "Home complete"
+        };
+
+        IEnumerator ShowResults()
+        {
+            yield return SceneFade.FadeOut();
+            yield return SceneManager.LoadSceneAsync(ResultsScenePath);
         }
 
         public void Notify(string message, bool smallWin = false)
@@ -68,6 +130,7 @@ namespace HomeTasks
 
         public void RecoverLooseItems()
         {
+            if (finished || restarting) return;
             foreach (var item in FindObjectsByType<HomeItem>(FindObjectsSortMode.None))
                 if (!item.IsHeld && !item.IsLocked) item.ReturnHome();
             Notify("Loose items returned to their starting places. Completed tasks are kept.");
@@ -75,16 +138,17 @@ namespace HomeTasks
 
         public void RestartSession()
         {
-            if (!restarting) StartCoroutine(Restart());
+            if (restarting || finished) return;
+            restarting = true;
+            StartCoroutine(Restart());
         }
 
         IEnumerator Restart()
         {
-            restarting = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            yield return null;
-            yield return SceneManager.LoadSceneAsync(gameObject.scene.buildIndex);
+            yield return SceneFade.FadeOut();
+            yield return SceneManager.LoadSceneAsync(GameplayScenePath);
         }
 
         void OnDestroy()

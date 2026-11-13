@@ -28,6 +28,14 @@ namespace HomeTasks
 
         void Update()
         {
+            if (HomeSession.Instance != null && HomeSession.Instance.Finished)
+            {
+                Drop();
+                Prompt = "All quests complete. Preparing your results.";
+                SetCapture(false);
+                return;
+            }
+            if (held != null && !held.CanInteract) Drop();
             var keyboard = Keyboard.current;
             var mouse = Mouse.current;
             if (keyboard == null || mouse == null) return;
@@ -60,7 +68,11 @@ namespace HomeTasks
                 else if (hasHit)
                 {
                     var item = aimHit.collider.GetComponentInParent<HomeItem>();
-                    if (item != null && !item.IsLocked && !item.IsHeld) PickUp(item);
+                    if (item != null && !item.IsLocked && !item.IsHeld)
+                    {
+                        if (item.CanInteract) PickUp(item);
+                        else HomeSession.Instance?.Notify(HomeSession.Instance.CurrentObjective);
+                    }
                 }
             }
             if (keyboard.qKey.wasPressedThisFrame) Drop();
@@ -117,6 +129,11 @@ namespace HomeTasks
             var action = aimHit.collider.GetComponentInParent<HomeAction>();
             if (action != null) { Prompt = "E: " + action.instruction; return; }
             var item = aimHit.collider.GetComponentInParent<HomeItem>();
+            if (item != null && !item.IsLocked && !item.CanInteract)
+            {
+                Prompt = "LOCKED  |  " + HomeSession.Instance?.CurrentObjective;
+                return;
+            }
             if (item is DishItem dish)
             {
                 if (held is SpongeTool) Prompt = $"Hold E: scrub {dish.kind.ToString().ToLower()} in the running sink  |  Washed {dish.WashProgress:P0}";

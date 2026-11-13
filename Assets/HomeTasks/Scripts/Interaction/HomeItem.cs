@@ -13,8 +13,18 @@ namespace HomeTasks
         public Rigidbody Body { get; private set; }
         public XRGrabInteractable Grab { get; private set; }
         public Collider Shape { get; private set; }
+        public bool CanInteract => !IsLocked && (HomeSession.Instance == null || (HomeSession.Instance.IsQuestActive(HomeSession.Instance.CurrentQuest) && AvailableFor(HomeSession.Instance.CurrentQuest)));
         Vector3 homePosition;
         Quaternion homeRotation;
+
+        protected abstract bool AvailableFor(HomeQuest quest);
+
+        void Start() => UpdateAvailability();
+
+        void UpdateAvailability()
+        {
+            if (Grab != null && Grab.enabled != CanInteract) Grab.enabled = CanInteract;
+        }
 
         protected virtual void Awake()
         {
@@ -27,13 +37,14 @@ namespace HomeTasks
 
         protected virtual void LateUpdate()
         {
+            UpdateAvailability();
             if (!IsHeld && !IsLocked && (transform.position.y < -3 || Vector3.Distance(transform.position, homePosition) > 40))
                 ReturnHome();
         }
 
         public void SetDesktopHeld(bool held)
         {
-            if (IsLocked || (held && Grab.isSelected)) return;
+            if (IsLocked || (held && (!CanInteract || Grab.isSelected))) return;
             DesktopHeld = held;
             Body.isKinematic = held;
             Body.useGravity = !held;

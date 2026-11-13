@@ -15,6 +15,7 @@ namespace HomeTasks
         public bool Attended { get; private set; }
         public int QuestionIndex { get; private set; }
         public int CorrectAnswers { get; private set; }
+        public bool Passed => Completed && CorrectAnswers >= RequiredScore;
         public float ListeningProgress { get; private set; }
         public string CurrentCaption { get; private set; } = "Join the meeting, listen to the full briefing, then answer three questions.";
         public string Feedback { get; private set; } = string.Empty;
@@ -26,12 +27,13 @@ namespace HomeTasks
         {
             voice = GetComponent<AudioSource>();
             voice.playOnAwake = false;
-            voice.spatialBlend = 0; // The call remains audible while the player works elsewhere in this map.
+            voice.spatialBlend = 0;
         }
 
         public void Begin()
         {
-            if (State == MeetingState.Listening || Completed) return;
+            if (State != MeetingState.Ready || !isActiveAndEnabled) return;
+            if (HomeSession.Instance != null && !HomeSession.Instance.CanPerform(HomeQuest.Meeting, true)) return;
             if (content == null || content.segments.Length == 0 || content.questions.Length == 0)
             {
                 HomeSession.Instance?.Notify("Add meeting segments and quiz questions to the meeting content asset.");
@@ -75,32 +77,20 @@ namespace HomeTasks
 
         public void Answer(int option)
         {
+            if (HomeSession.Instance != null && !HomeSession.Instance.IsQuestActive(HomeQuest.Meeting)) return;
             var question = CurrentQuestion;
             if (!Attended || question == null || option < 0 || option >= question.answers.Length) return;
             if (option == question.correctAnswer) CorrectAnswers++;
             QuestionIndex++;
             if (QuestionIndex < content.questions.Length) return;
-            if (CorrectAnswers >= RequiredScore)
-            {
-                State = MeetingState.Complete;
-                Feedback = $"{CorrectAnswers}/{content.questions.Length} correct. Meeting task complete.";
-                HomeSession.Instance?.Notify("Listening quiz passed. Meeting complete!", true);
-            }
-            else
-            {
-                State = MeetingState.Review;
-                Feedback = $"{CorrectAnswers}/{content.questions.Length} correct. Aim for {RequiredScore}. Replay the briefing or try the quiz again.";
-                HomeSession.Instance?.Notify("You can replay the briefing and try again at your own pace.");
-            }
+            State = MeetingState.Complete;
+            Feedback = $"{CorrectAnswers}/{content.questions.Length} correct. Your one meeting attempt is complete.";
+            HomeSession.Instance?.Notify("Meeting complete. Preparing your results.", true);
         }
 
         public void RetryQuiz()
         {
-            if (!Attended || State != MeetingState.Review) return;
-            CorrectAnswers = 0;
-            QuestionIndex = 0;
-            Feedback = string.Empty;
-            State = MeetingState.Quiz;
+            // Retain the entry point for older saved callbacks; attempts cannot be reset.
         }
 
         public void AnswerFirst() => Answer(0);

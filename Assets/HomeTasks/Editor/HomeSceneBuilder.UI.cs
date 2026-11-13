@@ -48,7 +48,7 @@ namespace HomeTasks.Editor
             var display = canvas.gameObject.AddComponent<VRTaskDisplay>();
             display.session = session;
             display.summary = Text(canvas, "Wrist progress", 20, 23, 400, 108, 26, Cream, "HOME FOCUS  0/4\nWash 0/6   Sort 0/6\nTrash 0/3   Call ready");
-            display.message = Text(canvas, "Wrist feedback", 20, 153, 400, 98, 23, Gold, "Choose one small task.");
+            display.message = Text(canvas, "Wrist feedback", 20, 153, 400, 98, 23, Gold, "Quest 1/4: Wash every dish to unlock organizing.");
         }
 
         static void CreateBoard()
@@ -61,7 +61,7 @@ namespace HomeTasks.Editor
             Text(canvas, "Title", 42, 91, 880, 127, 59, Cream, "A little focus.\nA lighter home.", FontStyles.Bold);
             var dashboard = root.gameObject.AddComponent<HomeDashboard>();
             dashboard.session = session;
-            dashboard.status = Text(canvas, "Completion", 44, 236, 550, 36, 26, Gold, "0 OF 4 TASKS COMPLETE");
+            dashboard.status = Text(canvas, "Completion", 44, 236, 550, 36, 22, Gold, "QUEST 1 OF 4  /  WASH DISHES");
             dashboard.timer = Text(canvas, "Your pace", 630, 243, 290, 26, 19, Muted, "YOUR PACE  00:00");
             dashboard.counts = new TMP_Text[4];
             dashboard.bars = new UnityEngine.UI.Image[4];
@@ -76,7 +76,7 @@ namespace HomeTasks.Editor
                 Text(canvas, "Task number", 50, y + 16, 43, 32, 25, Ink, (i + 1).ToString("00"), FontStyles.Bold);
                 Text(canvas, names[i], 119, y + 2, 630, 40, 31, Cream, names[i], FontStyles.Bold);
                 Text(canvas, "Description", 119, y + 45, 720, 32, 21, Muted, details[i]);
-                dashboard.counts[i] = Text(canvas, "Progress", 777, y + 6, 140, 39, 28, accents[i], i == 3 ? "READY" : i == 2 ? "0 / 3" : "0 / 6");
+                dashboard.counts[i] = Text(canvas, "Progress", 777, y + 6, 140, 39, 28, accents[i], i == 0 ? "0 / 6" : "LOCKED");
                 var track = Image(canvas, "Progress track", 119, y + 88, 792, 5, new Color(1, 1, 1, 0.12f));
                 var fill = Image(track.transform, "Progress fill", 0, 0, 792, 5, accents[i]);
                 fill.rectTransform.anchorMin = Vector2.zero;
@@ -84,7 +84,7 @@ namespace HomeTasks.Editor
                 fill.rectTransform.offsetMin = fill.rectTransform.offsetMax = Vector2.zero;
                 dashboard.bars[i] = fill;
             }
-            dashboard.footer = Text(canvas, "Encouragement", 44, 802, 866, 64, 25, Muted, "Choose any task. The meeting stays audible around the home.");
+            dashboard.footer = Text(canvas, "Encouragement", 44, 802, 866, 64, 25, Muted, "Quest 1/4: Wash every dish to unlock organizing.");
             Button(canvas, "Restart session", 44, 902, 410, 64, Sage, Ink, "RESTART SESSION", session.RestartSession);
             Button(canvas, "Recover loose items", 478, 902, 438, 64, new Color(1, 1, 1, 0.12f), Cream, "RECOVER LOOSE ITEMS", session.RecoverLooseItems);
 
@@ -121,9 +121,8 @@ namespace HomeTasks.Editor
                 panel.optionLabels[i] = panel.options[i].GetComponentInChildren<TMP_Text>();
                 panel.options[i].gameObject.SetActive(false);
             }
-            panel.retry = Button(canvas, "Try quiz again", 35, 611, 790, 58, Hex("DFE6DB"), Ink, "TRY QUIZ AGAIN", meeting.RetryQuiz);
-            panel.retry.gameObject.SetActive(false);
-            panel.begin = Button(canvas, "Join or replay", 35, 695, 790, 56, Ink, Cream, "JOIN MEETING", meeting.Begin);
+            panel.begin = Button(canvas, "Join meeting - one attempt", 35, 695, 790, 56, Ink, Cream, "LOCKED  /  COMPLETE QUESTS 1-3", meeting.Begin);
+            panel.begin.interactable = false;
             panel.beginLabel = panel.begin.GetComponentInChildren<TMP_Text>();
         }
 

@@ -19,7 +19,7 @@ namespace HomeTasks
             prompt.text = player.Prompt;
             if (Time.unscaledTime < nextUpdate) return;
             nextUpdate = Time.unscaledTime + 0.1f;
-            taskSummary.text = $"<b>YOUR FOUR SMALL WINS</b>\n\nWash dishes    {session.Washed}/{session.dishes.Count}\nOrganize dishes    {session.Organized}/{session.dishes.Count}\nTake trash outside    {session.Disposed}/{session.rubbish.Count}\nMeeting + quiz    {(session.meeting.Completed ? "Done" : session.meeting.State.ToString())}";
+            taskSummary.text = $"<b>{session.CurrentQuestName.ToUpperInvariant()}</b>\n\n01 Wash    {session.QuestStatus(HomeQuest.Washing, $"{session.Washed}/{session.dishes.Count}")}\n02 Organize    {session.QuestStatus(HomeQuest.Organizing, $"{session.Organized}/{session.dishes.Count}")}\n03 Trash    {session.QuestStatus(HomeQuest.Trash, $"{session.Disposed}/{session.rubbish.Count}")}\n04 Meeting    {session.QuestStatus(HomeQuest.Meeting, session.meeting.State.ToString())}";
             toast.text = session.Toast;
         }
     }

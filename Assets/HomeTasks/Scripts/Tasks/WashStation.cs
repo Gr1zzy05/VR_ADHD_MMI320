@@ -31,6 +31,7 @@ namespace HomeTasks
 
         public void ToggleWater()
         {
+            if (HomeSession.Instance != null && !HomeSession.Instance.CanPerform(HomeQuest.Washing, true)) return;
             WaterOn = !WaterOn;
             UpdateWater();
             HomeSession.Instance?.Notify(WaterOn ? "Water on. Rub a dish in the sink with the sponge." : "Water off.");
@@ -49,6 +50,11 @@ namespace HomeTasks
             var speed = Vector3.Distance(sponge.transform.position, previousSpongePosition) / Mathf.Max(Time.deltaTime, 0.0001f);
             previousSpongePosition = sponge.transform.position;
             var session = HomeSession.Instance;
+            if (session != null && !session.IsQuestActive(HomeQuest.Washing) && WaterOn)
+            {
+                WaterOn = false;
+                UpdateWater();
+            }
             if (!WaterOn || !sponge.IsHeld || session == null) return;
             if (speed < session.settings.minimumScrubSpeed && !sponge.DesktopScrubbing) return;
             foreach (var dish in session.dishes)
@@ -57,6 +63,7 @@ namespace HomeTasks
 
         public bool Scrub(DishItem dish, float seconds)
         {
+            if (HomeSession.Instance != null && !HomeSession.Instance.IsQuestActive(HomeQuest.Washing)) return false;
             if (!WaterOn || sponge == null || !sponge.IsHeld || dish == null || dish.IsClean || dish.IsStored) return false;
             if (!TaskVolume.Contains(washVolume, dish.transform.position)) return false;
             var distance = HomeSession.Instance != null ? HomeSession.Instance.settings.spongeContactDistance : 0.16f;

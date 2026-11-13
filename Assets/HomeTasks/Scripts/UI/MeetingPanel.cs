@@ -22,16 +22,28 @@ namespace HomeTasks
             if (meeting == null || Time.unscaledTime < nextUpdate) return;
             nextUpdate = Time.unscaledTime + 0.08f;
             var state = meeting.State;
-            connection.text = state == MeetingState.Listening ? "LIVE CALL  /  MAYA IS SPEAKING" : state == MeetingState.Complete ? "CALL COMPLETE  /  THANK YOU" : "SIMULATED CALL  /  AUDIO + CAPTIONS";
-            progress.text = state == MeetingState.Listening ? $"LISTENING  {meeting.ListeningProgress:P0}" : state == MeetingState.Quiz ? $"QUESTION {meeting.QuestionIndex + 1} / {meeting.content.questions.Length}" : "LISTEN FIRST. ANSWER AT THE END.";
-            if (state == MeetingState.Quiz) body.text = meeting.CurrentQuestion.prompt;
-            else if (state == MeetingState.Complete) body.text = "Thanks for listening.\nSee you at the neighbourhood event!";
-            else if (state == MeetingState.Review) body.text = "You can listen again or take another try. There is no time limit.";
-            else body.text = meeting.settings.showCaptions || state == MeetingState.Ready ? meeting.CurrentCaption : "Listen to Maya's briefing. The questions unlock when the call ends.";
-            result.text = meeting.Feedback;
-            begin.gameObject.SetActive(state != MeetingState.Listening && state != MeetingState.Complete);
-            beginLabel.text = state == MeetingState.Ready ? "JOIN MEETING" : "REPLAY BRIEFING";
-            retry.gameObject.SetActive(state == MeetingState.Review);
+            var session = HomeSession.Instance;
+            var unlocked = session == null || session.IsQuestActive(HomeQuest.Meeting);
+            if (state == MeetingState.Ready && !unlocked)
+            {
+                connection.text = "QUEST 4  /  LOCKED";
+                progress.text = "FINISH THE EARLIER QUESTS TO JOIN";
+                body.text = session.CurrentObjective;
+                result.text = "One meeting and one quiz attempt per session.";
+            }
+            else
+            {
+                connection.text = state == MeetingState.Listening ? "LIVE CALL  /  MAYA IS SPEAKING" : state == MeetingState.Complete ? "CALL COMPLETE  /  THANK YOU" : "SIMULATED CALL  /  AUDIO + CAPTIONS";
+                progress.text = state == MeetingState.Listening ? $"LISTENING  {meeting.ListeningProgress:P0}" : state == MeetingState.Quiz ? $"QUESTION {meeting.QuestionIndex + 1} / {meeting.content.questions.Length}  /  ONE ATTEMPT" : "LISTEN FIRST. ANSWER ONCE AT THE END.";
+                if (state == MeetingState.Quiz) body.text = meeting.CurrentQuestion.prompt;
+                else if (state == MeetingState.Complete) body.text = "Thanks for listening.\nSee you at the neighbourhood event!";
+                else body.text = meeting.settings.showCaptions || state == MeetingState.Ready ? meeting.CurrentCaption : "Listen to Maya's briefing. The questions unlock when the call ends.";
+                result.text = meeting.Feedback;
+            }
+            begin.gameObject.SetActive(state == MeetingState.Ready);
+            begin.interactable = unlocked && state == MeetingState.Ready;
+            beginLabel.text = unlocked ? "JOIN MEETING  /  ONE ATTEMPT" : "LOCKED  /  COMPLETE QUESTS 1-3";
+            if (retry != null) retry.gameObject.SetActive(false);
             for (var i = 0; i < options.Length; i++)
             {
                 options[i].gameObject.SetActive(state == MeetingState.Quiz);

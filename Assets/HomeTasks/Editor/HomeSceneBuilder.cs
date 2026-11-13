@@ -23,7 +23,7 @@ namespace HomeTasks.Editor
     public static partial class HomeSceneBuilder
     {
         public const string Root = "Assets/HomeTasks";
-        public const string ScenePath = Root + "/Scenes/HomeFocus.unity";
+        public const string ScenePath = HomeSession.GameplayScenePath;
         static readonly Color Ink = Hex("203D36");
         static readonly Color Cream = Hex("F4F1E7");
         static readonly Color Sage = Hex("82AB91");
@@ -64,6 +64,7 @@ namespace HomeTasks.Editor
             CreateMeetingStation();
             CreateBoard();
             CreatePlayer();
+            EnsureResultsScene(UnityEngine.Object.FindFirstObjectByType<PlayerModeRouter>());
             QuestProjectSetup.Configure();
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene, ScenePath);
@@ -272,7 +273,7 @@ namespace HomeTasks.Editor
             var join = Block(root, "Join meeting shortcut - E", new Vector3(0, 0.93f, -0.28f), new Vector3(0.5f, 0.06f, 0.25f), Mat("Meeting blue", "7BAABB"));
             join.AddComponent<XRSimpleInteractable>();
             var action = join.AddComponent<HomeAction>();
-            action.instruction = "join / replay the meeting";
+            action.instruction = "join the meeting (quest 4, one attempt)";
             UnityEventTools.AddPersistentListener(action.onUse, meeting.Begin);
         }
 

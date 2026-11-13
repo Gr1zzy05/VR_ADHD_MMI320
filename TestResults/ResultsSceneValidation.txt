@@ -1,0 +1,16 @@
+PASS: Results validation runs in Edit mode
+PASS: The results scene has no missing scripts
+PASS: Both results player modes are saved
+PASS: Results include an OpenXR player rig
+PASS: Saved player defaults support desktop with automatic VR routing
+PASS: Desktop and VR each have a results panel
+PASS: All results labels and restart buttons are wired
+PASS: Both restart buttons have their own saved callback
+PASS: The VR results panel supports tracked controller UI
+PASS: The desktop results panel supports mouse UI
+PASS: Both results panels have visible dimensions
+PASS: One EventSystem supports both results modes
+PASS: Results contain no gameplay session or desktop movement controller
+PASS: VR locomotion is disabled while viewing results
+PASS: Copied wrist displays cannot refer back to the unloaded home
+PASS: Saved results references stay within the results scene or asset files

@@ -10,6 +10,9 @@ PASS: All meeting clips and captions are present
 PASS: The listening quiz contains three valid questions
 PASS: Tap and meeting keyboard actions have saved callbacks
 PASS: All interactive screen buttons have saved callbacks
+PASS: The saved meeting UI is locked with no replay or retry controls
+PASS: The results scene is enabled in the build scene list
+PASS: The dedicated results scene is saved
 PASS: One EventSystem supports XR and desktop UI
 PASS: Both player modes are assigned
 PASS: The Quest rig has an input actions asset

@@ -32,7 +32,11 @@ Check(Object.FindObjectsByType<DishRack>(FindObjectsSortMode.None).All(r => r.sl
 Check(s.meeting.content.segments.Length == 4 && s.meeting.content.segments.All(p => p.voice != null && !string.IsNullOrWhiteSpace(p.transcript)), "All meeting clips and captions are present");
 Check(s.meeting.content.questions.Length == 3 && s.meeting.content.questions.All(q => q.answers.Length == 3 && q.correctAnswer >= 0 && q.correctAnswer < 3), "The listening quiz contains three valid questions");
 Check(Object.FindObjectsByType<HomeAction>(FindObjectsSortMode.None).All(a => a.onUse.GetPersistentEventCount() > 0), "Tap and meeting keyboard actions have saved callbacks");
-Check(Object.FindObjectsByType<UnityEngine.UI.Button>(FindObjectsInactive.Include, FindObjectsSortMode.None).All(b => b.onClick.GetPersistentEventCount() > 0), "All interactive screen buttons have saved callbacks");
+Check(Object.FindObjectsByType<UnityEngine.UI.Button>(FindObjectsInactive.Include, FindObjectsSortMode.None).All(b => !b.interactable || b.onClick.GetPersistentEventCount() > 0), "All interactive screen buttons have saved callbacks");
+var panel = Object.FindFirstObjectByType<MeetingPanel>();
+Check(!panel.begin.interactable && (panel.retry == null || (!panel.retry.interactable && !panel.retry.gameObject.activeSelf)), "The saved meeting UI is locked with no replay or retry controls");
+Check(EditorBuildSettings.scenes.Any(b => b.enabled && b.path == HomeSession.ResultsScenePath), "The results scene is enabled in the build scene list");
+Check(AssetDatabase.LoadAssetAtPath<SceneAsset>(HomeSession.ResultsScenePath) != null, "The dedicated results scene is saved");
 Check(Object.FindObjectsByType<UnityEngine.EventSystems.EventSystem>(FindObjectsSortMode.None).Length == 1 && Object.FindFirstObjectByType<XRUIInputModule>() != null, "One EventSystem supports XR and desktop UI");
 var router = Object.FindFirstObjectByType<PlayerModeRouter>();
 Check(router != null && router.questRig != null && router.desktopRig != null, "Both player modes are assigned");

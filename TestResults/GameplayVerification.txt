@@ -1,62 +1,196 @@
-PASS: Playable scene is running
-PASS: Player loop advances frames
+PASS: Playable home is running
+PASS: Fresh session starts with washing and clears the previous results
 PASS: Six dishes and three bags are registered
 PASS: Exactly one UI event system
-PASS: Answers and retry are locked during the briefing
-PASS: Repeated join input does not restart an active briefing
-PASS: Dirty dishes are rejected by the sorting shelves
+PASS: Joining and answering the meeting are blocked before quest 4
+PASS: The locked meeting cannot be joined or retried through its UI
+PASS: Future-quest bags cannot be grabbed in desktop or VR
+PASS: The wall board identifies the three locked quests
+PASS: Direct desktop grab cannot select a locked bag
+PASS: Station and item APIs reject early trash disposal
+PASS: Sorting is blocked while washing is active
 PASS: Water-off washing cannot advance a dish
-PASS: The tap action is wired to running water
+PASS: The tap can be turned on during the washing quest
 PASS: A dish outside the sink cannot be washed
-PASS: Dirty Plate 1 becomes clean from sponge contact and held scrub input in the running sink
+PASS: Dirty Plate 1 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Dirty Bowl 1 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Dirty Cup 1 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Dirty Plate 2 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Dirty Bowl 2 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Dirty Cup 2 becomes clean in the running sink
+PASS: Washing all dishes unlocks only organizing
+PASS: The completed washing station turns off and locks its sponge
 PASS: Plate is rejected by the wrong shelf
 PASS: Plate cannot snap out of a player's hand
-PASS: Plate is accepted after release on its matching shelf
-PASS: Repeated shelf contact does not count the same dish twice
-PASS: Dirty Bowl 1 becomes clean from sponge contact and held scrub input in the running sink
+PASS: Plate is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
 PASS: Bowl is rejected by the wrong shelf
 PASS: Bowl cannot snap out of a player's hand
-PASS: Bowl is accepted after release on its matching shelf
-PASS: Repeated shelf contact does not count the same dish twice
-PASS: Dirty Cup 1 becomes clean from sponge contact and held scrub input in the running sink
+PASS: Bowl is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
 PASS: Cup is rejected by the wrong shelf
 PASS: Cup cannot snap out of a player's hand
-PASS: Cup is accepted after release on its matching shelf
-PASS: Repeated shelf contact does not count the same dish twice
-PASS: Dirty Plate 2 becomes clean from sponge contact and held scrub input in the running sink
+PASS: Cup is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
 PASS: Plate is rejected by the wrong shelf
 PASS: Plate cannot snap out of a player's hand
-PASS: Plate is accepted after release on its matching shelf
-PASS: Repeated shelf contact does not count the same dish twice
-PASS: Dirty Bowl 2 becomes clean from sponge contact and held scrub input in the running sink
+PASS: Plate is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
 PASS: Bowl is rejected by the wrong shelf
 PASS: Bowl cannot snap out of a player's hand
-PASS: Bowl is accepted after release on its matching shelf
-PASS: Repeated shelf contact does not count the same dish twice
-PASS: Dirty Cup 2 becomes clean from sponge contact and held scrub input in the running sink
+PASS: Bowl is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
 PASS: Cup is rejected by the wrong shelf
 PASS: Cup cannot snap out of a player's hand
-PASS: Cup is accepted after release on its matching shelf
-PASS: Repeated shelf contact does not count the same dish twice
-PASS: Washing and sorting both reach 6/6
-PASS: Session cannot finish while another task is incomplete
-PASS: The disposal station is outside the house
+PASS: Cup is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Organizing every dish unlocks only trash
 PASS: An indoor bag is not counted as disposed
 PASS: A held bag is not taken from the player's hand
-PASS: Released bag is deposited in the outdoor bin
-PASS: Repeated bin contact does not count a bag twice
+PASS: A released bag is deposited in the outdoor bin
+PASS: Repeated contact cannot dispose of the same bag twice
+PASS: Partial trash disposal does not unlock the meeting
 PASS: An indoor bag is not counted as disposed
 PASS: A held bag is not taken from the player's hand
-PASS: Released bag is deposited in the outdoor bin
-PASS: Repeated bin contact does not count a bag twice
+PASS: A released bag is deposited in the outdoor bin
+PASS: Repeated contact cannot dispose of the same bag twice
+PASS: Partial trash disposal does not unlock the meeting
 PASS: An indoor bag is not counted as disposed
 PASS: A held bag is not taken from the player's hand
-PASS: Released bag is deposited in the outdoor bin
-PASS: Repeated bin contact does not count a bag twice
-PASS: Trash task reaches 3/3
-PASS: Quiz unlocks after the complete spoken briefing
-PASS: Incorrect answers require a retry and cannot complete the meeting
-PASS: Quiz retry resets only quiz progress
-PASS: Three correct answers complete the listening task
-PASS: All four tasks produce session completion
-PASS: Restart restores dishes, trash, meeting, and session completion to the initial state
+PASS: A released bag is deposited in the outdoor bin
+PASS: Repeated contact cannot dispose of the same bag twice
+PASS: All bags must be disposed of before the meeting unlocks
+PASS: Quest 4 starts the meeting
+PASS: Early answers and retry cannot bypass listening
+PASS: Repeated join does not restart the active briefing
+PASS: Quiz unlocks after the entire briefing
+PASS: The completed briefing cannot be replayed
+PASS: Invalid options do not consume an answer
+PASS: Neither retry nor replay can erase a recorded answer
+PASS: A single quiz attempt completes the quest and preserves the correct pass result
+PASS: Completed attempts cannot be restarted or rescored
+PASS: All four quests finish the session and capture a results snapshot
+PASS: Completion starts the fade before changing scene
+PASS: The result uses the stopped session timer
+PASS: The dedicated results scene retains the snapshot after the home is unloaded
+PASS: Results show the actual quiz score and all chore totals
+PASS: A below-target score still reaches results and is recorded accurately
+PASS: Results have one working UI event system
+PASS: Results have one active audio listener
+PASS: The results restart button starts exactly one fresh ordered session with a new meeting attempt
+PASS: Playable home is running
+PASS: Fresh session starts with washing and clears the previous results
+PASS: Six dishes and three bags are registered
+PASS: Exactly one UI event system
+PASS: Joining and answering the meeting are blocked before quest 4
+PASS: The locked meeting cannot be joined or retried through its UI
+PASS: Future-quest bags cannot be grabbed in desktop or VR
+PASS: The wall board identifies the three locked quests
+PASS: Direct desktop grab cannot select a locked bag
+PASS: Station and item APIs reject early trash disposal
+PASS: Sorting is blocked while washing is active
+PASS: Water-off washing cannot advance a dish
+PASS: The tap can be turned on during the washing quest
+PASS: A dish outside the sink cannot be washed
+PASS: Second session uses the real sink contact API
+PASS: Dirty Plate 1 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Second session uses the real sink contact API
+PASS: Dirty Bowl 1 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Second session uses the real sink contact API
+PASS: Dirty Cup 1 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Second session uses the real sink contact API
+PASS: Dirty Plate 2 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Second session uses the real sink contact API
+PASS: Dirty Bowl 2 becomes clean in the running sink
+PASS: Clean dishes cannot be organized until every dish is washed
+PASS: Partial washing does not unlock the meeting
+PASS: Second session uses the real sink contact API
+PASS: Dirty Cup 2 becomes clean in the running sink
+PASS: Washing all dishes unlocks only organizing
+PASS: The completed washing station turns off and locks its sponge
+PASS: Plate is rejected by the wrong shelf
+PASS: Plate cannot snap out of a player's hand
+PASS: Plate is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
+PASS: Bowl is rejected by the wrong shelf
+PASS: Bowl cannot snap out of a player's hand
+PASS: Bowl is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
+PASS: Cup is rejected by the wrong shelf
+PASS: Cup cannot snap out of a player's hand
+PASS: Cup is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
+PASS: Plate is rejected by the wrong shelf
+PASS: Plate cannot snap out of a player's hand
+PASS: Plate is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
+PASS: Bowl is rejected by the wrong shelf
+PASS: Bowl cannot snap out of a player's hand
+PASS: Bowl is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Partial organizing does not unlock trash or the meeting
+PASS: Cup is rejected by the wrong shelf
+PASS: Cup cannot snap out of a player's hand
+PASS: Cup is accepted on its matching shelf after release
+PASS: Repeated contact cannot store the same dish twice
+PASS: Organizing every dish unlocks only trash
+PASS: An indoor bag is not counted as disposed
+PASS: A held bag is not taken from the player's hand
+PASS: A released bag is deposited in the outdoor bin
+PASS: Repeated contact cannot dispose of the same bag twice
+PASS: Partial trash disposal does not unlock the meeting
+PASS: An indoor bag is not counted as disposed
+PASS: A held bag is not taken from the player's hand
+PASS: A released bag is deposited in the outdoor bin
+PASS: Repeated contact cannot dispose of the same bag twice
+PASS: Partial trash disposal does not unlock the meeting
+PASS: An indoor bag is not counted as disposed
+PASS: A held bag is not taken from the player's hand
+PASS: A released bag is deposited in the outdoor bin
+PASS: Repeated contact cannot dispose of the same bag twice
+PASS: All bags must be disposed of before the meeting unlocks
+PASS: Quest 4 starts the meeting
+PASS: Early answers and retry cannot bypass listening
+PASS: Repeated join does not restart the active briefing
+PASS: Quiz unlocks after the entire briefing
+PASS: The completed briefing cannot be replayed
+PASS: Invalid options do not consume an answer
+PASS: Neither retry nor replay can erase a recorded answer
+PASS: A single quiz attempt completes the quest and preserves the correct pass result
+PASS: Completed attempts cannot be restarted or rescored
+PASS: All four quests finish the session and capture a results snapshot
+PASS: Completion starts the fade before changing scene
+PASS: The result uses the stopped session timer
+PASS: The dedicated results scene retains the snapshot after the home is unloaded
+PASS: Results show the actual quiz score and all chore totals
+PASS: A below-target score still reaches results and is recorded accurately
+PASS: Results have one working UI event system
+PASS: Results have one active audio listener
+PASS: The results restart button starts exactly one fresh ordered session with a new meeting attempt

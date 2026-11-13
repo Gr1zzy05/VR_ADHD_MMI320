@@ -32,9 +32,13 @@ For a standalone build, switch the active Build Profile to **Android / Meta Ques
 1. **Wash dishes:** six dirty items start on the kitchen counter: two plates, two bowls, and two cups. Place a dish in the sink, turn on the gold tap control, pick up the sponge, and rub it against the dish. In VR, both one-handed work on a dish resting in the basin and holding a dish with the other hand are supported. The stains shrink as washing progresses. Contact must occur in the sink with running water and a held sponge.
 2. **Organize dishes:** release clean dishes inside their matching plate, bowl, or cup shelf. Dirty dishes and incorrect types are rejected. Accepted dishes snap to a free slot and stay organized.
 3. **Take out the trash:** carry the three bags near the entry through the open doorway and release them inside the green outdoor bin. A bag is only counted after release inside the bin.
-4. **Meeting and listening quiz:** join on the meeting screen, or use the blue keyboard shortcut on the desk. Maya gives a roughly 71-second spoken briefing with captions. The audio continues around the same home so the player can do chores while listening. Three questions unlock only after the entire briefing. The default pass requirement is three correct answers. An unsuccessful quiz can be retried, and the briefing can be replayed.
+4. **Meeting and listening quiz:** after finishing the first three quests, join on the meeting screen or use the blue keyboard shortcut on the desk. Maya gives a roughly 71-second spoken briefing with captions. Three questions unlock only after the entire briefing. There is **one briefing and one quiz attempt per session**. The target is three correct answers by default. Submitting all three answers completes the quest and records the score, including a below-target score. The briefing and answers cannot be replayed or reset within that session.
 
-Tasks can be completed in any order; washing is required before sorting. The wall board and wrist display track progress. Completing all four tasks stops the session timer. **Restart Session** resets the scene. **Recover Loose Items** returns unheld, incomplete items to their starting positions while preserving completed progress. Items that fall below the map also return automatically.
+Quests unlock in order: **wash every dish → organize every dish → dispose of every bag → meeting and quiz**. Locked quests cannot advance through desktop controls, VR grabs, task volumes, or direct task callbacks. The wall board, desktop HUD, and wrist display show the current objective and locked quests.
+
+Completing the final quiz stops the timer, fades to black, and opens `Assets/HomeTasks/Scenes/HomeResults.unity`. The results show time taken, washing/sorting/trash totals, the recorded quiz score, and whether the listening target was reached. Results support desktop mouse controls and VR controller UI. **Start New Session** fades back to the home, clears results, and unlocks washing and a fresh meeting attempt. The results scene is included in both the Editor build scene list and the Quest APK build command.
+
+**Restart Session** resets the home during gameplay. **Recover Loose Items** returns unheld, incomplete items to their starting positions while preserving completed progress. Items that fall below the map also return automatically.
 
 ## Replace the placeholder home
 
@@ -62,21 +66,24 @@ The meeting is a simulation and runs offline. It does not connect to a conferenc
 
 ## Verification and tools
 
-`Tools/VerifyGameplay.cs` is a repeatable Play-mode integration script for the Unity Pipeline CLI. It exercises real station volumes and washing updates, rejects invalid task actions, waits for the full meeting, tests a failed quiz and retry, and checks the final four-task completion. Run it from a **fresh** Play session:
+`Tools/VerifyGameplay.cs` is a repeatable Play-mode integration script for the Unity Pipeline CLI. It exercises real station volumes and washing updates, rejects out-of-order quests, waits for the full original meeting, and verifies a single failed attempt still reaches results. It then starts a new session and checks the successful score path with a short, isolated test briefing. Both sessions test the results and restart buttons. Run it from a **fresh** Play session:
 
 ```powershell
-unity command script eval --caller plugin --skill unity-cli --file Tools/VerifyGameplay.cs --timeout 150
+unity command script eval --caller plugin --skill unity-cli --file Tools/VerifyGameplay.cs --timeout 240
 ```
 
-The report is written to `TestResults/GameplayVerification.txt`. The completed playthrough and restart produced **62 passing checks**, with **24 additional saved-scene checks** in `TestResults/SceneValidation.txt`. Screenshots are in `Screenshots/`. Hardware comfort and controller feel still need validation on a physical Quest.
+The report is written to `TestResults/GameplayVerification.txt`. The current flow passes **196 gameplay checks**, **27 home-scene checks**, and **16 results-scene checks**. Rendered fade captures are checked by `Tools/VerifyFade.cs`, with results in `TestResults/FadeVerification.txt`. Screenshots are in `Screenshots/`. Hardware comfort and controller feel still need validation on a physical Quest.
 
 To check saved references, input configuration, Quest settings, and rotated station volumes in Edit mode:
 
 ```powershell
 unity command script eval --caller plugin --skill unity-cli --file Tools/ValidateScene.cs
+unity command script eval --caller plugin --skill unity-cli --file Tools/ValidateResultsScene.cs
 ```
 
 `Home Focus > Create playable home scene` is the original scene generator. It deliberately refuses to overwrite an existing HomeFocus scene or discard unsaved scene changes. The scene and all generated assets are already included; running the generator is unnecessary for normal play or art replacement. `Home Focus > Configure Meta Quest` reapplies the documented Quest settings.
+
+`Home Focus > Apply ordered quests and results scene` updates the existing home UI in place and creates the results scene if missing. It preserves an existing results scene and other scenes in the build list.
 
 Unity-generated `Library`, `Temp`, `Logs`, local settings, and build output are excluded by `.gitignore`. Source assets and their `.meta` files should be versioned together.
 

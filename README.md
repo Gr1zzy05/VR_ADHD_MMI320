@@ -1,10 +1,10 @@
 # Home Focus
 
-A single-player 3D VR home game for standalone Meta Quest. All four activities share one continuous map. The supplied home is an editable blockout for replacing with your own 3D house and environment.
+A single-player 3D VR home game for standalone Meta Quest. All four activities share one continuous map. The current custom map is **NewModel**; the original HomeFocus blockout is also preserved.
 
 ## Play in Unity
 
-Open `Assets/HomeTasks/Scenes/HomeFocus.unity` with **Unity 6000.3.9f1** and press **Play**. With Quest Link initialization disabled, the scene automatically uses the desktop player. The scene is first in the build scene list; the original SampleScene is preserved.
+Open `Assets/HomeTasks/Scenes/NewModel.unity` with **Unity 6000.3.9f1** and press **Play**. With Quest Link initialization disabled, the scene automatically uses the desktop player. NewModel and HomeResults are the enabled build scenes. The original HomeFocus and SampleScene assets are preserved.
 
 | Desktop control | Action |
 | --- | --- |
@@ -12,7 +12,7 @@ Open `Assets/HomeTasks/Scenes/HomeFocus.unity` with **Unity 6000.3.9f1** and pre
 | WASD / mouse | Walk / look |
 | Left click | Pick up or release an item |
 | Q | Drop the held item |
-| E | Use the gold tap control or the blue meeting keyboard |
+| E | Open or close a door, use the tap, or sit in the meeting chair |
 | Hold E while holding the sponge and aiming at a dish | Scrub a dish inside the running sink |
 | Mouse wheel / R | Adjust held distance / rotate the held item |
 | Tab | Toggle the free cursor to click screen buttons |
@@ -23,16 +23,36 @@ Open `Assets/HomeTasks/Scenes/HomeFocus.unity` with **Unity 6000.3.9f1** and pre
 
 The project is configured for **Android, ARM64, IL2CPP, Vulkan, OpenXR, Single Pass Instanced, Meta Quest Support, and Oculus Touch controllers**. Quest 2, Quest Pro, Quest 3, and Quest 3S are enabled in the OpenXR feature. The original Quest is excluded.
 
-Use the controllers: grip to grab items, release grip to let go, point and grip to toggle the gold tap control, and point and squeeze the trigger for screen buttons. Push a thumbstick forward to aim a teleport, then release it to travel. Use the free hand to teleport while the other holds a dish or bag. Push the right stick sideways for a 45-degree snap turn. Continuous movement is disabled in the supplied comfort setup. The left controller has a small wrist progress display.
+In **NewModel**, the task board is attached above the **left forearm** in VR. It shows quest progress, the current objective, movement and height controls, Restart, and Recover Items. Press **Y** to hide or reopen it. Point with the right controller and squeeze the trigger to press its buttons. Desktop mode keeps the wall-mounted task board.
 
-For a standalone build, switch the active Build Profile to **Android / Meta Quest**, then use **Home Focus > Build Quest APK (Android must be active)**. Output: `Builds/HomeFocus-Quest.apk`. Build and Run requires a developer-enabled headset connected and authorized for USB debugging. To test through Quest Link instead, use **Home Focus > Quest Link play mode > Enable** before pressing Play. Disable it again to return to desktop testing.
+| Quest control | Action |
+| --- | --- |
+| Grip / release grip | Snap a pointed item to your hand / release it |
+| Point at a door + grip | Open or close the door |
+| Point + trigger | Press arm-board, chair, meeting, and results buttons |
+| Y (left controller) | Hide / show the arm task board |
+| Movement button on the arm board | Switch between Teleport and Walk + Teleport |
+| − / + on the arm board | Adjust headset and controller height in 5 cm steps, up to 50 cm in either direction |
+| Height value on the arm board | Reset to the default height |
+| Either stick forward, then release (Teleport mode) | Aim at a valid floor and teleport |
+| Left stick (Walk + Teleport mode) | Walk in the direction you are looking, including strafing |
+| Right stick forward, then release | Teleport in either movement mode |
+| Right stick sideways | 45-degree snap turn |
+
+Walking defaults to 1.5 metres per second and can be tuned on `VRMovementOptions`. The device remembers movement and height settings. Move your hand to position a held dish, sponge, or bag. The thumbsticks control locomotion. Teleport remains available on the right controller when walking is enabled.
+
+For a standalone build, switch the active Build Profile to **Android / Meta Quest**, then use **Home Focus > Build Quest APK (Android must be active)**. This command builds the enabled scenes, including NewModel and HomeResults. Output: `Builds/HomeFocus-Quest.apk`. Install the updated APK on your headset to receive these fixes. Build and Run requires a developer-enabled headset connected and authorized for USB debugging. To test through Quest Link instead, use **Home Focus > Quest Link play mode > Enable** before pressing Play. Disable it again to return to desktop testing.
+
+The meeting chair unlocks after quests 1–3 are complete. Restart reloads the map where the session started, including when returning from results.
+
+If duplicating this setup into another map, **Home Focus > Repair VR controls in active scene** wires the XR input module, floor teleport colliders/provider/layers, arm board, and movement controls without rebuilding the environment. The November 18 scene backup is in `Backups/VRFix-20261118`.
 
 ## The four tasks
 
 1. **Wash dishes:** six dirty items start on the kitchen counter: two plates, two bowls, and two cups. Place a dish in the sink, turn on the gold tap control, pick up the sponge, and rub it against the dish. In VR, both one-handed work on a dish resting in the basin and holding a dish with the other hand are supported. The stains shrink as washing progresses. Contact must occur in the sink with running water and a held sponge.
 2. **Organize dishes:** release clean dishes inside their matching plate, bowl, or cup shelf. Dirty dishes and incorrect types are rejected. Accepted dishes snap to a free slot and stay organized.
-3. **Take out the trash:** carry the three bags near the entry through the open doorway and release them inside the green outdoor bin. A bag is only counted after release inside the bin.
-4. **Meeting and listening quiz:** after finishing the first three quests, join on the meeting screen or use the blue keyboard shortcut on the desk. Maya gives a roughly 71-second spoken briefing with captions. Three questions unlock only after the entire briefing. There is **one briefing and one quiz attempt per session**. The target is three correct answers by default. Submitting all three answers completes the quest and records the score, including a below-target score. The briefing and answers cannot be replayed or reset within that session.
+3. **Take out the trash:** carry the three bags near the entry through the front door and release them inside the green outdoor bin. A bag is only counted after release inside the bin.
+4. **Meeting and listening quiz.** After finishing the first three quests, press **Sit in chair** at the meeting desk or use the chair directly with grip in VR or E on desktop. This seats the player and starts the roughly 71-second briefing. Stay in the seat area through all three questions. **Leave Chair**, walking away, or teleporting away stops the briefing and clears any answers already given. Sit again to restart the briefing from the beginning. Submitting all three answers records the score and completes the quest.
 
 Quests unlock in order: **wash every dish → organize every dish → dispose of every bag → meeting and quiz**. Locked quests cannot advance through desktop controls, VR grabs, task volumes, or direct task callbacks. The wall board, desktop HUD, and wrist display show the current objective and locked quests.
 
@@ -42,7 +62,7 @@ Completing the final quiz stops the timer, fades to black, and opens `Assets/Hom
 
 ## Replace the placeholder home
 
-The saved scene has two separate roots:
+The original HomeFocus blockout has two separate roots:
 
 - `Environment_Placeholder_ReplaceWithYourHome`: blockout house, ground, furniture, plants, lighting, and teleportable floors. Disable or remove this root when your model is ready.
 - `Gameplay_KeepWhenReplacingEnvironment`: washing station, sorting shelves, indoor rubbish, outdoor bin, meeting screen, wall board, and the welcome controls panel. Keep these objects and move them to fit the replacement home.
@@ -52,6 +72,8 @@ Import your house/environment assets normally and use **1 Unity unit = 1 metre**
 Move the named gameplay station roots to the appropriate places in your home. Their trigger volumes and slot transforms work in local coordinates, including rotated and scaled stations. Position `03_OutdoorBin_MoveOutsideYourHome` outside the house. Move both player roots to the same unobstructed starting position at floor height. Keep the desktop camera at eye height and the XR Origin in Floor tracking mode.
 
 The station meshes are placeholders too. To use your own sink, shelves, or bin, replace or hide the station's decorative mesh children while retaining its controller component, trigger volume, tap action, and shelf slot/deposit transforms. Do not disable the whole gameplay station. Place the dishes and sponge on the new counter, update the rubbish starting positions, and verify the wash volume encloses the basin. Starting positions for recovery are captured when Play starts.
+
+NewModel's `Meeting seat` is attached to `Home/chair 1`. When moving the desk, keep the seat and its `Stand point` at floor level and face the meeting screen. The `MeetingSeat` component controls seated eye height and the distance a player can move before the meeting resets.
 
 ## Customize content
 
@@ -66,13 +88,22 @@ The meeting is a simulation and runs offline. It does not connect to a conferenc
 
 ## Verification and tools
 
-`Tools/VerifyGameplay.cs` is a repeatable Play-mode integration script for the Unity Pipeline CLI. It exercises real station volumes and washing updates, rejects out-of-order quests, waits for the full original meeting, and verifies a single failed attempt still reaches results. It then starts a new session and checks the successful score path with a short, isolated test briefing. Both sessions test the results and restart buttons. Run it from a **fresh** Play session:
+NewModel regression reports are in `TestResults/NewModelVRVerification.txt` and `TestResults/NewModelMeetingUIVerification.txt`. The checks cover height adjustment and persistence, controller movement, mouse and VR chair clicks, interruptions during the briefing and quiz, and completion through the results screen. Run the corresponding scripts from a fresh NewModel Play session:
+
+```powershell
+unity command script eval --caller plugin --skill unity-cli --file Tools/VerifyNewModelVR.cs --timeout 90
+unity command script eval --caller plugin --skill unity-cli --file Tools/VerifyNewModelMeetingUI.cs --timeout 180
+```
+
+These are simulated input tests in the Editor. Headset comfort and real controller feel still need an on-device playtest. XR UI setup follows the [XR Interaction Toolkit canvas/input-module requirements](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@3.7/manual/ui-setup.html).
+
+`Tools/VerifyGameplay.cs` is the original HomeFocus integration script. It exercises station volumes, ordered quests, the original meeting entry, and the results and restart buttons. Use the NewModel scripts above for the seated meeting flow.
 
 ```powershell
 unity command script eval --caller plugin --skill unity-cli --file Tools/VerifyGameplay.cs --timeout 240
 ```
 
-The report is written to `TestResults/GameplayVerification.txt`. The current flow passes **196 gameplay checks**, **27 home-scene checks**, and **16 results-scene checks**. Rendered fade captures are checked by `Tools/VerifyFade.cs`, with results in `TestResults/FadeVerification.txt`. Screenshots are in `Screenshots/`. Hardware comfort and controller feel still need validation on a physical Quest.
+The earlier HomeFocus flow recorded **196 gameplay checks**, **27 home-scene checks**, and **16 results-scene checks** in the existing reports. The earlier VR fixes are described in `TestResults/NewModelVRFixes.md`. Rendered fade captures are checked by `Tools/VerifyFade.cs`, with results in `TestResults/FadeVerification.txt`. Screenshots are in `Screenshots/`.
 
 To check saved references, input configuration, Quest settings, and rotated station volumes in Edit mode:
 

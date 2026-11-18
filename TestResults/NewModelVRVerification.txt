@@ -1,0 +1,39 @@
+PASS: NewModel is running
+PASS: The scene has a tracked XR input module
+PASS: Exactly one active EventSystem handles UI
+PASS: Session remembers the custom map for restart
+PASS: Task board is active on the left arm in VR
+PASS: VR uses the arm board and hides the wall board
+PASS: Arm task progress is bound to this scene's session
+PASS: VR and desktop players do not run simultaneously
+PASS: World UI uses the active VR camera
+PASS: Tracked controller ray hits Toggle controller walking
+PASS: A tracked trigger click enables controller walking through the real button
+PASS: Right-hand teleport and snap-turn remain enabled while walking
+PASS: Tracked controller ray hits Toggle controller walking
+PASS: A second tracked click returns to teleport mode
+PASS: Tracked controller ray hits Reset VR height
+PASS: Tracked controller ray hits Raise VR height
+PASS: Height + raises the view and controller together by 5 cm
+PASS: Tracked controller ray hits Lower VR height
+PASS: Tracked controller ray hits Lower VR height
+PASS: Height - lowers the view below the baseline
+PASS: Tracked controller ray hits Reset VR height
+PASS: Pressing the height value resets the calibration
+PASS: Tracked controller ray hits Raise VR height
+PASS: Arm menu can be hidden without disabling its input component
+PASS: The actual left-controller secondary-button binding reopens the arm menu
+PASS: Tracked controller ray hits Recover loose items
+PASS: Tracked clicking Recover Items calls the real session action
+PASS: An unobstructed outdoor walking surface exists in the new map
+PASS: Right thumbstick input activates the teleport interactor
+PASS: The real teleport ray hits the new map's outdoor floor
+PASS: Teleport ray and assigned floor collider share the teleport interaction layer
+PASS: Holding the right thumbstick selects the valid floor through XR Interaction Manager
+PASS: Selecting and releasing the floor teleports the XR player through the provider and body transformer
+PASS: Controller movement input translates the player on the new map
+PASS: Desktop mode retains the original wall board and disables the VR rig
+PASS: Desktop screen buttons use the desktop camera
+PASS: Tracked controller ray hits Restart session
+PASS: Restart returns to NewModel with a fresh session
+PASS: The saved height adjustment is loaded in a fresh session

@@ -6,7 +6,8 @@
     "Unity.TextMeshPro",
     "Unity.ugui",
     "Unity.XR.Interaction.Toolkit",
-    "Unity.XR.CoreUtils"
+    "Unity.XR.CoreUtils",
+    "Unity.XR.Interaction.Toolkit.Samples.StarterAssets"
   ],
   "autoReferenced": true
 }

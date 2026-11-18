@@ -112,7 +112,7 @@ namespace HomeTasks.Editor
             Directory.CreateDirectory("Builds");
             var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
             {
-                scenes = new[] { HomeSceneBuilder.ScenePath, HomeSceneBuilder.ResultsScenePath },
+                scenes = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Select(System.Linq.Enumerable.Where(EditorBuildSettings.scenes, scene => scene.enabled), scene => scene.path)),
                 locationPathName = "Builds/HomeFocus-Quest.apk",
                 target = BuildTarget.Android,
                 options = BuildOptions.None

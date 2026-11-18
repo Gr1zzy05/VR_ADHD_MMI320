@@ -1,0 +1,387 @@
+{
+  "scene": "Assets/HomeTasks/Scenes/NewModel.unity",
+  "canvases": [
+    {
+      "path": "Desktop Player (no headset required)/Desktop HUD",
+      "active": true,
+      "mode": "ScreenSpaceOverlay",
+      "camera": "none",
+      "position": "(512.500, 417.500, 0.000)",
+      "scale": "(0.77095, 0.77095, 0.77095)",
+      "size": "(1329.54, 1083.09)",
+      "raycasters": [],
+      "groups": []
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Camera Offset/Left Controller/Wrist task display",
+      "active": true,
+      "mode": "WorldSpace",
+      "camera": "none",
+      "position": "(-0.480, 2.382, 9.300)",
+      "scale": "(0.00075, 0.00075, 0.00075)",
+      "size": "(440.00, 265.00)",
+      "raycasters": [
+        "GraphicRaycaster:True",
+        "TrackedDeviceGraphicRaycaster:True"
+      ],
+      "groups": []
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/02_SortingShelves_MoveToYourCabinet/Plate shelf/02  /  PLATES sign",
+      "active": true,
+      "mode": "WorldSpace",
+      "camera": "none",
+      "position": "(6.708, 2.848, 2.912)",
+      "scale": "(0.00091, 0.00091, 0.00091)",
+      "size": "(760.00, 200.00)",
+      "raycasters": [
+        "GraphicRaycaster:True",
+        "TrackedDeviceGraphicRaycaster:True"
+      ],
+      "groups": []
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/02_SortingShelves_MoveToYourCabinet/Bowl shelf/02  /  BOWLS sign",
+      "active": true,
+      "mode": "WorldSpace",
+      "camera": "none",
+      "position": "(6.708, 2.848, 2.137)",
+      "scale": "(0.00091, 0.00091, 0.00091)",
+      "size": "(760.00, 200.00)",
+      "raycasters": [
+        "GraphicRaycaster:True",
+        "TrackedDeviceGraphicRaycaster:True"
+      ],
+      "groups": []
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/02_SortingShelves_MoveToYourCabinet/Cup shelf/02  /  CUPS sign",
+      "active": true,
+      "mode": "WorldSpace",
+      "camera": "none",
+      "position": "(6.708, 2.848, 1.361)",
+      "scale": "(0.00091, 0.00091, 0.00091)",
+      "size": "(760.00, 200.00)",
+      "raycasters": [
+        "GraphicRaycaster:True",
+        "TrackedDeviceGraphicRaycaster:True"
+      ],
+      "groups": []
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/03_OutdoorBin_MoveOutsideYourHome/OUTDOOR BIN sign",
+      "active": true,
+      "mode": "WorldSpace",
+      "camera": "none",
+      "position": "(0.048, 1.825, -30.998)",
+      "scale": "(0.00180, 0.00180, 0.00180)",
+      "size": "(760.00, 200.00)",
+      "raycasters": [
+        "GraphicRaycaster:True",
+        "TrackedDeviceGraphicRaycaster:True"
+      ],
+      "groups": []
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/04_MeetingStation_MoveToYourDesk/Meeting screen",
+      "active": true,
+      "mode": "WorldSpace",
+      "camera": "none",
+      "position": "(-2.860, 2.404, 6.750)",
+      "scale": "(0.00124, 0.00082, 0.00210)",
+      "size": "(860.00, 780.00)",
+      "raycasters": [
+        "GraphicRaycaster:True",
+        "TrackedDeviceGraphicRaycaster:True"
+      ],
+      "groups": []
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/Task Board_MoveToYourWall/Home Focus task board",
+      "active": true,
+      "mode": "WorldSpace",
+      "camera": "none",
+      "position": "(0.238, 2.634, 6.051)",
+      "scale": "(0.00302, 0.00227, 0.00302)",
+      "size": "(960.00, 1000.00)",
+      "raycasters": [
+        "GraphicRaycaster:True",
+        "TrackedDeviceGraphicRaycaster:True"
+      ],
+      "groups": []
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/Controls and welcome",
+      "active": false,
+      "mode": "WorldSpace",
+      "camera": "none",
+      "position": "(8.864, 2.635, -27.808)",
+      "scale": "(0.00250, 0.00250, 0.00250)",
+      "size": "(880.00, 600.00)",
+      "raycasters": [
+        "GraphicRaycaster:True",
+        "TrackedDeviceGraphicRaycaster:True"
+      ],
+      "groups": []
+    }
+  ],
+  "buttons": [
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/04_MeetingStation_MoveToYourDesk/Meeting screen/Answer 1",
+      "active": false,
+      "interactable": true,
+      "graphic": true,
+      "calls": [
+        "04_MeetingStation_MoveToYourDesk.Answer"
+      ]
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/04_MeetingStation_MoveToYourDesk/Meeting screen/Answer 2",
+      "active": false,
+      "interactable": true,
+      "graphic": true,
+      "calls": [
+        "04_MeetingStation_MoveToYourDesk.Answer"
+      ]
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/04_MeetingStation_MoveToYourDesk/Meeting screen/Answer 3",
+      "active": false,
+      "interactable": true,
+      "graphic": true,
+      "calls": [
+        "04_MeetingStation_MoveToYourDesk.Answer"
+      ]
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/04_MeetingStation_MoveToYourDesk/Meeting screen/Try quiz again",
+      "active": false,
+      "interactable": false,
+      "graphic": true,
+      "calls": [
+        "04_MeetingStation_MoveToYourDesk.RetryQuiz"
+      ]
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/04_MeetingStation_MoveToYourDesk/Meeting screen/Join meeting - one attempt",
+      "active": true,
+      "interactable": false,
+      "graphic": true,
+      "calls": [
+        "04_MeetingStation_MoveToYourDesk.Begin"
+      ]
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/Task Board_MoveToYourWall/Home Focus task board/Restart session",
+      "active": true,
+      "interactable": true,
+      "graphic": true,
+      "calls": [
+        "TaskManager.RestartSession"
+      ]
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/Task Board_MoveToYourWall/Home Focus task board/Recover loose items",
+      "active": true,
+      "interactable": true,
+      "graphic": true,
+      "calls": [
+        "TaskManager.RecoverLooseItems"
+      ]
+    }
+  ],
+  "teleportAreas": [
+    {
+      "path": "Home/Home",
+      "enabled": true,
+      "active": true,
+      "mask": 1,
+      "colliders": [],
+      "provider": "none"
+    },
+    {
+      "path": "Home/Plane",
+      "enabled": true,
+      "active": true,
+      "mask": 1,
+      "colliders": [],
+      "provider": "none"
+    }
+  ],
+  "colliders": [
+    "Home/Home | MeshCollider | (-0.20, 4.94, 5.30) | (16.28, 9.88, 23.12)",
+    "Home/Table | MeshCollider | (1.59, 1.45, -3.51) | (2.29, 1.11, 2.37)",
+    "Home/Footpath | MeshCollider | (-1.69, 0.00, -18.42) | (11.43, 0.02, 25.05)",
+    "Home/Plane | MeshCollider | (0.00, 0.00, -5.71) | (71.61, 0.00, 51.08)",
+    "Home/Plant | MeshCollider | (5.94, 0.45, -6.18) | (2.97, 2.90, 2.42)",
+    "Home/Plant (1) | MeshCollider | (4.19, 0.45, -6.18) | (2.97, 2.90, 2.42)",
+    "Home/Plant (2) | MeshCollider | (2.47, 0.45, -6.18) | (2.97, 2.90, 2.42)",
+    "Home/Plant (3) | MeshCollider | (0.68, 0.45, -6.18) | (2.97, 2.90, 2.42)",
+    "Home/Plant (4) | MeshCollider | (-0.89, 0.45, -6.18) | (2.97, 2.90, 2.42)",
+    "Home/Plant (5) | MeshCollider | (-2.45, 0.45, -6.18) | (2.97, 2.90, 2.42)",
+    "Home/Plant (6) | MeshCollider | (-4.10, 0.45, -6.18) | (2.97, 2.90, 2.42)"
+  ],
+  "components": [
+    {
+      "path": "Quest Player (OpenXR) Variant",
+      "type": "XROrigin",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_Camera\":{\"instanceID\":0},\"m_OriginBaseGameObject\":{\"instanceID\":0},\"m_CameraFloorOffsetObject\":{\"instanceID\":0},\"m_RequestedTrackingOriginMode\":2,\"m_CameraYOffset\":1.649999976158142}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant",
+      "type": "InputActionManager",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_ActionAssets\":[{\"fileID\":-944628639613478452,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3}]}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Camera Offset/Left Controller",
+      "type": "ControllerInputActionManager",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_RayInteractor\":{\"instanceID\":0},\"m_NearFarInteractor\":{\"instanceID\":0},\"m_TeleportInteractor\":{\"instanceID\":0},\"m_TeleportMode\":{\"fileID\":1263111715868034790,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_TeleportModeCancel\":{\"fileID\":737890489006591557,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_Turn\":{\"fileID\":1010738217276881514,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_SnapTurn\":{\"fileID\":-7374733323251553461,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_Move\":{\"fileID\":6972639530819350904,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_UIScroll\":{\"fileID\":2464016903823916871,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_SmoothMotionEnabled\":false,\"m_SmoothTurnEnabled\":false,\"m_NearFarEnableTeleportDuringNearInteraction\":true,\"m_UIScrollingEnabled\":true,\"m_RayInteractorChanged\":{\"m_PersistentCalls\":{\"m_Calls\":[]}}}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Camera Offset/Left Controller/Near-Far Interactor",
+      "type": "NearFarInteractor",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_InteractionManager\":{\"instanceID\":0},\"m_InteractionLayers\":{\"m_Bits\":1},\"m_Handedness\":1,\"m_AttachTransform\":{\"instanceID\":0},\"m_KeepSelectedTargetValid\":true,\"m_DisableVisualsWhenBlockedInGroup\":true,\"m_StartingSelectedInteractable\":{\"instanceID\":0},\"m_StartingTargetFilter\":{\"instanceID\":0},\"m_AutoFindParentInteractableInHierarchy\":false,\"m_ParentInteractableObject\":{\"instanceID\":0},\"m_HoverEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_HoverExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_SelectEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_SelectExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_StartingHoverFilters\":[],\"m_StartingSelectFilters\":[],\"m_SelectInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"Select\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"2491b664-3d4e-4f20-a7ae-ee1861d845f2\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Select Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"fc42dacc-33eb-41ec-9c17-d242ac6b0c5b\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":-6131295136447488360,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":6558622148059887818,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_ActivateInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"Activate\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"77660b9e-6bbe-4740-b80f-1fea8d0f59e1\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Activate Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"94568f52-c27a-47fc-a190-5e3b17572929\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":-5982496924579745919,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":-4289430672226363583,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_SelectActionTrigger\":1,\"m_AllowHoveredActivate\":false,\"m_TargetPriorityMode\":0,\"m_HideControllerOnSelect\":false,\"m_InputCompatibilityMode\":0,\"m_PlayAudioClipOnSelectEntered\":false,\"m_AudioClipForOnSelectEntered\":{\"instanceID\":0},\"m_PlayAudioClipOnSelectExited\":false,\"m_AudioClipForOnSelectExited\":{\"instanceID\":0},\"m_PlayAudioClipOnSelectCanceled\":false,\"m_AudioClipForOnSelectCanceled\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverEntered\":false,\"m_AudioClipForOnHoverEntered\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverExited\":false,\"m_AudioClipForOnHoverExited\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverCanceled\":false,\"m_AudioClipForOnHoverCanceled\":{\"instanceID\":0},\"m_AllowHoverAudioWhileSelecting\":true,\"m_PlayHapticsOnSelectEntered\":false,\"m_HapticSelectEnterIntensity\":0.0,\"m_HapticSelectEnterDuration\":0.0,\"m_PlayHapticsOnSelectExited\":false,\"m_HapticSelectExitIntensity\":0.0,\"m_HapticSelectExitDuration\":0.0,\"m_PlayHapticsOnSelectCanceled\":false,\"m_HapticSelectCancelIntensity\":0.0,\"m_HapticSelectCancelDuration\":0.0,\"m_PlayHapticsOnHoverEntered\":false,\"m_HapticHoverEnterIntensity\":0.0,\"m_HapticHoverEnterDuration\":0.0,\"m_PlayHapticsOnHoverExited\":false,\"m_HapticHoverExitIntensity\":0.0,\"m_HapticHoverExitDuration\":0.0,\"m_PlayHapticsOnHoverCanceled\":false,\"m_HapticHoverCancelIntensity\":0.0,\"m_HapticHoverCancelDuration\":0.0,\"m_AllowHoverHapticsWhileSelecting\":true,\"m_InteractionAttachController\":{\"instanceID\":0},\"m_EnableNearCasting\":true,\"m_NearInteractionCaster\":{\"instanceID\":0},\"m_NearCasterSortingStrategy\":1,\"m_SortNearTargetsAfterTargetFilter\":false,\"m_EnableFarCasting\":true,\"m_FarInteractionCaster\":{\"instanceID\":0},\"m_FarAttachMode\":1,\"m_EnableUIInteraction\":true,\"m_BlockUIOnInteractableSelection\":true,\"m_UIHoverEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_UIHoverExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_UIPressInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"UI Press\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"ded1ccb2-ff18-46c7-ade9-b80985fe2825\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"UI Press Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"d762660e-30e0-4a4d-8e2a-e6b553e03f11\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":-6395602842196007441,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":71106601250685021,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_UIScrollInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"UI Scroll\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"ef5cc4a5-b968-432c-9ae7-45e494178db0\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":2464016903823916871,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}}}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Camera Offset/Left Controller/Teleport Interactor",
+      "type": "XRRayInteractor",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_InteractionManager\":{\"instanceID\":0},\"m_InteractionLayers\":{\"m_Bits\":2147483648},\"m_Handedness\":1,\"m_AttachTransform\":{\"instanceID\":0},\"m_KeepSelectedTargetValid\":false,\"m_DisableVisualsWhenBlockedInGroup\":true,\"m_StartingSelectedInteractable\":{\"instanceID\":0},\"m_StartingTargetFilter\":{\"instanceID\":0},\"m_AutoFindParentInteractableInHierarchy\":false,\"m_ParentInteractableObject\":{\"instanceID\":0},\"m_HoverEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_HoverExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_SelectEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_SelectExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_StartingHoverFilters\":[],\"m_StartingSelectFilters\":[],\"m_SelectInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"Select\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"36843f28-4fd5-4729-b5a6-afe92ef11597\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Select Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"1a51c331-470d-4462-b8e1-2522a24bd40c\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":1263111715868034790,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":1263111715868034790,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_ActivateInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"Activate\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"0ace7244-e61f-4e60-8d0b-2ef8c3ae51af\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Activate Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"bdf06a24-21b3-4f27-a8a3-72086e6c7f00\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":-5982496924579745919,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":-4289430672226363583,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_SelectActionTrigger\":0,\"m_AllowHoveredActivate\":false,\"m_TargetPriorityMode\":0,\"m_HideControllerOnSelect\":false,\"m_InputCompatibilityMode\":0,\"m_PlayAudioClipOnSelectEntered\":false,\"m_AudioClipForOnSelectEntered\":{\"instanceID\":0},\"m_PlayAudioClipOnSelectExited\":false,\"m_AudioClipForOnSelectExited\":{\"instanceID\":0},\"m_PlayAudioClipOnSelectCanceled\":false,\"m_AudioClipForOnSelectCanceled\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverEntered\":false,\"m_AudioClipForOnHoverEntered\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverExited\":false,\"m_AudioClipForOnHoverExited\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverCanceled\":false,\"m_AudioClipForOnHoverCanceled\":{\"instanceID\":0},\"m_AllowHoverAudioWhileSelecting\":false,\"m_PlayHapticsOnSelectEntered\":false,\"m_HapticSelectEnterIntensity\":0.0,\"m_HapticSelectEnterDuration\":0.0,\"m_PlayHapticsOnSelectExited\":false,\"m_HapticSelectExitIntensity\":0.0,\"m_HapticSelectExitDuration\":0.0,\"m_PlayHapticsOnSelectCanceled\":false,\"m_HapticSelectCancelIntensity\":0.0,\"m_HapticSelectCancelDuration\":0.0,\"m_PlayHapticsOnHoverEntered\":false,\"m_HapticHoverEnterIntensity\":0.0,\"m_HapticHoverEnterDuration\":0.0,\"m_PlayHapticsOnHoverExited\":false,\"m_HapticHoverExitIntensity\":0.0,\"m_HapticHoverExitDuration\":0.0,\"m_PlayHapticsOnHoverCanceled\":false,\"m_HapticHoverCancelIntensity\":0.0,\"m_HapticHoverCancelDuration\":0.0,\"m_AllowHoverHapticsWhileSelecting\":false,\"m_LineType\":1,\"m_BlendVisualLinePoints\":true,\"m_MaxRaycastDistance\":30.0,\"m_RayOriginTransform\":{\"instanceID\":0},\"m_ReferenceFrame\":{\"instanceID\":0},\"m_Velocity\":10.0,\"m_Acceleration\":9.800000190734864,\"m_AdditionalGroundHeight\":0.10000000149011612,\"m_AdditionalFlightTime\":0.5,\"m_EndPointDistance\":30.0,\"m_EndPointHeight\":-10.0,\"m_ControlPointDistance\":10.0,\"m_ControlPointHeight\":5.0,\"m_SampleFrequency\":50,\"m_HitDetectionType\":0,\"m_SphereCastRadius\":0.10000000149011612,\"m_ConeCastAngle\":6.0,\"m_LiveConeCastDebugVisuals\":false,\"m_RaycastMask\":{\"serializedVersion\":\"2\",\"m_Bits\":2147483681},\"m_RaycastTriggerInteraction\":1,\"m_RaycastSnapVolumeInteraction\":1,\"m_RaycastUIDocumentTriggerInteraction\":1,\"m_HitClosestOnly\":true,\"m_HoverToSelect\":false,\"m_HoverTimeToSelect\":0.5,\"m_AutoDeselect\":false,\"m_TimeToAutoDeselect\":1.0,\"m_EnableUIInteraction\":false,\"m_BlockInteractionsWithScreenSpaceUI\":false,\"m_BlockUIOnInteractableSelection\":true,\"m_ManipulateAttachTransform\":true,\"m_UseForceGrab\":false,\"m_RotateSpeed\":180.0,\"m_TranslateSpeed\":0.0,\"m_RotateReferenceFrame\":{\"instanceID\":0},\"m_RotateMode\":1,\"m_UIHoverEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_UIHoverExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_EnableARRaycasting\":false,\"m_OccludeARHitsWith3DObjects\":false,\"m_OccludeARHitsWith2DObjects\":false,\"m_ScaleMode\":0,\"m_UIPressInput\":{\"m_InputSourceMode\":0,\"m_InputActionPerformed\":{\"m_Name\":\"UI Press\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"54867c8e-3650-4605-a53c-ee8ffb351dcf\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"UI Press Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"257d8673-0295-4ff5-b278-e63d20cd918b\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"instanceID\":0},\"m_InputActionReferenceValue\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_UIScrollInput\":{\"m_InputSourceMode\":0,\"m_InputAction\":{\"m_Name\":\"UI Scroll\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"8c6b1aac-a242-4bf4-a5b3-bfad6e83b638\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_TranslateManipulationInput\":{\"m_InputSourceMode\":0,\"m_InputAction\":{\"m_Name\":\"Translate Manipulation\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"0f9fd0ee-650d-41a6-ab30-2a036c425c21\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_RotateManipulationInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"Rotate Manipulation\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"cadca2d2-f642-4efc-a222-c1827be3e896\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":-7363382999065477798,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_DirectionalManipulationInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"Directional Manipulation\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"472cbca3-7add-47a9-a5fc-73d3d10107aa\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":-8811388872089202044,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_ScaleToggleInput\":{\"m_InputSourceMode\":0,\"m_InputActionPerformed\":{\"m_Name\":\"Scale Toggle\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"692a9304-a2fd-4dbd-9e2f-2fb4b6154f1c\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Scale Toggle Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"d0cf082b-f2d7-4100-b069-651cf2820425\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"instanceID\":0},\"m_InputActionReferenceValue\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_ScaleOverTimeInput\":{\"m_InputSourceMode\":0,\"m_InputAction\":{\"m_Name\":\"Scale Over Time\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"6f835f0d-f1c2-461c-b8bc-edc587e89149\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_ScaleDistanceDeltaInput\":{\"m_InputSourceMode\":0,\"m_InputAction\":{\"m_Name\":\"Scale Distance Delta\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"9140e1d5-f197-46d4-88c2-a02441edeac5\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":0.0}}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Camera Offset/Left Controller/Wrist task display",
+      "type": "TrackedDeviceGraphicRaycaster",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster\",\"m_IgnoreReversedGraphics\":false,\"m_CheckFor2DOcclusion\":false,\"m_CheckFor3DOcclusion\":false,\"m_BlockingMask\":{\"serializedVersion\":\"2\",\"m_Bits\":4294967295},\"m_RaycastTriggerInteraction\":1}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Camera Offset/Right Controller",
+      "type": "ControllerInputActionManager",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_RayInteractor\":{\"instanceID\":0},\"m_NearFarInteractor\":{\"instanceID\":0},\"m_TeleportInteractor\":{\"instanceID\":0},\"m_TeleportMode\":{\"fileID\":-8061240218431744966,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_TeleportModeCancel\":{\"fileID\":2307464322626738743,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_Turn\":{\"fileID\":-6493913391331992944,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_SnapTurn\":{\"fileID\":-8525429354371678379,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_Move\":{\"fileID\":-8198699208435500284,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_UIScroll\":{\"fileID\":-6756787485274679044,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_SmoothMotionEnabled\":false,\"m_SmoothTurnEnabled\":false,\"m_NearFarEnableTeleportDuringNearInteraction\":true,\"m_UIScrollingEnabled\":true,\"m_RayInteractorChanged\":{\"m_PersistentCalls\":{\"m_Calls\":[]}}}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Camera Offset/Right Controller/Near-Far Interactor",
+      "type": "NearFarInteractor",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_InteractionManager\":{\"instanceID\":0},\"m_InteractionLayers\":{\"m_Bits\":1},\"m_Handedness\":2,\"m_AttachTransform\":{\"instanceID\":0},\"m_KeepSelectedTargetValid\":true,\"m_DisableVisualsWhenBlockedInGroup\":true,\"m_StartingSelectedInteractable\":{\"instanceID\":0},\"m_StartingTargetFilter\":{\"instanceID\":0},\"m_AutoFindParentInteractableInHierarchy\":false,\"m_ParentInteractableObject\":{\"instanceID\":0},\"m_HoverEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_HoverExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_SelectEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_SelectExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_StartingHoverFilters\":[],\"m_StartingSelectFilters\":[],\"m_SelectInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"Select\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"2491b664-3d4e-4f20-a7ae-ee1861d845f2\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Select Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"fc42dacc-33eb-41ec-9c17-d242ac6b0c5b\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":187161793506945269,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":-1758520528963094988,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_ActivateInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"Activate\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"77660b9e-6bbe-4740-b80f-1fea8d0f59e1\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Activate Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"94568f52-c27a-47fc-a190-5e3b17572929\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":83097790271614945,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":7904272356298805229,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_SelectActionTrigger\":1,\"m_AllowHoveredActivate\":false,\"m_TargetPriorityMode\":0,\"m_HideControllerOnSelect\":false,\"m_InputCompatibilityMode\":0,\"m_PlayAudioClipOnSelectEntered\":false,\"m_AudioClipForOnSelectEntered\":{\"instanceID\":0},\"m_PlayAudioClipOnSelectExited\":false,\"m_AudioClipForOnSelectExited\":{\"instanceID\":0},\"m_PlayAudioClipOnSelectCanceled\":false,\"m_AudioClipForOnSelectCanceled\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverEntered\":false,\"m_AudioClipForOnHoverEntered\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverExited\":false,\"m_AudioClipForOnHoverExited\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverCanceled\":false,\"m_AudioClipForOnHoverCanceled\":{\"instanceID\":0},\"m_AllowHoverAudioWhileSelecting\":true,\"m_PlayHapticsOnSelectEntered\":false,\"m_HapticSelectEnterIntensity\":0.0,\"m_HapticSelectEnterDuration\":0.0,\"m_PlayHapticsOnSelectExited\":false,\"m_HapticSelectExitIntensity\":0.0,\"m_HapticSelectExitDuration\":0.0,\"m_PlayHapticsOnSelectCanceled\":false,\"m_HapticSelectCancelIntensity\":0.0,\"m_HapticSelectCancelDuration\":0.0,\"m_PlayHapticsOnHoverEntered\":false,\"m_HapticHoverEnterIntensity\":0.0,\"m_HapticHoverEnterDuration\":0.0,\"m_PlayHapticsOnHoverExited\":false,\"m_HapticHoverExitIntensity\":0.0,\"m_HapticHoverExitDuration\":0.0,\"m_PlayHapticsOnHoverCanceled\":false,\"m_HapticHoverCancelIntensity\":0.0,\"m_HapticHoverCancelDuration\":0.0,\"m_AllowHoverHapticsWhileSelecting\":true,\"m_InteractionAttachController\":{\"instanceID\":0},\"m_EnableNearCasting\":true,\"m_NearInteractionCaster\":{\"instanceID\":0},\"m_NearCasterSortingStrategy\":1,\"m_SortNearTargetsAfterTargetFilter\":false,\"m_EnableFarCasting\":true,\"m_FarInteractionCaster\":{\"instanceID\":0},\"m_FarAttachMode\":1,\"m_EnableUIInteraction\":true,\"m_BlockUIOnInteractableSelection\":true,\"m_UIHoverEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_UIHoverExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_UIPressInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"UI Press\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"ded1ccb2-ff18-46c7-ade9-b80985fe2825\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"UI Press Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"d762660e-30e0-4a4d-8e2a-e6b553e03f11\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":3279264004350380116,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":-5908353012961274365,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_UIScrollInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"UI Scroll\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"ef5cc4a5-b968-432c-9ae7-45e494178db0\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":-6756787485274679044,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}}}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Camera Offset/Right Controller/Teleport Interactor",
+      "type": "XRRayInteractor",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_InteractionManager\":{\"instanceID\":0},\"m_InteractionLayers\":{\"m_Bits\":2147483648},\"m_Handedness\":2,\"m_AttachTransform\":{\"instanceID\":0},\"m_KeepSelectedTargetValid\":false,\"m_DisableVisualsWhenBlockedInGroup\":true,\"m_StartingSelectedInteractable\":{\"instanceID\":0},\"m_StartingTargetFilter\":{\"instanceID\":0},\"m_AutoFindParentInteractableInHierarchy\":false,\"m_ParentInteractableObject\":{\"instanceID\":0},\"m_HoverEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_HoverExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_SelectEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_SelectExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_StartingHoverFilters\":[],\"m_StartingSelectFilters\":[],\"m_SelectInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"Select\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"36843f28-4fd5-4729-b5a6-afe92ef11597\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Select Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"1a51c331-470d-4462-b8e1-2522a24bd40c\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":-8061240218431744966,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":-8061240218431744966,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_ActivateInput\":{\"m_InputSourceMode\":2,\"m_InputActionPerformed\":{\"m_Name\":\"Activate\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"0ace7244-e61f-4e60-8d0b-2ef8c3ae51af\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Activate Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"bdf06a24-21b3-4f27-a8a3-72086e6c7f00\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"fileID\":83097790271614945,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_InputActionReferenceValue\":{\"fileID\":7904272356298805229,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_SelectActionTrigger\":0,\"m_AllowHoveredActivate\":false,\"m_TargetPriorityMode\":0,\"m_HideControllerOnSelect\":false,\"m_InputCompatibilityMode\":0,\"m_PlayAudioClipOnSelectEntered\":false,\"m_AudioClipForOnSelectEntered\":{\"instanceID\":0},\"m_PlayAudioClipOnSelectExited\":false,\"m_AudioClipForOnSelectExited\":{\"instanceID\":0},\"m_PlayAudioClipOnSelectCanceled\":false,\"m_AudioClipForOnSelectCanceled\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverEntered\":false,\"m_AudioClipForOnHoverEntered\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverExited\":false,\"m_AudioClipForOnHoverExited\":{\"instanceID\":0},\"m_PlayAudioClipOnHoverCanceled\":false,\"m_AudioClipForOnHoverCanceled\":{\"instanceID\":0},\"m_AllowHoverAudioWhileSelecting\":false,\"m_PlayHapticsOnSelectEntered\":false,\"m_HapticSelectEnterIntensity\":0.0,\"m_HapticSelectEnterDuration\":0.0,\"m_PlayHapticsOnSelectExited\":false,\"m_HapticSelectExitIntensity\":0.0,\"m_HapticSelectExitDuration\":0.0,\"m_PlayHapticsOnSelectCanceled\":false,\"m_HapticSelectCancelIntensity\":0.0,\"m_HapticSelectCancelDuration\":0.0,\"m_PlayHapticsOnHoverEntered\":false,\"m_HapticHoverEnterIntensity\":0.0,\"m_HapticHoverEnterDuration\":0.0,\"m_PlayHapticsOnHoverExited\":false,\"m_HapticHoverExitIntensity\":0.0,\"m_HapticHoverExitDuration\":0.0,\"m_PlayHapticsOnHoverCanceled\":false,\"m_HapticHoverCancelIntensity\":0.0,\"m_HapticHoverCancelDuration\":0.0,\"m_AllowHoverHapticsWhileSelecting\":false,\"m_LineType\":1,\"m_BlendVisualLinePoints\":true,\"m_MaxRaycastDistance\":30.0,\"m_RayOriginTransform\":{\"instanceID\":0},\"m_ReferenceFrame\":{\"instanceID\":0},\"m_Velocity\":10.0,\"m_Acceleration\":9.800000190734864,\"m_AdditionalGroundHeight\":0.10000000149011612,\"m_AdditionalFlightTime\":0.5,\"m_EndPointDistance\":30.0,\"m_EndPointHeight\":-10.0,\"m_ControlPointDistance\":10.0,\"m_ControlPointHeight\":5.0,\"m_SampleFrequency\":50,\"m_HitDetectionType\":0,\"m_SphereCastRadius\":0.10000000149011612,\"m_ConeCastAngle\":6.0,\"m_LiveConeCastDebugVisuals\":false,\"m_RaycastMask\":{\"serializedVersion\":\"2\",\"m_Bits\":2147483681},\"m_RaycastTriggerInteraction\":1,\"m_RaycastSnapVolumeInteraction\":1,\"m_RaycastUIDocumentTriggerInteraction\":1,\"m_HitClosestOnly\":true,\"m_HoverToSelect\":false,\"m_HoverTimeToSelect\":0.5,\"m_AutoDeselect\":false,\"m_TimeToAutoDeselect\":1.0,\"m_EnableUIInteraction\":false,\"m_BlockInteractionsWithScreenSpaceUI\":false,\"m_BlockUIOnInteractableSelection\":true,\"m_ManipulateAttachTransform\":true,\"m_UseForceGrab\":false,\"m_RotateSpeed\":180.0,\"m_TranslateSpeed\":0.0,\"m_RotateReferenceFrame\":{\"instanceID\":0},\"m_RotateMode\":1,\"m_UIHoverEntered\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_UIHoverExited\":{\"m_PersistentCalls\":{\"m_Calls\":[]}},\"m_EnableARRaycasting\":false,\"m_OccludeARHitsWith3DObjects\":false,\"m_OccludeARHitsWith2DObjects\":false,\"m_ScaleMode\":0,\"m_UIPressInput\":{\"m_InputSourceMode\":0,\"m_InputActionPerformed\":{\"m_Name\":\"UI Press\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"54867c8e-3650-4605-a53c-ee8ffb351dcf\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"UI Press Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"257d8673-0295-4ff5-b278-e63d20cd918b\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"instanceID\":0},\"m_InputActionReferenceValue\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_UIScrollInput\":{\"m_InputSourceMode\":0,\"m_InputAction\":{\"m_Name\":\"UI Scroll\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"8c6b1aac-a242-4bf4-a5b3-bfad6e83b638\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_TranslateManipulationInput\":{\"m_InputSourceMode\":0,\"m_InputAction\":{\"m_Name\":\"Translate Manipulation\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"0f9fd0ee-650d-41a6-ab30-2a036c425c21\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_RotateManipulationInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"Rotate Manipulation\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"cadca2d2-f642-4efc-a222-c1827be3e896\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":-5913262927076077117,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_DirectionalManipulationInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"Directional Manipulation\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"472cbca3-7add-47a9-a5fc-73d3d10107aa\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":-440298646266941818,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_ScaleToggleInput\":{\"m_InputSourceMode\":0,\"m_InputActionPerformed\":{\"m_Name\":\"Scale Toggle\",\"m_Type\":1,\"m_ExpectedControlType\":\"\",\"m_Id\":\"692a9304-a2fd-4dbd-9e2f-2fb4b6154f1c\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionValue\":{\"m_Name\":\"Scale Toggle Value\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"d0cf082b-f2d7-4100-b069-651cf2820425\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReferencePerformed\":{\"instanceID\":0},\"m_InputActionReferenceValue\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualPerformed\":false,\"m_ManualValue\":0.0,\"m_ManualQueuePerformed\":false,\"m_ManualQueueWasPerformedThisFrame\":false,\"m_ManualQueueWasCompletedThisFrame\":false,\"m_ManualQueueValue\":0.0,\"m_ManualQueueTargetFrame\":0},\"m_ScaleOverTimeInput\":{\"m_InputSourceMode\":0,\"m_InputAction\":{\"m_Name\":\"Scale Over Time\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"6f835f0d-f1c2-461c-b8bc-edc587e89149\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_ScaleDistanceDeltaInput\":{\"m_InputSourceMode\":0,\"m_InputAction\":{\"m_Name\":\"Scale Distance Delta\",\"m_Type\":0,\"m_ExpectedControlType\":\"Axis\",\"m_Id\":\"9140e1d5-f197-46d4-88c2-a02441edeac5\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"instanceID\":0},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":0.0}}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Locomotion",
+      "type": "LocomotionMediator",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\"}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Locomotion",
+      "type": "XRBodyTransformer",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_XROrigin\":{\"instanceID\":0},\"m_BodyPositionEvaluatorObject\":{\"instanceID\":0},\"m_ConstrainedBodyManipulatorObject\":{\"instanceID\":0},\"m_UseCharacterControllerIfExists\":true}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Locomotion/Turn",
+      "type": "SnapTurnProvider",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_Mediator\":{\"instanceID\":0},\"m_TransformationPriority\":0,\"m_TurnAmount\":45.0,\"m_DebounceTime\":0.5,\"m_EnableTurnLeftRight\":true,\"m_EnableTurnAround\":true,\"m_DelayTime\":0.0,\"m_LeftHandTurnInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"Left Hand Snap Turn\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"536e141d-ee23-4272-b0fd-3984d1655f02\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":-7374733323251553461,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_RightHandTurnInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"Right Hand Snap Turn\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"b17ca378-4740-48c7-abe1-7f35bce317e9\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":-8525429354371678379,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}}}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Locomotion/Move",
+      "type": "DynamicMoveProvider",
+      "enabled": false,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":false,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_Mediator\":{\"instanceID\":0},\"m_TransformationPriority\":0,\"m_MoveSpeed\":2.5,\"m_InAirControlModifier\":0.5,\"m_EnableStrafe\":true,\"m_EnableFly\":false,\"m_ForwardSource\":{\"instanceID\":0},\"m_LeftHandMoveInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"Left Hand Move\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"16c2fabb-fb1c-4a11-94d0-0b1d894b8593\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":6972639530819350904,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_RightHandMoveInput\":{\"m_InputSourceMode\":2,\"m_InputAction\":{\"m_Name\":\"Right Hand Move\",\"m_Type\":0,\"m_ExpectedControlType\":\"Vector2\",\"m_Id\":\"af2e3d83-024e-4a1f-8bc1-f97f0b4ae1d5\",\"m_Processors\":\"\",\"m_Interactions\":\"\",\"m_SingletonActionBindings\":[],\"m_Flags\":0},\"m_InputActionReference\":{\"fileID\":-8198699208435500284,\"guid\":\"c348712bda248c246b8c49b3db54643f\",\"type\":3},\"m_ObjectReferenceObject\":{\"instanceID\":0},\"m_ManualValue\":{\"x\":0.0,\"y\":0.0}},\"m_UseGravity\":true,\"m_HeadTransform\":{\"instanceID\":0},\"m_LeftControllerTransform\":{\"instanceID\":0},\"m_RightControllerTransform\":{\"instanceID\":0},\"m_LeftHandMovementDirection\":0,\"m_RightHandMovementDirection\":0}}"
+    },
+    {
+      "path": "Quest Player (OpenXR) Variant/Locomotion/Teleportation",
+      "type": "TeleportationProvider",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"\",\"m_Mediator\":{\"instanceID\":0},\"m_TransformationPriority\":20,\"m_DelayTime\":0.0}}"
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/02_SortingShelves_MoveToYourCabinet/Plate shelf/02  /  PLATES sign",
+      "type": "TrackedDeviceGraphicRaycaster",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster\",\"m_IgnoreReversedGraphics\":false,\"m_CheckFor2DOcclusion\":false,\"m_CheckFor3DOcclusion\":false,\"m_BlockingMask\":{\"serializedVersion\":\"2\",\"m_Bits\":4294967295},\"m_RaycastTriggerInteraction\":1}}"
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/02_SortingShelves_MoveToYourCabinet/Bowl shelf/02  /  BOWLS sign",
+      "type": "TrackedDeviceGraphicRaycaster",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster\",\"m_IgnoreReversedGraphics\":false,\"m_CheckFor2DOcclusion\":false,\"m_CheckFor3DOcclusion\":false,\"m_BlockingMask\":{\"serializedVersion\":\"2\",\"m_Bits\":4294967295},\"m_RaycastTriggerInteraction\":1}}"
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/02_SortingShelves_MoveToYourCabinet/Cup shelf/02  /  CUPS sign",
+      "type": "TrackedDeviceGraphicRaycaster",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster\",\"m_IgnoreReversedGraphics\":false,\"m_CheckFor2DOcclusion\":false,\"m_CheckFor3DOcclusion\":false,\"m_BlockingMask\":{\"serializedVersion\":\"2\",\"m_Bits\":4294967295},\"m_RaycastTriggerInteraction\":1}}"
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/03_OutdoorBin_MoveOutsideYourHome/OUTDOOR BIN sign",
+      "type": "TrackedDeviceGraphicRaycaster",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster\",\"m_IgnoreReversedGraphics\":false,\"m_CheckFor2DOcclusion\":false,\"m_CheckFor3DOcclusion\":false,\"m_BlockingMask\":{\"serializedVersion\":\"2\",\"m_Bits\":4294967295},\"m_RaycastTriggerInteraction\":1}}"
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/04_MeetingStation_MoveToYourDesk/Meeting screen",
+      "type": "TrackedDeviceGraphicRaycaster",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster\",\"m_IgnoreReversedGraphics\":false,\"m_CheckFor2DOcclusion\":false,\"m_CheckFor3DOcclusion\":false,\"m_BlockingMask\":{\"serializedVersion\":\"2\",\"m_Bits\":4294967295},\"m_RaycastTriggerInteraction\":1}}"
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/Task Board_MoveToYourWall/Home Focus task board",
+      "type": "TrackedDeviceGraphicRaycaster",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster\",\"m_IgnoreReversedGraphics\":false,\"m_CheckFor2DOcclusion\":false,\"m_CheckFor3DOcclusion\":false,\"m_BlockingMask\":{\"serializedVersion\":\"2\",\"m_Bits\":4294967295},\"m_RaycastTriggerInteraction\":1}}"
+    },
+    {
+      "path": "Gameplay_KeepWhenReplacingEnvironment/Controls and welcome",
+      "type": "TrackedDeviceGraphicRaycaster",
+      "enabled": true,
+      "active": false,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster\",\"m_IgnoreReversedGraphics\":false,\"m_CheckFor2DOcclusion\":false,\"m_CheckFor3DOcclusion\":false,\"m_BlockingMask\":{\"serializedVersion\":\"2\",\"m_Bits\":4294967295},\"m_RaycastTriggerInteraction\":1}}"
+    },
+    {
+      "path": "PlayerModeSwitcher",
+      "type": "PlayerModeRouter",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"HomeTasks::HomeTasks.PlayerModeRouter\",\"questRig\":{\"instanceID\":0},\"desktopRig\":{\"instanceID\":0}}}"
+    },
+    {
+      "path": "EventSystem",
+      "type": "EventSystem",
+      "enabled": true,
+      "active": true,
+      "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"UnityEngine.UI::UnityEngine.EventSystems.EventSystem\",\"m_FirstSelected\":{\"instanceID\":0},\"m_sendNavigationEvents\":true,\"m_DragThreshold\":10}}"
+    }
+  ]
+}

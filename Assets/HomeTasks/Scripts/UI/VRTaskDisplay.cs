@@ -12,6 +12,7 @@ namespace HomeTasks
 
         void Update()
         {
+            if (session == null) session = HomeSession.Instance;
             if (session == null || Time.unscaledTime < nextUpdate) return;
             nextUpdate = Time.unscaledTime + 0.15f;
             summary.text = $"HOME FOCUS   {session.CompletedTasks}/4\n{session.CurrentQuestName}\nWash {session.Washed}/{session.dishes.Count}   Sort {session.Organized}/{session.dishes.Count}   Trash {session.Disposed}/{session.rubbish.Count}";

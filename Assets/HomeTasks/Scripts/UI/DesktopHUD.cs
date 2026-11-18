@@ -15,6 +15,9 @@ namespace HomeTasks
 
         void Update()
         {
+            if (session == null) session = HomeSession.Instance;
+            if (player == null) player = GetComponentInParent<DesktopPlayer>();
+            if (session == null || player == null) return;
             crosshair.SetActive(player.MouseCaptured);
             prompt.text = player.Prompt;
             if (Time.unscaledTime < nextUpdate) return;

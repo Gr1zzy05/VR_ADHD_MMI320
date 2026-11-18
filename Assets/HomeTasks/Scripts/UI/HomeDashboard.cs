@@ -15,6 +15,7 @@ namespace HomeTasks
 
         void Update()
         {
+            if (session == null) session = HomeSession.Instance;
             if (session == null || Time.unscaledTime < nextUpdate) return;
             nextUpdate = Time.unscaledTime + 0.12f;
             var meeting = session.meeting;

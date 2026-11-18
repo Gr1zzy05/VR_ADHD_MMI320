@@ -14,6 +14,7 @@ namespace HomeTasks
         public const string ResultsScenePath = "Assets/HomeTasks/Scenes/HomeResults.unity";
         public static HomeSession Instance { get; private set; }
         public static HomeSessionResult LastResult { get; private set; }
+        public static string LastGameplayScenePath { get; private set; } = GameplayScenePath;
         public HomeTaskSettings settings;
         public List<DishItem> dishes = new List<DishItem>();
         public List<TrashItem> rubbish = new List<TrashItem>();
@@ -38,7 +39,12 @@ namespace HomeTasks
             HomeQuest.Washing => $"Quest 1/4: Wash all {dishes.Count} dishes in the running sink.",
             HomeQuest.Organizing => "Quest 2/4: Put all clean dishes on their matching shelves.",
             HomeQuest.Trash => $"Quest 3/4: Take all {rubbish.Count} bags to the outdoor bin.",
-            HomeQuest.Meeting => "Quest 4/4: Join the meeting. Listen, then answer once.",
+            HomeQuest.Meeting => meeting != null && meeting.seat != null ? meeting.State switch
+            {
+                MeetingState.Listening => "Quest 4/4: Stay seated and listen to the meeting.",
+                MeetingState.Quiz => "Quest 4/4: Stay seated and answer on the meeting screen.",
+                _ => "Quest 4/4: Select the chair at the desk to sit and listen."
+            } : "Quest 4/4: Join the meeting. Listen, then answer once.",
             _ => "All four quests complete. Your results are ready."
         };
 
@@ -56,11 +62,13 @@ namespace HomeTasks
         {
             Instance = null;
             LastResult = null;
+            LastGameplayScenePath = GameplayScenePath;
         }
 
         void Awake()
         {
             Instance = this;
+            LastGameplayScenePath = gameObject.scene.path;
             LastResult = null;
             startedAt = Time.time;
             successTone = AudioClip.Create("Small win", 6000, 1, 24000, false);
@@ -145,10 +153,11 @@ namespace HomeTasks
 
         IEnumerator Restart()
         {
+            var scenePath = gameObject.scene.path;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             yield return SceneFade.FadeOut();
-            yield return SceneManager.LoadSceneAsync(GameplayScenePath);
+            yield return SceneManager.LoadSceneAsync(scenePath);
         }
 
         void OnDestroy()

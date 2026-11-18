@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/HomeTasks/Scenes/HomeFocus.unity
     guid: 5c6e689d4a06ec84fa4ca6928ad5223b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/HomeTasks/Scenes/NewModel.unity
+    guid: 8341492391157124cb39885f917a2756
   - enabled: 1
     path: Assets/HomeTasks/Scenes/HomeResults.unity
     guid: 4a2625aecbaf5ac4380038603e28b9c5

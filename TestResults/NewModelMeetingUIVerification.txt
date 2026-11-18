@@ -1,0 +1,53 @@
+PASS: The UI test starts in a fresh NewModel session
+PASS: The chair is locked until quests 1–3 are done
+PASS: The desktop pointer is on the front face of the wall-board button
+PASS: A mouse click reaches the wall-board Recover Items button through the input module
+PASS: Sink contact prepares Dirty Bowl 1
+PASS: Sink contact prepares Dirty Bowl 2
+PASS: Sink contact prepares Dirty Cup 1
+PASS: Sink contact prepares Dirty Cup 2
+PASS: Sink contact prepares Dirty Plate 1
+PASS: Sink contact prepares Dirty Plate 2
+PASS: Matching shelf accepts Dirty Bowl 1
+PASS: Matching shelf accepts Dirty Bowl 2
+PASS: Matching shelf accepts Dirty Cup 1
+PASS: Matching shelf accepts Dirty Cup 2
+PASS: Matching shelf accepts Dirty Plate 1
+PASS: Matching shelf accepts Dirty Plate 2
+PASS: Outdoor bin accepts a released bag
+PASS: Outdoor bin accepts a released bag
+PASS: Outdoor bin accepts a released bag
+PASS: Completing the chores unlocks the chair as the meeting entry point
+PASS: The old meeting callback cannot skip the chair
+PASS: Clicking the chair on desktop seats the player and starts the briefing
+PASS: Walking away on desktop interrupts playback and restores standing height
+PASS: Tracked pointer hits Sit in meeting chair
+PASS: The tracked chair button seats the player and starts listening
+PASS: VR seating aligns the tracked player toward the screen at the chair height
+PASS: Tracked pointer hits Leave meeting chair
+PASS: The Leave Chair button returns VR players to the floor and stops the audio
+PASS: Tracked pointer hits Sit in meeting chair
+PASS: The tracked chair button seats the player and starts listening
+PASS: Left-stick walking out of the seat area stops and resets the meeting
+PASS: Tracked pointer hits Sit in meeting chair
+PASS: The tracked chair button seats the player and starts listening
+PASS: The seated player can aim and select the nearby floor for teleport
+PASS: Teleporting away stops and resets the meeting
+PASS: Tracked pointer hits Sit in meeting chair
+PASS: The tracked chair button seats the player and starts listening
+PASS: Tracked pointer hits Answer 1
+PASS: Submitting an answer while seated advances the quiz
+PASS: A room-scale step away during the quiz discards its answers and locks the questions
+PASS: Tracked pointer hits Sit in meeting chair
+PASS: The tracked chair button seats the player and starts listening
+PASS: Returning to the chair restarts the spoken briefing at the first segment
+PASS: Quiz answers remain blocked during narration
+PASS: The quiz unlocks after the complete spoken briefing while seated
+PASS: Tracked pointer hits Answer 1
+PASS: Tracked pointer hits Answer 2
+PASS: Tracked pointer hits Answer 3
+PASS: Tracked quiz clicks produce the correct results
+PASS: The results screen remembers NewModel as the gameplay map
+PASS: Results has its own working XR UI input module
+PASS: Tracked pointer hits Start new session
+PASS: The results-screen button starts a fresh session in NewModel

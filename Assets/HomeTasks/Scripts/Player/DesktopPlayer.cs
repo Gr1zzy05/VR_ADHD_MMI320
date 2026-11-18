@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -16,6 +17,7 @@ namespace HomeTasks
         public HomeItem HeldItem => held;
         public bool MouseCaptured => Cursor.lockState == CursorLockMode.Locked;
         CharacterController controller;
+        readonly List<RaycastResult> uiHits = new List<RaycastResult>();
         HomeItem held;
         RaycastHit aimHit;
         bool hasHit;
@@ -23,6 +25,7 @@ namespace HomeTasks
         float fallingSpeed;
         float holdDistance = 0.8f;
         float itemYaw;
+        float standingEyeHeight;
 
         void Awake() => controller = GetComponent<CharacterController>();
 
@@ -44,10 +47,13 @@ namespace HomeTasks
                 SetCapture(!MouseCaptured && !keyboard.escapeKey.wasPressedThisFrame);
                 if (held is SpongeTool tool) tool.DesktopScrubbing = false;
             }
+            var move = new Vector2((keyboard.dKey.isPressed ? 1 : 0) - (keyboard.aKey.isPressed ? 1 : 0), (keyboard.wKey.isPressed ? 1 : 0) - (keyboard.sKey.isPressed ? 1 : 0));
             if (!MouseCaptured)
             {
-                Prompt = "Click the game to look around  |  Tab: mouse for screen buttons";
-                if (mouse.leftButton.wasPressedThisFrame && (EventSystem.current == null || !EventSystem.current.IsPointerOverGameObject())) SetCapture(true);
+                var seated = meeting != null && meeting.seat != null && meeting.seat.IsPlayerInSeat;
+                Prompt = seated ? "Click meeting buttons  |  WASD: leave the chair" : "Click the game to look around  |  Tab: mouse for screen buttons";
+                if (seated && move != Vector2.zero) MoveCharacter(move);
+                if (mouse.leftButton.wasPressedThisFrame && !PointerIsOverUI(mouse.position.ReadValue())) SetCapture(true);
                 return;
             }
 
@@ -55,11 +61,7 @@ namespace HomeTasks
             transform.Rotate(Vector3.up, delta.x);
             pitch = Mathf.Clamp(pitch - delta.y, -78, 78);
             view.transform.localRotation = Quaternion.Euler(pitch, 0, 0);
-            var move = new Vector2((keyboard.dKey.isPressed ? 1 : 0) - (keyboard.aKey.isPressed ? 1 : 0), (keyboard.wKey.isPressed ? 1 : 0) - (keyboard.sKey.isPressed ? 1 : 0));
-            move = Vector2.ClampMagnitude(move, 1);
-            if (controller.isGrounded && fallingSpeed < 0) fallingSpeed = -1;
-            fallingSpeed += Physics.gravity.y * Time.deltaTime;
-            controller.Move(((transform.right * move.x + transform.forward * move.y) * moveSpeed + Vector3.up * fallingSpeed) * Time.deltaTime);
+            MoveCharacter(move);
 
             FindTarget();
             if (mouse.leftButton.wasPressedThisFrame)
@@ -92,6 +94,22 @@ namespace HomeTasks
                 if (keyboard.digit3Key.wasPressedThisFrame) meeting.AnswerThird();
             }
             UpdatePrompt();
+        }
+
+        bool PointerIsOverUI(Vector2 position)
+        {
+            var events = EventSystem.current;
+            if (events == null) return false;
+            events.RaycastAll(new PointerEventData(events) { position = position }, uiHits);
+            return uiHits.Exists(hit => hit.module is UnityEngine.UI.GraphicRaycaster);
+        }
+
+        void MoveCharacter(Vector2 move)
+        {
+            move = Vector2.ClampMagnitude(move, 1);
+            if (controller.isGrounded && fallingSpeed < 0) fallingSpeed = -1;
+            fallingSpeed += Physics.gravity.y * Time.deltaTime;
+            controller.Move(((transform.right * move.x + transform.forward * move.y) * moveSpeed + Vector3.up * fallingSpeed) * Time.deltaTime);
         }
 
         void FindTarget()
@@ -165,6 +183,36 @@ namespace HomeTasks
         {
             Cursor.lockState = capture ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !capture;
+        }
+
+        internal void SitForMeeting(Transform seat, float eyeHeight)
+        {
+            Drop();
+            standingEyeHeight = view.transform.localPosition.y;
+            MoveToMeetingPoint(seat);
+            SetEyeHeight(eyeHeight);
+            SetCapture(false);
+        }
+
+        internal void LeaveMeetingSeat(Transform standPoint)
+        {
+            if (standPoint != null) MoveToMeetingPoint(standPoint);
+            SetEyeHeight(standingEyeHeight);
+        }
+
+        void MoveToMeetingPoint(Transform point)
+        {
+            transform.SetPositionAndRotation(point.position, point.rotation);
+            view.transform.localRotation = Quaternion.identity;
+            pitch = 0;
+            fallingSpeed = 0;
+        }
+
+        void SetEyeHeight(float height)
+        {
+            var position = view.transform.localPosition;
+            position.y = height;
+            view.transform.localPosition = position;
         }
 
         void OnDisable() { Drop(); SetCapture(false); }

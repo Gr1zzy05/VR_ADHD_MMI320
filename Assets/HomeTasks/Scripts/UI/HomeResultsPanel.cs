@@ -56,7 +56,9 @@ namespace HomeTasks
         IEnumerator Restart()
         {
             yield return SceneFade.FadeOut();
-            yield return SceneManager.LoadSceneAsync(HomeSession.GameplayScenePath);
+            var gameplay = HomeSession.LastGameplayScenePath;
+            if (!Application.CanStreamedLevelBeLoaded(gameplay)) gameplay = SceneUtility.GetScenePathByBuildIndex(0);
+            yield return SceneManager.LoadSceneAsync(gameplay);
         }
     }
 }

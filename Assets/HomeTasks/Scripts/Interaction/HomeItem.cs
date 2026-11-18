@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Attachment;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 namespace HomeTasks
@@ -30,6 +31,9 @@ namespace HomeTasks
         {
             Body = GetComponent<Rigidbody>();
             Grab = GetComponent<XRGrabInteractable>();
+            Grab.farAttachMode = InteractableFarAttachMode.Near;
+            Grab.attachEaseInTime = 0f;
+            Grab.movementType = XRBaseInteractable.MovementType.Instantaneous;
             Shape = GetComponent<Collider>();
             homePosition = transform.position;
             homeRotation = transform.rotation;

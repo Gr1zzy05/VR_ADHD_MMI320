@@ -18,7 +18,10 @@ namespace HomeTasks
         public bool MouseCaptured => Cursor.lockState == CursorLockMode.Locked;
         CharacterController controller;
         readonly List<RaycastResult> uiHits = new List<RaycastResult>();
+        readonly FidgetMouseContact fidgetContact = new FidgetMouseContact();
         HomeItem held;
+        FidgetCubeController heldCube;
+        Quaternion cubeViewRotation;
         RaycastHit aimHit;
         bool hasHit;
         float pitch;
@@ -42,6 +45,11 @@ namespace HomeTasks
             var keyboard = Keyboard.current;
             var mouse = Mouse.current;
             if (keyboard == null || mouse == null) return;
+            if (heldCube != null)
+            {
+                PlayWithCube(keyboard, mouse);
+                return;
+            }
             if (keyboard.escapeKey.wasPressedThisFrame || keyboard.tabKey.wasPressedThisFrame)
             {
                 SetCapture(!MouseCaptured && !keyboard.escapeKey.wasPressedThisFrame);
@@ -69,6 +77,8 @@ namespace HomeTasks
                 if (held != null) Drop();
                 else if (hasHit)
                 {
+                    if (aimHit.collider.TryGetComponent<FidgetCubeController>(out var cube) && TryPickUpCube(cube))
+                        return;
                     var item = aimHit.collider.GetComponentInParent<HomeItem>();
                     if (item != null && !item.IsLocked && !item.IsHeld)
                     {
@@ -144,6 +154,11 @@ namespace HomeTasks
         {
             Prompt = held != null ? $"Holding {held.displayName}  |  Click / Q: release  |  Scroll: reach  |  R: rotate" : "WASD: walk  |  Mouse: look  |  Click: grab  |  E: use  |  Tab: screen buttons";
             if (!hasHit) return;
+            if (held == null && aimHit.collider.TryGetComponent<FidgetCubeController>(out _))
+            {
+                Prompt = "Click: pick up Fidget Cube";
+                return;
+            }
             var action = aimHit.collider.GetComponentInParent<HomeAction>();
             if (action != null) { Prompt = "E: " + action.instruction; return; }
             var item = aimHit.collider.GetComponentInParent<HomeItem>();
@@ -171,12 +186,82 @@ namespace HomeTasks
 
         public void Drop()
         {
+            if (heldCube != null)
+            {
+                fidgetContact.End();
+                Physics.IgnoreCollision(heldCube.GetComponent<BoxCollider>(), controller, false);
+                heldCube.SetDesktopHeld(false);
+                heldCube = null;
+            }
             if (held == null) return;
             if (held is SpongeTool sponge) sponge.DesktopScrubbing = false;
             Physics.IgnoreCollision(held.Shape, controller, false);
             held.SetDesktopHeld(false);
             held.Body.linearVelocity = view.transform.forward * 0.1f;
             held = null;
+        }
+
+        bool TryPickUpCube(FidgetCubeController cube)
+        {
+            if (!cube.SetDesktopHeld(true)) return false;
+            heldCube = cube;
+            cubeViewRotation = Quaternion.Inverse(view.transform.rotation) * cube.transform.rotation;
+            Physics.IgnoreCollision(cube.GetComponent<BoxCollider>(), controller, true);
+            SetCapture(false);
+            PositionCube();
+            Prompt = "Fidget Cube  |  Click / drag: play  |  Right drag / arrows: turn  |  Q: drop";
+            return true;
+        }
+
+        void PlayWithCube(Keyboard keyboard, Mouse mouse)
+        {
+            if (keyboard.qKey.wasPressedThisFrame || keyboard.escapeKey.wasPressedThisFrame || keyboard.tabKey.wasPressedThisFrame)
+            {
+                Drop();
+                SetCapture(keyboard.qKey.wasPressedThisFrame);
+                Prompt = MouseCaptured ? "WASD: walk  |  Mouse: look" : "Click the game to look around";
+                return;
+            }
+            if (!Application.isFocused)
+            {
+                fidgetContact.End();
+                return;
+            }
+
+            MoveCharacter(Vector2.zero);
+            var yaw = (keyboard.rightArrowKey.wasPressedThisFrame ? 90f : 0f) - (keyboard.leftArrowKey.wasPressedThisFrame ? 90f : 0f);
+            var tilt = (keyboard.upArrowKey.wasPressedThisFrame ? 90f : 0f) - (keyboard.downArrowKey.wasPressedThisFrame ? 90f : 0f);
+            if (mouse.rightButton.isPressed)
+            {
+                var drag = mouse.delta.ReadValue() * 0.45f;
+                yaw -= drag.x;
+                tilt += drag.y;
+            }
+            if (yaw != 0f || tilt != 0f)
+            {
+                fidgetContact.End();
+                cubeViewRotation = Quaternion.Euler(tilt, yaw, 0f) * cubeViewRotation;
+            }
+            PositionCube();
+            if (mouse.rightButton.isPressed || !mouse.leftButton.isPressed)
+            {
+                fidgetContact.End();
+                return;
+            }
+            var cursor = mouse.position.ReadValue();
+            if (!view.pixelRect.Contains(cursor)) return;
+            var ray = view.ScreenPointToRay(cursor);
+            if (mouse.leftButton.wasPressedThisFrame) fidgetContact.Begin(heldCube, ray, 0.6f);
+            fidgetContact.Move(ray);
+        }
+
+        void PositionCube()
+        {
+            var position = view.transform.TransformPoint(0f, 0f, 0.25f);
+            var rotation = view.transform.rotation * cubeViewRotation;
+            heldCube.Body.position = position;
+            heldCube.Body.rotation = rotation;
+            heldCube.transform.SetPositionAndRotation(position, rotation);
         }
 
         void SetCapture(bool capture)

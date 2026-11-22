@@ -56,6 +56,14 @@ namespace HomeTasks
         float toastUntil;
         AudioClip successTone;
         HomeQuest previousQuest;
+        readonly DistractionLedger distractions = new DistractionLedger();
+
+        internal void RecordDistraction(DistractionKind kind, bool began, float duration)
+        {
+            if (!finished && !restarting) distractions.Record(kind, began, duration);
+        }
+
+        internal DistractionRecord[] SnapshotDistractions() => distractions.Snapshot();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics()

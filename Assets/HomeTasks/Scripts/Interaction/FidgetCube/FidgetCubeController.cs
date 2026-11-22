@@ -30,6 +30,7 @@ namespace HomeTasks
 
         public Rigidbody Body => body;
         public bool IsGrabbed => grab.isSelected;
+        public bool IsHeld => desktopHeld || IsGrabbed;
 
         internal bool SetDesktopHeld(bool held)
         {

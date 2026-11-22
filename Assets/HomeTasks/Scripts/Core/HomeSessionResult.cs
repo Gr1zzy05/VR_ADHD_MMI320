@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace HomeTasks
 {
     // A value snapshot survives the scene change without retaining any scene objects.
@@ -12,6 +15,7 @@ namespace HomeTasks
         public int CorrectAnswers { get; }
         public int QuestionCount { get; }
         public int RequiredScore { get; }
+        public IReadOnlyList<DistractionRecord> Distractions { get; }
         public bool QuizPassed => CorrectAnswers >= RequiredScore;
 
         public HomeSessionResult(HomeSession session)
@@ -25,6 +29,7 @@ namespace HomeTasks
             CorrectAnswers = session.meeting.CorrectAnswers;
             QuestionCount = session.meeting.content.questions.Length;
             RequiredScore = session.meeting.RequiredScore;
+            Distractions = Array.AsReadOnly(session.SnapshotDistractions());
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,9 @@ namespace HomeTasks
         public TMP_Text chores;
         public TMP_Text score;
         public TMP_Text feedback;
+        public TMP_Text distractionNames;
+        public TMP_Text distractionTimes;
+        public TMP_Text distractionUses;
         public UnityEngine.UI.Button restart;
         bool transitioning = true;
 
@@ -27,6 +31,12 @@ namespace HomeTasks
                 chores.text = $"01   Wash dishes<pos=80%>{result.Washed}/{result.DishCount}\n02   Organize dishes<pos=80%>{result.Organized}/{result.DishCount}\n03   Take trash outside<pos=80%>{result.Disposed}/{result.TrashCount}";
                 score.text = $"04   MEETING + QUIZ\n{result.CorrectAnswers} / {result.QuestionCount} correct";
                 feedback.text = (result.QuizPassed ? "Listening target reached." : $"Listening target: {result.RequiredScore}/{result.QuestionCount} correct.") + "\nOne attempt recorded. All four quests are complete.";
+                if (distractionNames != null)
+                {
+                    distractionNames.text = string.Join("\n", result.Distractions.Select(row => row.Name));
+                    distractionTimes.text = string.Join("\n", result.Distractions.Select(row => FormatTime(row.Seconds)));
+                    distractionUses.text = string.Join("\n", result.Distractions.Select(row => row.Uses));
+                }
             }
             else
             {
@@ -51,6 +61,12 @@ namespace HomeTasks
             transitioning = true;
             restart.interactable = false;
             StartCoroutine(Restart());
+        }
+
+        static string FormatTime(float seconds)
+        {
+            var tenths = Mathf.RoundToInt(seconds * 10f);
+            return $"{tenths / 600}:{tenths / 10 % 60:00}.{tenths % 10}";
         }
 
         IEnumerator Restart()

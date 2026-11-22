@@ -143,6 +143,7 @@ namespace HomeTasks.Editor
             panel.feedback = Text(canvas, "Meeting feedback", 42, 570, 916, 80, 24, Muted, "One meeting and one quiz attempt per session.");
             panel.restart = Button(canvas, "Start new session", 42, 685, 916, 70, Sage, Ink, "START NEW SESSION", panel.RestartSession);
             Text(canvas, "Footer", 42, 769, 916, 24, 18, Muted, "ONE SPACE. FOUR SMALL WINS.");
+            ConfigureDistractionResults(panel);
         }
     }
 }

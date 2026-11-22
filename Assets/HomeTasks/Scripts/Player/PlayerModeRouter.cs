@@ -11,6 +11,7 @@ namespace HomeTasks
         public GameObject worldTaskBoard;
         public GameObject armTaskBoard;
         public bool IsVR { get; private set; }
+        public Camera ActiveCamera { get; private set; }
 
         void Awake()
         {
@@ -25,10 +26,10 @@ namespace HomeTasks
             if (worldTaskBoard != null) worldTaskBoard.SetActive(!useVR);
             if (armTaskBoard != null) armTaskBoard.SetActive(useVR);
             var activeRig = useVR ? questRig : desktopRig;
-            var activeCamera = activeRig != null ? activeRig.GetComponentInChildren<Camera>(true) : null;
+            ActiveCamera = activeRig != null ? activeRig.GetComponentInChildren<Camera>(true) : null;
             foreach (var canvas in FindObjectsByType<Canvas>(FindObjectsInactive.Include, FindObjectsSortMode.None))
                 if (canvas.gameObject.scene == gameObject.scene && canvas.renderMode == RenderMode.WorldSpace)
-                    canvas.worldCamera = activeCamera;
+                    canvas.worldCamera = ActiveCamera;
             if (useVR) { Cursor.lockState = CursorLockMode.None; Cursor.visible = false; }
         }
     }

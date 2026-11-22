@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HomeTasks;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -19,8 +20,14 @@ namespace FocusShift.Toys
         readonly List<IXRInteractor> hands = new List<IXRInteractor>(16);
         XRGrabInteractable grab;
         AudioSource speaker;
+        DistractionUse distraction;
 
-        void Awake() { grab = GetComponent<XRGrabInteractable>(); speaker = GetComponent<AudioSource>(); }
+        void Awake()
+        {
+            grab = GetComponent<XRGrabInteractable>();
+            speaker = GetComponent<AudioSource>();
+            distraction = GetComponent<DistractionUse>();
+        }
         void LateUpdate()
         {
             if (grab.interactionManager == null) return;
@@ -47,6 +54,7 @@ namespace FocusShift.Toys
                 const float membraneRadius = .01455f;
                 if ((xy - bubble.centerOnBoard).sqrMagnitude > membraneRadius * membraneRadius) continue;
                 if (!bubble.Toggle(pressAnimationDuration, bubbleDepressionDepth)) return false;
+                if (distraction != null) distraction.Pulse(pressAnimationDuration);
                 if (popSound != null && popSoundVolume > 0f) speaker.PlayOneShot(popSound, popSoundVolume);
                 return true;
             }

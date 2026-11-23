@@ -12,7 +12,7 @@ import {
   QrCode,
 } from "lucide-react";
 import {
-  ActivityChart,
+  ParticipantDurationChart,
   Card,
   Empty,
   Header,
@@ -164,13 +164,13 @@ export function Overview({ data }: { data: RecordsData }) {
       </div>
       <div className="chart-grid">
         <Card
-          title={t("Participation over time", "การเข้าร่วมตามช่วงเวลา")}
+          title={t("Average play time by participant", "เวลาเล่นเฉลี่ยรายผู้เข้าร่วม")}
           subtitle={t(
-            "Session starts by date · UTC",
-            "จำนวนรอบกิจกรรมตามวันที่เริ่มต้น · UTC",
+            "Minutes : seconds · Includes rounds with recorded play time",
+            "นาที : วินาที · คิดจากรอบที่มีเวลาเล่นบันทึกไว้",
           )}
         >
-          <ActivityChart rows={rows} />
+          <ParticipantDurationChart rows={rows} participants={data.participants} />
         </Card>
         <Card
           title={t("Mission completion", "การทำภารกิจสำเร็จ")}

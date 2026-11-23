@@ -2,8 +2,6 @@ import { useContext, createContext } from "react";
 import type { ReactNode, ComponentType } from "react";
 import { ChevronRight, Inbox, ArrowUpRight } from "lucide-react";
 import {
-  AreaChart,
-  Area,
   CartesianGrid,
   ResponsiveContainer,
   Tooltip,
@@ -12,7 +10,7 @@ import {
   LineChart,
   Line,
 } from "recharts";
-import { count, date, duration, newest } from "./data";
+import { average, count, date, duration, finite, newest } from "./data";
 import type { Lang, Participant, Session, Translate } from "./data";
 
 export const Locale = createContext<{ lang: Lang; t: Translate }>({
@@ -218,92 +216,65 @@ export function SessionTable({
     </div>
   );
 }
-export function ActivityChart({ rows }: { rows: Session[] }) {
-  const { lang, t } = useLocale();
-  const entries = newest(rows);
-  if (!entries.length) return <Empty />;
-  const lo = new Date(entries[entries.length - 1].startedAt),
-    hi = new Date(entries[0].startedAt);
-  const long = hi.valueOf() - lo.valueOf() > 90 * 86400000;
-  const start = new Date(lo);
-  start.setUTCHours(0, 0, 0, 0);
-  if (long) start.setUTCDate(1);
-  const key = (d: Date) => d.toISOString().slice(0, long ? 7 : 10);
-  const buckets = new Map<string, number>();
-  for (const s of rows) {
-    const k = key(new Date(s.startedAt));
-    buckets.set(k, (buckets.get(k) ?? 0) + 1);
+export function ParticipantDurationChart({ rows, participants }: {
+  rows: Session[];
+  participants: Participant[];
+}) {
+  const { t } = useLocale();
+  const byParticipant = new Map<string, (number | null)[]>();
+  for (const row of rows) {
+    const times = byParticipant.get(row.participantId) ?? [];
+    times.push(row.durationSeconds);
+    byParticipant.set(row.participantId, times);
   }
-  const chart: { label: string; value: number }[] = [];
-  for (
-    const day = new Date(start);
-    day <= hi;
-    long
-      ? day.setUTCMonth(day.getUTCMonth() + 1)
-      : day.setUTCDate(day.getUTCDate() + 1)
-  ) {
-    chart.push({
-      label: new Intl.DateTimeFormat(lang === "th" ? "th-TH" : "en-GB", {
-        timeZone: "UTC",
-        month: "short",
-        ...(long ? { year: "2-digit" as const } : { day: "numeric" as const }),
-      }).format(day),
-      value: buckets.get(key(day)) ?? 0,
-    });
+  const chart = participants
+    .flatMap(({ id, code }) => {
+      const times = byParticipant.get(id);
+      return times ? [{ code, seconds: average(times), measured: times.filter(finite).length, rounds: times.length }] : [];
+    })
+    .sort((a, b) => a.code.localeCompare(b.code, undefined, { numeric: true }));
+  const title = t("Average play time", "เวลาเล่นเฉลี่ย");
+  if (!chart.some(({ seconds }) => seconds !== null)) {
+    return <Empty>{t("No play times recorded in this period", "ไม่มีเวลาเล่นที่บันทึกในช่วงที่เลือก")}</Empty>;
   }
-  const title = t("Sessions", "รอบกิจกรรม");
   return (
-    <>
-      <div className="chart-legend">
-        <i />
-        {title}
-      </div>
-      <div
-        className="plot"
-        role="img"
-        aria-label={t("Session count over time", "จำนวนรอบกิจกรรมตามเวลา")}
-      >
+    <div style={{ overflowX: "auto" }}>
+      <div className="plot" style={{ minWidth: Math.max(0, chart.length * 62 + 54) }}>
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart
-            data={chart}
-            margin={{ top: 10, right: 12, bottom: 2, left: -23 }}
-          >
-            <defs>
-              <linearGradient id="volumeGradient" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stopColor="#5b85f3" stopOpacity=".32" />
-                <stop offset="100%" stopColor="#5b85f3" stopOpacity=".015" />
-              </linearGradient>
-            </defs>
-            <CartesianGrid
-              stroke="#e2e8f0"
-              strokeDasharray="3 4"
-              vertical={false}
-            />
-            <XAxis
-              dataKey="label"
+          <LineChart data={chart} margin={{ top: 12, right: 16, bottom: 6, left: 0 }}>
+            <CartesianGrid stroke="#e2e8f0" strokeDasharray="3 4" vertical={false} />
+            <XAxis dataKey="code" tickLine={false} axisLine={false} tickMargin={10} interval={0}
+              padding={{ left: 24, right: 24 }} />
+            <YAxis
+              tickFormatter={(value: number) => duration(value)}
               tickLine={false}
               axisLine={false}
-              minTickGap={20}
-              tickMargin={10}
+              domain={[0, (max: number) => Math.max(1, max)]}
+              allowDecimals={false}
+              width={52}
             />
-            <YAxis allowDecimals={false} tickLine={false} axisLine={false} />
-            <Tooltip />
-            <Area
-              type="linear"
-              dataKey="value"
-              name={title}
-              stroke="#386ae4"
-              strokeWidth={2.7}
-              fill="url(#volumeGradient)"
-              dot={chart.length < 2}
-              isAnimationActive={false}
+            <Tooltip
+              filterNull={false}
+              formatter={(_value, _name, item) => {
+                const row = item.payload as (typeof chart)[number];
+                return [
+                  <>
+                    {duration(row.seconds)}
+                    {" · "}{t("Timed rounds", "รอบที่มีเวลา")}{` ${row.measured}/${row.rounds}`}
+                  </>,
+                  title,
+                ];
+              }}
             />
-          </AreaChart>
+            <Line type="linear" dataKey="seconds" name={title} stroke="#386ae4" strokeWidth={2.5}
+              dot={{ r: 4 }} connectNulls={false} isAnimationActive={false} />
+          </LineChart>
         </ResponsiveContainer>
       </div>
-    </>
+    </div>
   );
 }
+
 export function RepeatChart({
   rows,
   measure,

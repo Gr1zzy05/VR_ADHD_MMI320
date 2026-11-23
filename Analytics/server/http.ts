@@ -293,6 +293,13 @@ export function application(
         ),
       );
   });
+  app.post("/api/participants/reset-codes", async (req, res) => {
+    await admin(req);
+    const body = fields(req.body, ["confirmation"]);
+    check(body.confirmation === "P001", "Confirm the reset with P001");
+    await store.resetPlayerCodes();
+    res.sendStatus(204);
+  });
   app.post("/api/participants/:id/consent", async (req, res) => {
     await admin(req);
     consent(fields(req.body, ["noticeVersion", "consent"]));

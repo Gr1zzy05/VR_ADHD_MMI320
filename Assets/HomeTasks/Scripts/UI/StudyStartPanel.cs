@@ -21,12 +21,12 @@ namespace HomeTasks
                 : GameText.Get("No study rounds are available. Ask staff to check the device setup, or play without sharing.");
             var detail = Label(card, instructions, 25, Ink, 1, 125);
 
-            var share = AddButton(card, GameText.Get("Start and share results"), Blue, Color.white, -98, () => {
+            var share = AddButton(card, GameText.Get("Start"), Blue, Color.white, -98, () => {
                 if (start(code)) UnityEngine.Object.Destroy(overlay);
                 else detail.text = GameText.Get("The study round could not be started. Ask staff to check the setup.");
             });
             share.interactable = code != null && remaining > 0;
-            AddButton(card, GameText.Get("Play without sharing"), new Color32(225, 234, 243, 255), Ink, -170, () => {
+            AddButton(card, GameText.Get("Test"), new Color32(225, 234, 243, 255), Ink, -170, () => {
                 if (start(null)) UnityEngine.Object.Destroy(overlay);
             });
         }
@@ -34,10 +34,12 @@ namespace HomeTasks
         internal static void ShowEnrollment(Camera camera, bool vr, Action<Action<bool>> enroll, Action practice)
         {
             var overlay = CreateCanvas(camera, vr);
-            var card = Card(overlay.transform);
-            var detail = Label(card, GameText.Get("Share activity time, tasks, quiz results and distraction interactions with authorized study staff under an anonymous player code."), 25, Ink, 1, 125);
+            var card = Box(overlay.transform, "Start or test", new Vector2(620, 260), Vector2.zero);
+            card.gameObject.AddComponent<Image>().color = Paper;
+            Label(card, "FOCUS SHIFT", 32, Ink, 78, 48, 540);
+            var detail = Label(card, GameText.Get("Start shares your results with study staff.\nTest plays without recording."), 24, Ink, 10, 72, 540);
             Button record = null, trial = null;
-            record = AddButton(card, GameText.Get("Start and record results"), Blue, Color.white, -98, () =>
+            record = AddButton(card, GameText.Get("Start"), Blue, Color.white, -77, () =>
             {
                 record.interactable = trial.interactable = false;
                 detail.text = GameText.Get("Getting your player code…");
@@ -47,16 +49,16 @@ namespace HomeTasks
                     if (success) UnityEngine.Object.Destroy(overlay);
                     else
                     {
-                        detail.text = GameText.Get("Could not get a player code. Try again, or continue in practice mode.");
+                        detail.text = GameText.Get("Could not get a player code.\nTry Start again, or choose Test.");
                         record.interactable = trial.interactable = true;
                     }
                 });
-            });
-            trial = AddButton(card, GameText.Get("Practice without sharing"), new Color32(225, 234, 243, 255), Ink, -170, () =>
+            }, x: -130, width: 234);
+            trial = AddButton(card, GameText.Get("Test"), new Color32(225, 234, 243, 255), Ink, -77, () =>
             {
                 practice();
                 UnityEngine.Object.Destroy(overlay);
-            });
+            }, x: 130, width: 234);
         }
 
         static GameObject CreateCanvas(Camera camera, bool vr)
@@ -108,9 +110,9 @@ namespace HomeTasks
             return box;
         }
 
-        static TMP_Text Label(Transform parent, string text, float size, Color color, float y, float height)
+        static TMP_Text Label(Transform parent, string text, float size, Color color, float y, float height, float width = 650)
         {
-            var box = Box(parent, "Label", new Vector2(650, height), new Vector2(0, y));
+            var box = Box(parent, "Label", new Vector2(width, height), new Vector2(0, y));
             var label = box.gameObject.AddComponent<TextMeshProUGUI>();
             label.text = text;
             label.fontSize = size;
@@ -120,15 +122,16 @@ namespace HomeTasks
             return label;
         }
 
-        static Button AddButton(Transform parent, string text, Color background, Color ink, float y, Action click)
+        static Button AddButton(Transform parent, string text, Color background, Color ink, float y, Action click,
+            float x = 0, float width = 520)
         {
-            var box = Box(parent, text, new Vector2(520, 54), new Vector2(0, y));
+            var box = Box(parent, text, new Vector2(width, 54), new Vector2(x, y));
             var image = box.gameObject.AddComponent<Image>();
             image.color = background;
             var button = box.gameObject.AddComponent<Button>();
             button.targetGraphic = image;
             button.onClick.AddListener(() => click());
-            Label(box, text, 26, ink, 0, 54).rectTransform.sizeDelta = box.sizeDelta;
+            Label(box, text, 26, ink, 0, 54, width);
             return button;
         }
     }

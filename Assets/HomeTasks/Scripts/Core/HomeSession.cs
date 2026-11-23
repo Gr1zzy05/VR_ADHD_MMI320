@@ -11,11 +11,12 @@ namespace HomeTasks
     public sealed class HomeSession : MonoBehaviour
     {
         public const string GameplayScenePath = "Assets/HomeTasks/Scenes/HomeFocus.unity";
+        const string DefaultGameplayScenePath = "Assets/HomeTasks/Scenes/NewModel.unity";
         public const string ResultsScenePath = "Assets/HomeTasks/Scenes/HomeResults.unity";
         public static HomeSession Instance { get; private set; }
         public static HomeSessionResult LastResult { get; private set; }
         public static string LastPlayerCode { get; private set; }
-        public static string LastGameplayScenePath { get; private set; } = GameplayScenePath;
+        public static string LastGameplayScenePath { get; private set; } = DefaultGameplayScenePath;
         public HomeTaskSettings settings;
         public List<DishItem> dishes = new List<DishItem>();
         public List<TrashItem> rubbish = new List<TrashItem>();
@@ -74,7 +75,7 @@ namespace HomeTasks
             Instance = null;
             LastResult = null;
             LastPlayerCode = null;
-            LastGameplayScenePath = GameplayScenePath;
+            LastGameplayScenePath = DefaultGameplayScenePath;
         }
 
         void Awake()

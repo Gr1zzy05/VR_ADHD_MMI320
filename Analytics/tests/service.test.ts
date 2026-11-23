@@ -359,6 +359,18 @@ test("Staff role boundaries, consent revocation and renewal, deletion, expiry an
   );
   f.db.prune(60, Date.now() + 61 * 86400000);
   assert.equal(f.db.records().participants.length, 0);
+  const confirmation = { confirmation: "P001" };
+  assert.equal(
+    (await f.req("participants/reset-codes", "POST", confirmation, f.reader))
+      .status,
+    403,
+  );
+  assert.equal(
+    (await f.req("participants/reset-codes", "POST", confirmation, f.admin))
+      .status,
+    204,
+  );
+  assert.equal((await f.add()).code, "P001");
   await f.req("logout", "POST", {}, f.admin);
   assert.equal((await f.req("records", "GET", undefined, f.admin)).status, 401);
 });

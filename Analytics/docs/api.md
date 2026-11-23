@@ -16,6 +16,7 @@ All paths start with `/api`. Staff requests use an HttpOnly SameSite=Strict sess
 | POST /participants/:id/device | Administrator. consent=true, noticeVersion=2026-01 and runs=1–30. Returns the participant code and a batch of one-use bindings as focus-shift-device.json. The server still validates each submission independently. |
 | POST /game/pair | Built game requests a pairing code and private polling secret over HTTPS. Empty object. Returns 201 with code, secret, and expiry. |
 | POST /game/start | Supervised build sends its enrollment bearer key, requestId (UUID), noticeVersion, and consent=true. Returns a fresh anonymous participant code and one session credential. An identical retry gets the same result within the start request window. Practice never calls this endpoint. |
+| POST /participants/reset-codes | Administrator only. Send confirmation="P001". Returns 204 and resets the counter if the directory is empty, or 409 if records remain. |
 | GET /game/pair/:code | Bearer polling secret. Returns 204 until assigned, then 200 with a pack of one-use bindings. |
 | POST /participants/:id/pair | Administrator enters the code shown by the game, sends consent=true, noticeVersion=2026-01 and runs=1–30. Returns 204 after authorizing the device for this participant. |
 | DELETE /participants/:id | Delete participant, consent, grants and all child records |

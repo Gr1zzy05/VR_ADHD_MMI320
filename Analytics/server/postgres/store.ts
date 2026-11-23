@@ -198,6 +198,13 @@ export class PostgresStore implements AnalyticsStore, StaffSessions {
         throw new ApiError(404, "Participant not found");
     });
   }
+  resetPlayerCodes() {
+    return this.write(async (db) => {
+      if ((await db.query("SELECT 1 FROM participants LIMIT 1")).rows.length)
+        throw new ApiError(409, "The participant directory must be empty");
+      await db.query("UPDATE code_sequence SET value=0");
+    });
+  }
 
   async bind(participantId: string, endpoint: string, days: number) {
     return (await this.bindMany(participantId, endpoint, days, 1)).bindings[0];

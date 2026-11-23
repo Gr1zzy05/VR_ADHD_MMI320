@@ -45,6 +45,7 @@ type StoreMethod =
   | "pairedPack"
   | "approvePairing"
   | "enrollPlayer"
+  | "resetPlayerCodes"
   | "record"
   | "records"
   | "prune";
@@ -174,6 +175,13 @@ export class Store {
   remove(id: string) {
     if (!this.db.prepare("DELETE FROM participants WHERE id=?").run(id).changes)
       throw new ApiError(404, "Participant not found");
+  }
+  resetPlayerCodes() {
+    this.transaction(() => {
+      if (this.db.prepare("SELECT 1 FROM participants LIMIT 1").get())
+        throw new ApiError(409, "The participant directory must be empty");
+      this.db.prepare("UPDATE code_sequence SET value=0").run();
+    });
   }
   bind(participantId: string, endpoint: string, days: number) {
     return this.bindMany(participantId, endpoint, days, 1).bindings[0];

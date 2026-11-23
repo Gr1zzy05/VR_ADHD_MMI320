@@ -111,6 +111,111 @@ function Modal({
     </dialog>
   );
 }
+export function ResetPlayerCodes({ empty }: { empty: boolean }) {
+  const { t } = useLocale();
+  const [open, setOpen] = useState(false);
+  const [confirmation, setConfirmation] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [done, setDone] = useState(false);
+  const title = t("Restart at P001", "เริ่มนับจาก P001");
+
+  async function reset(e: FormEvent) {
+    e.preventDefault();
+    if (busy || !empty || confirmation !== "P001") return;
+    setBusy(true);
+    setError("");
+    try {
+      await api("/api/participants/reset-codes", "POST", { confirmation });
+      setOpen(false);
+      setDone(true);
+    } catch (error) {
+      setError((error as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <>
+      <button
+        className="secondary"
+        onClick={() => {
+          setConfirmation("");
+          setError("");
+          setDone(false);
+          setOpen(true);
+        }}
+      >
+        {title}
+      </button>
+      {done && empty && (
+        <span role="status">
+          {t(
+            "The next participant will be P001.",
+            "ผู้เข้าร่วมคนถัดไปจะได้รหัส P001",
+          )}
+        </span>
+      )}
+      {open && (
+        <Modal
+          title={title}
+          close={() => {
+            if (!busy) setOpen(false);
+          }}
+        >
+          <form onSubmit={reset}>
+            <p>
+              {empty
+                ? t(
+                    "The next registration will use P001. Previously exported reports may contain the same code.",
+                    "การลงทะเบียนครั้งถัดไปจะได้รหัส P001 รายงานที่ส่งออกไว้ก่อนหน้านี้อาจมีรหัสเดียวกัน",
+                  )
+                : t(
+                    "This action is available when the participant directory is empty.",
+                    "ใช้ปุ่มนี้ได้เมื่อทะเบียนผู้เข้าร่วมว่างเท่านั้น",
+                  )}
+            </p>
+            {empty && (
+              <label className="field">
+                {t("Type P001 to confirm", "พิมพ์ P001 เพื่อยืนยัน")}
+                <input
+                  autoComplete="off"
+                  value={confirmation}
+                  onChange={(e) => setConfirmation(e.target.value)}
+                />
+              </label>
+            )}
+            {error && (
+              <p className="error" role="alert">
+                {error}
+              </p>
+            )}
+            <div className="actions">
+              <button
+                type="button"
+                className="secondary"
+                disabled={busy}
+                onClick={() => setOpen(false)}
+              >
+                {t("Close", "ปิด")}
+              </button>
+              {empty && (
+                <button
+                  className="primary"
+                  disabled={busy || confirmation !== "P001"}
+                >
+                  {title}
+                </button>
+              )}
+            </div>
+          </form>
+        </Modal>
+      )}
+    </>
+  );
+}
+
 export function Registration({
   close,
   refresh,

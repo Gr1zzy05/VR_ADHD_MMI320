@@ -6,12 +6,26 @@ import { PostgresStore } from "../server/postgres/store.ts";
 import type { Transaction } from "../server/postgres/store.ts";
 
 async function initialize() {
+  let stage = "DATABASE_URL";
+  try {
+    return await initializeService(value => { stage = value; });
+  } catch (error) {
+    const code = error && typeof error === "object" && "code" in error &&
+      typeof error.code === "string" && /^[A-Z0-9_]{1,40}$/.test(error.code)
+      ? error.code : "UNAVAILABLE";
+    console.error("Focus Shift API startup failed at " + stage + " (" + code + ")");
+    throw error;
+  }
+}
+
+async function initializeService(markStage: (stage: string) => void) {
   const databaseUrl = process.env.DATABASE_URL;
   if (!databaseUrl) throw new Error("Configure DATABASE_URL");
   const database = new URL(databaseUrl);
   if (!["postgresql:", "postgres:"].includes(database.protocol))
     throw new Error("DATABASE_URL must be a PostgreSQL URL");
   database.searchParams.set("sslmode", "verify-full");
+  markStage("PUBLIC_ORIGIN");
   const hostedDomain =
     process.env.VERCEL_ENV === "production"
       ? process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -29,6 +43,7 @@ async function initialize() {
     origin.password
   )
     throw new Error("PUBLIC_ORIGIN must be an HTTPS origin");
+  markStage("staff/cron/game environment variables");
   const config = settings(origin.origin, true);
   const pool = new pg.Pool({
     connectionString: database.toString(),
@@ -58,6 +73,7 @@ async function initialize() {
   };
   const store = new PostgresStore(pool, transaction);
   try {
+    markStage("PostgreSQL connection or migrations");
     await store.migrate();
     return application(store, config, store).app;
   } catch (error) {
@@ -94,9 +110,6 @@ export default async function handler(
     const app = await ready;
     app(req, res);
   } catch {
-    console.error(
-      "FOCUS SHIFT could not initialize. Check deployment configuration and PostgreSQL connectivity.",
-    );
     res.writeHead(503, {
       "Content-Type": "application/json",
       "Cache-Control": "no-store",

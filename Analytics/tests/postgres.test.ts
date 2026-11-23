@@ -263,6 +263,28 @@ test("Hosted API shares PostgreSQL data and auth across two web instances", asyn
     (await b(automaticStart, "POST", firstStart, build)).status,
     403,
   );
+  const resetPath = "/api/participants/reset-codes";
+  const reset = { confirmation: "P001" };
+  assert.equal((await a(resetPath, "POST", reset, auth)).status, 409);
+  for (const row of (await one.records()).participants) {
+    assert.equal(
+      (await b("/api/participants/" + row.id, "DELETE", undefined, auth))
+        .status,
+      204,
+    );
+  }
+  assert.equal((await a(resetPath, "POST", {}, auth)).status, 400);
+  assert.equal((await b(resetPath, "POST", reset, auth)).status, 204);
+  const fresh = await a(
+    automaticStart,
+    "POST",
+    { ...consent, requestId: randomUUID() },
+    build,
+  );
+  assert.equal(fresh.status, 200);
+  const firstAfterReset = await fresh.json();
+  assert.equal(firstAfterReset.participantCode, "P001");
+  assert.notEqual(firstAfterReset.bindings[0].participantId, id);
   assert.equal((await b("/api/logout", "POST", {}, auth)).status, 204);
   assert.equal((await a("/api/me", "GET", undefined, auth)).status, 401);
 });

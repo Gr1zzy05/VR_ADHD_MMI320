@@ -41,7 +41,12 @@ import {
   sum,
 } from "./data";
 import type { Participant, RecordsData, Session } from "./data";
-import { ParticipantActions, Registration, Reports } from "./management";
+import {
+  ParticipantActions,
+  Registration,
+  Reports,
+  ResetPlayerCodes,
+} from "./management";
 export { Reports };
 
 function Period({ value, set }: { value: number; set: (v: number) => void }) {
@@ -312,10 +317,13 @@ export function Participants({
         )}
       >
         {admin && (
-          <button className="primary" onClick={() => setAdd(true)}>
-            <Users size={16} />
-            {t("Register participant", "ลงทะเบียนผู้เข้าร่วม")}
-          </button>
+          <div className="actions">
+            <ResetPlayerCodes empty={data.participants.length === 0} />
+            <button className="primary" onClick={() => setAdd(true)}>
+              <Users size={16} />
+              {t("Register participant", "ลงทะเบียนผู้เข้าร่วม")}
+            </button>
+          </div>
         )}
       </Header>
       {adding && <Registration close={() => setAdd(false)} refresh={refresh} />}

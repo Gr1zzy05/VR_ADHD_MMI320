@@ -1,5 +1,9 @@
 import type { Settings } from "./http.ts";
 
+function invalid(code: string, message: string): never {
+  throw Object.assign(new Error(message), { code });
+}
+
 export function envInteger(
   key: string,
   fallback: number,
@@ -8,13 +12,13 @@ export function envInteger(
 ) {
   const n = Number(process.env[key] ?? fallback);
   if (!Number.isSafeInteger(n) || n < min || n > max)
-    throw new Error("Invalid " + key);
+    invalid("INVALID_" + key, "Invalid " + key);
   return n;
 }
 function secret(key: string) {
   const value = process.env[key];
   if (!value || value.length < 16 || value.length > 512)
-    throw new Error("Configure " + key + " with 16–512 characters");
+    invalid("INVALID_" + key, "Configure " + key + " with 16–512 characters");
   return value;
 }
 export function settings(origin: string, hosted = false): Settings {
@@ -24,7 +28,7 @@ export function settings(origin: string, hosted = false): Settings {
   const educatorPassword = secret("EDUCATOR_PASSWORD");
   const enrollmentKey = process.env.GAME_ENROLLMENT_KEY || undefined;
   if (enrollmentKey && !/^[A-Za-z0-9_-]{43}$/.test(enrollmentKey))
-    throw new Error("GAME_ENROLLMENT_KEY requires 43 base64url characters");
+    invalid("INVALID_GAME_ENROLLMENT_KEY", "GAME_ENROLLMENT_KEY requires 43 base64url characters");
   if (
     !adminUser.trim() ||
     !educatorUser.trim() ||
@@ -33,10 +37,10 @@ export function settings(origin: string, hosted = false): Settings {
     adminUser === educatorUser ||
     adminPassword === educatorPassword
   )
-    throw new Error("Configure distinct staff credentials");
+    invalid("INVALID_OR_DUPLICATE_STAFF_CREDENTIALS", "Configure distinct staff credentials");
   const cronSecret = hosted ? secret("CRON_SECRET") : undefined;
   if (cronSecret && !/^[A-Za-z0-9_-]+$/.test(cronSecret))
-    throw new Error("Invalid CRON_SECRET");
+    invalid("INVALID_CRON_SECRET", "Invalid CRON_SECRET");
   return {
     origin,
     adminUser,

@@ -11,6 +11,10 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 *.log
+focus-shift-binding.json
+focus-shift-device.json
+/Assets/HomeTasks/Resources/FocusShiftEnrollmentKey.txt
+/Assets/HomeTasks/Resources/FocusShiftEnrollmentKey.txt.meta
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data

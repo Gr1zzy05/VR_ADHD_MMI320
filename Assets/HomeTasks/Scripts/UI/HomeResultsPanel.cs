@@ -52,6 +52,8 @@ namespace HomeTasks
                 feedback.text = (result.QuizPassed ? GameText.Get("Listening target reached.") :
                     GameText.Format("Listening target: {0}/{1} correct.", result.RequiredScore, result.QuestionCount))
                     + "\n" + GameText.Get("One attempt recorded. All four quests are complete.");
+                if (HomeSession.LastPlayerCode != null)
+                    feedback.text += "\n" + GameText.Format("Player code: {0}", HomeSession.LastPlayerCode);
                 if (distractionNames != null)
                 {
                     distractionNames.text = string.Join("\n", result.Distractions.Select(row => row.Name));

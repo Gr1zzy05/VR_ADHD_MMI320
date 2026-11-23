@@ -14,6 +14,7 @@ namespace HomeTasks
         public const string ResultsScenePath = "Assets/HomeTasks/Scenes/HomeResults.unity";
         public static HomeSession Instance { get; private set; }
         public static HomeSessionResult LastResult { get; private set; }
+        public static string LastPlayerCode { get; private set; }
         public static string LastGameplayScenePath { get; private set; } = GameplayScenePath;
         public HomeTaskSettings settings;
         public List<DishItem> dishes = new List<DishItem>();
@@ -29,12 +30,13 @@ namespace HomeTasks
         public bool TrashComplete => rubbish.Count > 0 && Disposed == rubbish.Count;
         public bool AllComplete => WashingComplete && SortingComplete && TrashComplete && meeting != null && meeting.Completed;
         public int CompletedTasks => (WashingComplete ? 1 : 0) + (SortingComplete ? 1 : 0) + (TrashComplete ? 1 : 0) + (meeting != null && meeting.Completed ? 1 : 0);
-        public float Elapsed => finished ? finishTime : Time.time - startedAt;
+        public float Elapsed => finished ? finishTime : WaitingForStart ? 0f : Time.time - startedAt;
         public bool Finished => finished;
+        internal bool WaitingForStart { get; private set; }
         public string Toast => Time.unscaledTime < toastUntil ? toast : string.Empty;
         public HomeQuest CurrentQuest => !WashingComplete ? HomeQuest.Washing : !SortingComplete ? HomeQuest.Organizing : !TrashComplete ? HomeQuest.Trash : meeting == null || !meeting.Completed ? HomeQuest.Meeting : HomeQuest.Complete;
         public string CurrentQuestName => QuestName(CurrentQuest);
-        public string CurrentObjective => CurrentQuest switch
+        public string CurrentObjective => WaitingForStart ? GameText.Get("Choose how to start this session.") : CurrentQuest switch
         {
             HomeQuest.Washing => GameText.Format("Quest 1/4: Wash all {0} dishes in the running sink.", dishes.Count),
             HomeQuest.Organizing => GameText.Get("Quest 2/4: Put all clean dishes on their matching shelves."),
@@ -57,10 +59,11 @@ namespace HomeTasks
         AudioClip successTone;
         HomeQuest previousQuest;
         readonly DistractionLedger distractions = new DistractionLedger();
+        SessionAnalytics analytics;
 
         internal void RecordDistraction(DistractionKind kind, bool began, float duration)
         {
-            if (!finished && !restarting) distractions.Record(kind, began, duration);
+            if (!WaitingForStart && !finished && !restarting) distractions.Record(kind, began, duration);
         }
 
         internal DistractionRecord[] SnapshotDistractions() => distractions.Snapshot();
@@ -70,6 +73,7 @@ namespace HomeTasks
         {
             Instance = null;
             LastResult = null;
+            LastPlayerCode = null;
             LastGameplayScenePath = GameplayScenePath;
         }
 
@@ -78,7 +82,15 @@ namespace HomeTasks
             Instance = this;
             LastGameplayScenePath = gameObject.scene.path;
             LastResult = null;
+            LastPlayerCode = null;
             startedAt = Time.time;
+            analytics = SessionAnalytics.Initialize();
+            if (analytics != null)
+            {
+                analytics.PrepareRun();
+                if (analytics.ServerConfigured || analytics.HasDeviceSetup) WaitingForStart = true;
+                else analytics.Begin(this);
+            }
             successTone = AudioClip.Create("Small win", 6000, 1, 24000, false);
             var samples = new float[6000];
             for (var i = 0; i < samples.Length; i++)
@@ -89,8 +101,56 @@ namespace HomeTasks
             successTone.SetData(samples, 0);
         }
 
+        void Start()
+        {
+            if (!WaitingForStart) return;
+            var router = FindFirstObjectByType<PlayerModeRouter>();
+            var camera = router != null ? router.ActiveCamera : Camera.main;
+            var vr = router != null ? router.IsVR : Application.platform == RuntimePlatform.Android;
+            if (vr && camera == null)
+            {
+                Debug.LogWarning("Focus Shift could not show the study start panel without a VR camera.");
+                StartRun(null);
+                return;
+            }
+            if (analytics.ServerConfigured)
+            {
+                var requestId = System.Guid.NewGuid().ToString("D");
+                StudyStartPanel.ShowEnrollment(camera, vr,
+                    done => StartCoroutine(EnrollAndStart(requestId, done)), () => StartRun(null));
+                return;
+            }
+            var (code, remaining) = analytics.DeviceStatus();
+            StudyStartPanel.Show(camera, vr, code, remaining, StartRun);
+        }
+
+        IEnumerator EnrollAndStart(string requestId, System.Action<bool> done)
+        {
+            yield return analytics.Enroll(requestId, (code, ticket) =>
+            {
+                if (ticket == null || !WaitingForStart) { done(false); return; }
+                startedAt = Time.time;
+                if (!analytics.Begin(this, ticket: ticket)) { done(false); return; }
+                LastPlayerCode = code;
+                WaitingForStart = false;
+                Notify(GameText.Format("Player {0} • Results will be sent when the round ends.", code));
+                done(true);
+            });
+        }
+
+        bool StartRun(string participantCode)
+        {
+            if (!WaitingForStart) return false;
+            startedAt = Time.time;
+            if (participantCode != null && !analytics.Begin(this, participantCode)) return false;
+            WaitingForStart = false;
+            Notify(CurrentObjective);
+            return true;
+        }
+
         void Update()
         {
+            if (WaitingForStart) return;
             var quest = CurrentQuest;
             if (!finished && quest != previousQuest)
             {
@@ -102,12 +162,22 @@ namespace HomeTasks
                 finished = true;
                 finishTime = Time.time - startedAt;
                 LastResult = new HomeSessionResult(this);
+                analytics?.End(this, LastResult);
                 Notify(GameText.Get("All four tasks complete. Your home is ready!"), true);
                 StartCoroutine(ShowResults());
             }
         }
 
-        public bool IsQuestActive(HomeQuest quest) => !finished && !restarting && CurrentQuest == quest;
+        void LateUpdate() => analytics?.Checkpoint(this);
+
+        void OnApplicationPause(bool paused)
+        {
+            if (paused) analytics?.Checkpoint(this, true);
+        }
+
+        void OnApplicationQuit() => analytics?.End(this, null);
+
+        public bool IsQuestActive(HomeQuest quest) => !WaitingForStart && !finished && !restarting && CurrentQuest == quest;
 
         public bool CanPerform(HomeQuest quest, bool showHint = false)
         {
@@ -146,7 +216,7 @@ namespace HomeTasks
 
         public void RecoverLooseItems()
         {
-            if (finished || restarting) return;
+            if (WaitingForStart || finished || restarting) return;
             foreach (var item in FindObjectsByType<HomeItem>(FindObjectsSortMode.None))
                 if (!item.IsHeld && !item.IsLocked) item.ReturnHome();
             Notify(GameText.Get("Loose items returned to their starting places. Completed tasks are kept."));
@@ -154,7 +224,8 @@ namespace HomeTasks
 
         public void RestartSession()
         {
-            if (restarting || finished) return;
+            if (WaitingForStart || restarting || finished) return;
+            analytics?.End(this, null);
             restarting = true;
             StartCoroutine(Restart());
         }
@@ -170,6 +241,7 @@ namespace HomeTasks
 
         void OnDestroy()
         {
+            analytics?.Release(this);
             if (Instance == this) Instance = null;
             if (successTone != null) Destroy(successTone);
         }

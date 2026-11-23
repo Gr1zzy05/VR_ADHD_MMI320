@@ -21,7 +21,7 @@ namespace HomeTasks
         {
             var session = HomeSession.Instance;
             var view = player.ActiveCamera;
-            var attentive = session != null && !session.Finished && view != null && IsInArea(view.transform.position) &&
+            var attentive = session != null && !session.WaitingForStart && !session.Finished && view != null && IsInArea(view.transform.position) &&
                 (gazeTarget == null || CanSeeTarget(view.transform));
 
             if (sound != null && sound.isPlaying != attentive)

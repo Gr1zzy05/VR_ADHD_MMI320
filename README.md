@@ -2,6 +2,10 @@
 
 A single-player 3D VR home game for standalone Meta Quest. All four activities share one continuous map. The current custom map is **NewModel**; the original HomeFocus blockout is also preserved.
 
+## FOCUS SHIFT educational analytics
+
+The [staff dashboard and Unity collection guide](Analytics/README.md) covers the bilingual local demo, consent, headset setup, offline uploads and coded CSV reports. The game can also run independently of the analytics service.
+
 ## Play in Unity
 
 Open `Assets/HomeTasks/Scenes/NewModel.unity` with **Unity 6000.3.9f1** and press **Play**. With Quest Link initialization disabled, the scene automatically uses the desktop player. NewModel and HomeResults are the enabled build scenes. The original HomeFocus and SampleScene assets are preserved.

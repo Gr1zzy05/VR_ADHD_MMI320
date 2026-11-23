@@ -1,0 +1,8 @@
+node_modules/
+.vercel/
+dist/
+.env
+data/
+*.sqlite*
+focus-shift-binding.json
+focus-shift-device.json

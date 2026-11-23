@@ -25,14 +25,17 @@ namespace HomeTasks
         // A successful tap can play with the toy without anyone holding it.
         public void Pulse(float seconds)
         {
-            if (isActiveAndEnabled) pulseUntil = Mathf.Max(pulseUntil, Time.time + seconds);
+            if (isActiveAndEnabled && HomeSession.Instance?.WaitingForStart != true)
+                pulseUntil = Mathf.Max(pulseUntil, Time.time + seconds);
         }
 
         void LateUpdate()
         {
+            var session = HomeSession.Instance;
+            if (session?.WaitingForStart == true) return;
             var engaged = Time.time < pulseUntil || (item != null && item.IsHeld) ||
                 (cube != null && cube.IsHeld) || (grab != null && grab.isSelected) || AnyControlEngaged();
-            if (engaged) HomeSession.Instance?.RecordDistraction(kind, !wasEngaged, Time.deltaTime);
+            if (engaged) session?.RecordDistraction(kind, !wasEngaged, Time.deltaTime);
             wasEngaged = engaged;
         }
 

@@ -39,7 +39,7 @@ namespace HomeTasks
 
             var view = player.ActiveCamera;
             var session = HomeSession.Instance;
-            if (view == null || (session != null && session.Finished) || !IsNear(view)) return;
+            if (view == null || (session != null && (session.WaitingForStart || session.Finished)) || !IsNear(view)) return;
             SetOpen(true);
             session?.RecordDistraction(kind, true, 0f);
         }

@@ -34,6 +34,7 @@ namespace HomeTasks
 
         void Update()
         {
+            if (HomeSession.Instance != null && HomeSession.Instance.WaitingForStart) return;
             if (HomeSession.Instance != null && HomeSession.Instance.Finished)
             {
                 Drop();

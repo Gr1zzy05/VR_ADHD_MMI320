@@ -9,14 +9,31 @@ const names = {
   th: ["ฟิดเจ็ตคิวบ์","ป๊อปอิตสีรุ้ง","สกุชชี่เนย","โทรทัศน์","ตุ๊กตา","โทรศัพท์","เสียงเพื่อนบ้านคุยกัน","เสียงปาร์ตี้เพื่อนบ้าน","เสียงก่อสร้าง"]
 };
 const raw = location.hash.slice(1);
-const fields = raw.split(".").map(Number);
-const [version, seconds, washed, organized, dishes, disposed, trash, correct, questions] = fields;
+const fields = raw.split(".").map(value => value === "-" ? null : Number(value));
+const version = fields[0];
+const status = version === 2 ? fields[1] : 1;
+const metrics = version === 2 ? fields.slice(2, 11) :
+  [fields[1], fields[2], fields[4], fields[3], fields[4], ...fields.slice(5, 9)];
+const validNumber = n => Number.isSafeInteger(n) && n >= 0;
+const validPair = (done, total) => done == null || total == null || done <= total;
 const rows = [];
-for (let i = 9; i < fields.length && i < 36; i += 3) rows.push(fields.slice(i, i + 3));
-const valid = raw.length < 512 && /^(?:\d+\.)*\d+$/.test(raw) && fields.length === 36 &&
-  version === 1 && fields.every(n => Number.isSafeInteger(n) && n <= 2147483647) &&
-  washed <= dishes && organized <= dishes && disposed <= trash && correct <= questions &&
-  rows.every(([kind]) => kind < 9) && new Set(rows.map(r => r[0])).size === 9;
+if (version === 2) {
+  for (let kind = 0; kind < 9; kind++) {
+    const offset = 11 + kind * 2;
+    rows.push([kind, fields[offset], fields[offset + 1]]);
+  }
+} else {
+  for (let offset = 9; offset + 2 < fields.length && offset < 36; offset += 3)
+    rows.push(fields.slice(offset, offset + 3));
+}
+const valid = raw.length < 512 && /^(?:(?:\d+|-)\.)*(?:\d+|-)$/.test(raw) &&
+  (version === 2
+    ? fields.length === 29 && [0, 1].includes(status) && fields.every(n => n === null || validNumber(n))
+    : version === 1 && fields.length === 36 && fields.every(validNumber) &&
+      rows.every(([kind]) => kind < 9) && new Set(rows.map(([kind]) => kind)).size === 9) &&
+  [1, 3, 5, 7].every(index => validPair(metrics[index], metrics[index + 1]));
+const measured = value => value == null ? "—" : value;
+const ratio = (done, total) => done == null && total == null ? "—" : measured(done) + "/" + measured(total);
 function append(parent, tag, value) {
   const node = document.createElement(tag);
   node.textContent = value;
@@ -29,12 +46,22 @@ function render() {
   document.documentElement.lang = lang;
   document.title = w[0] + " · Focus Shift";
   el("title").textContent = w[0];
-  el("notice").textContent = w[valid ? 1 : 2];
+  el("notice").textContent = valid ? w[1] : (lang === "th"
+    ? "กรุณาสแกน QR ผลกิจกรรมจากหน้าเว็บอีกครั้ง"
+    : "Please scan the result QR from the website again.");
   el("report").hidden = !valid;
   if (!valid) return;
   for (const id of ["missions","rows","head","hint"]) el(id).replaceChildren();
   el("preview").hidden = true;
-  const values = [time(seconds), washed+"/"+dishes, organized+"/"+dishes, disposed+"/"+trash, correct+"/"+questions];
+  const [seconds, washed, dishes, organized, shelves, disposed, trash, correct, questions] = metrics;
+  const values = [seconds == null ? "—" : time(seconds), ratio(washed, dishes),
+    ratio(organized, shelves), ratio(disposed, trash), ratio(correct, questions)];
+  const statusRow = append(el("missions"), "div", "");
+  statusRow.className = "metric";
+  append(statusRow, "span", lang === "th" ? "สถานะรอบ" : "Round status");
+  append(statusRow, "b", status === 1
+    ? (lang === "th" ? "เสร็จสิ้น" : "Completed")
+    : (lang === "th" ? "จบก่อนครบภารกิจ" : "Interrupted"));
   values.forEach((value,i) => {
     const row = append(el("missions"), "div", "");
     row.className = "metric";
@@ -45,7 +72,8 @@ function render() {
   w.slice(9,12).forEach(s => append(heading,"th",s));
   rows.forEach(([kind,count,tenths]) => {
     const row = append(el("rows"),"tr","");
-    [names[lang][kind],count,(tenths/10).toFixed(1)].forEach(v => append(row,"td",v));
+    [names[lang][kind], measured(count), tenths == null ? "—" : (tenths/10).toFixed(1)]
+      .forEach(v => append(row,"td",v));
   });
   el("save").textContent = w[12];
 }

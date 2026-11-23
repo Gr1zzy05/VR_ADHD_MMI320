@@ -68,7 +68,7 @@ export function Privacy() {
     </div>
   );
 }
-function Modal({
+export function Modal({
   title,
   close,
   children,

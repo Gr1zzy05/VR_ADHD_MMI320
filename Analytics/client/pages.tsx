@@ -9,6 +9,7 @@ import {
   Target,
   MousePointerClick,
   Search,
+  QrCode,
 } from "lucide-react";
 import {
   ActivityChart,
@@ -47,6 +48,7 @@ import {
   Reports,
   ResetPlayerCodes,
 } from "./management";
+import { ResultShare } from "./result-share";
 export { Reports };
 
 function Period({ value, set }: { value: number; set: (v: number) => void }) {
@@ -287,6 +289,8 @@ export function Participants({
     [order, sort] = useState("code"),
     [filter, setFilter] = useState("all"),
     [adding, setAdd] = useState(false);
+  const [sharing, setSharing] = useState<string | null>(null);
+  const selected = data.participants.find((p) => p.id === sharing);
   const entries = data.participants
     .map((p) => {
       const rows = memberSessions(data.sessions, p.id);
@@ -327,6 +331,13 @@ export function Participants({
         )}
       </Header>
       {adding && <Registration close={() => setAdd(false)} refresh={refresh} />}
+      {admin && selected?.consentedAt && (
+        <ResultShare
+          participant={selected}
+          sessions={memberSessions(data.sessions, selected.id)}
+          close={() => setSharing(null)}
+        />
+      )}
       <Card
         title={t("Participant directory", "รายชื่อรหัสผู้เข้าร่วม")}
         subtitle={t(
@@ -391,6 +402,7 @@ export function Participants({
                   ].map((l) => (
                     <th key={l}>{l}</th>
                   ))}
+                  {admin && <th>{t("Share results", "แชร์ผล")}</th>}
                 </tr>
               </thead>
               <tbody>
@@ -407,6 +419,21 @@ export function Participants({
                     <td>{date(rows[0]?.endedAt, lang)}</td>
                     <td>{duration(metrics.completionDuration)}</td>
                     <td>{pct(metrics.quiz)}</td>
+                    {admin && (
+                      <td>
+                        <button
+                          className="secondary"
+                          disabled={!p.consentedAt || rows.length === 0}
+                          aria-label={t("Create QR for " + p.code, "สร้าง QR สำหรับ " + p.code)}
+                          title={!p.consentedAt || rows.length === 0
+                            ? t("A recorded session and active consent are required", "ต้องมีรอบที่บันทึกแล้วและความยินยอมที่ยังมีผล")
+                            : undefined}
+                          onClick={() => setSharing(p.id)}
+                        >
+                          <QrCode size={16} /> {t("Create QR", "สร้าง QR")}
+                        </button>
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>

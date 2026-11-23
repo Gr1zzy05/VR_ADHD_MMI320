@@ -1,5 +1,9 @@
 using System.Collections;
 using System.Linq;
+using System.Collections.Generic;
+using System.Globalization;
+using UnityEngine.UI;
+using Net.Codecrete.QrCodeGenerator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +23,9 @@ namespace HomeTasks
         public UnityEngine.UI.Button restart;
         bool transitioning = true;
 
+        Texture2D qrTexture;
+        void OnDestroy() { if (qrTexture != null) Destroy(qrTexture); }
+
         void OnEnable() => GameText.Changed += RefreshSummary;
         void OnDisable() => GameText.Changed -= RefreshSummary;
 
@@ -26,6 +33,7 @@ namespace HomeTasks
         {
             restart.interactable = false;
             RefreshSummary();
+            AddMobileResults();
             if (Application.platform != RuntimePlatform.Android && !UnityEngine.XR.XRSettings.isDeviceActive)
             {
                 Cursor.lockState = CursorLockMode.None;
@@ -72,7 +80,71 @@ namespace HomeTasks
             }
         }
 
-        public void RestartSession()
+                void AddMobileResults()
+        {
+            var result = HomeSession.LastResult;
+            var origin = GameServerOrigin.Normalize(Resources.Load<TextAsset>("FocusShiftServer")?.text);
+            if (result == null || HomeSession.LastPlayerCode == null || origin == null) return;
+
+            // Fragment stays on the phone. No account ID, server credential or database lookup.
+            var values = new List<int> { 1, Mathf.FloorToInt(result.Elapsed), result.Washed,
+                result.Organized, result.DishCount, result.Disposed, result.TrashCount,
+                result.CorrectAnswers, result.QuestionCount };
+            foreach (var row in result.Distractions)
+                values.AddRange(new[] { (int)row.Kind, row.Uses, Mathf.RoundToInt(row.Seconds * 10f) });
+            var url = origin + "/result.html#" + string.Join(".", values.Select(n => n.ToString(CultureInfo.InvariantCulture)));
+
+            var button = Instantiate(restart, restart.transform.parent);
+            button.name = "Mobile result QR";
+            button.onClick = new Button.ButtonClickedEvent();
+            button.interactable = true;
+            var original = (RectTransform)restart.transform;
+            float half = (original.rect.width - 16) / 2;
+            original.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, half);
+            var rect = (RectTransform)button.transform;
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, half);
+            rect.anchoredPosition = original.anchoredPosition + Vector2.right * (half + 16);
+            var label = button.GetComponentInChildren<TMP_Text>();
+            var binding = label.GetComponent<UnityEngine.Localization.Components.LocalizeStringEvent>();
+            if (binding != null) binding.enabled = false;
+            foreach (var caption in new[] { label, restart.GetComponentInChildren<TMP_Text>() })
+            {
+                var bounds = caption.rectTransform;
+                bounds.anchorMin = Vector2.zero;
+                bounds.anchorMax = Vector2.one;
+                bounds.offsetMin = new Vector2(8, 2);
+                bounds.offsetMax = new Vector2(-8, -2);
+            }
+            label.text = "SCAN QR";
+
+            var image = new GameObject("Scan with phone", typeof(RectTransform), typeof(RawImage)).GetComponent<RawImage>();
+            image.transform.SetParent(transform, false);
+            image.raycastTarget = false;
+            var box = image.rectTransform;
+            box.anchorMin = box.anchorMax = box.pivot = new Vector2(0.5f, 1);
+            box.anchoredPosition = new Vector2(0, -78);
+            box.sizeDelta = Vector2.one * 590;
+            image.gameObject.SetActive(false);
+            button.onClick.AddListener(() =>
+            {
+                if (qrTexture == null)
+                {
+                    var qr = QrCode.EncodeText(url, QrCode.Ecc.Medium);
+                    var side = qr.Size + 8;
+                    qrTexture = new Texture2D(side, side, TextureFormat.RGB24, false);
+                    qrTexture.filterMode = FilterMode.Point;
+                    for (var y = 0; y < side; y++)
+                        for (var x = 0; x < side; x++)
+                            qrTexture.SetPixel(x, side - 1 - y, qr.GetModule(x - 4, y - 4) ? Color.black : Color.white);
+                    qrTexture.Apply();
+                    image.texture = qrTexture;
+                }
+                bool show = !image.gameObject.activeSelf;
+                image.gameObject.SetActive(show);
+                label.text = show ? "CLOSE QR" : "SCAN QR";
+            });
+        }
+public void RestartSession()
         {
             if (transitioning) return;
             transitioning = true;

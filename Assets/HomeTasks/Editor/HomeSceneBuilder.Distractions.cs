@@ -231,8 +231,22 @@ namespace HomeTasks.Editor
             panel.distractionTimes = Text(root, "Distraction times", 731, 379, 106, 246, 25, Cream,
                 "0:00.0\n0:00.0\n0:00.0\n0:00.0\n0:00.0\n0:00.0");
             panel.distractionUses = Text(root, "Distraction uses", 867, 379, 61, 246, 25, Cream, "0\n0\n0\n0\n0\n0");
-            foreach (var column in new[] { panel.distractionNames, panel.distractionTimes, panel.distractionUses }) column.lineSpacing = 18;
             panel.distractionTimes.alignment = panel.distractionUses.alignment = TextAlignmentOptions.TopRight;
+            ResizeDistractionRows(panel);
+        }
+
+        static void ResizeDistractionRows(HomeResultsPanel panel)
+        {
+            var kinds = (DistractionKind[])Enum.GetValues(typeof(DistractionKind));
+            panel.distractionNames.text = string.Join("\n", kinds.Select(kind => new DistractionRecord(kind, 0, 0).Name));
+            panel.distractionTimes.text = string.Join("\n", Enumerable.Repeat("0:00.0", kinds.Length));
+            panel.distractionUses.text = string.Join("\n", Enumerable.Repeat("0", kinds.Length));
+            foreach (var column in new[] { panel.distractionNames, panel.distractionTimes, panel.distractionUses })
+            {
+                column.fontSize = 21;
+                column.lineSpacing = 8;
+                column.rectTransform.sizeDelta = new Vector2(column.rectTransform.sizeDelta.x, 256);
+            }
         }
     }
 }

@@ -5,13 +5,7 @@ namespace HomeTasks
 {
     public sealed class PhoneNotifications : MonoBehaviour
     {
-        static readonly string[] Senders = { "Group chat", "Puzzle club", "Weekend plans" };
-        static readonly string[] Messages =
-        {
-            "Nina\nAnyone up for noodles after work? The place by the park reopened.",
-            "New challenge\nFind three hidden stars in today's puzzle.",
-            "Maya\nI shared the walking route. Meet by the park entrance at nine."
-        };
+        const int NotificationCount = 3;
 
         public TMP_Text sender;
         public TMP_Text body;
@@ -21,20 +15,27 @@ namespace HomeTasks
         void OnEnable()
         {
             index = 0;
+            GameText.Changed += Refresh;
             Refresh();
         }
 
+        void OnDisable() => GameText.Changed -= Refresh;
+
         public void Next()
         {
-            index = (index + 1) % Messages.Length;
+            index = (index + 1) % NotificationCount;
             Refresh();
         }
 
         void Refresh()
         {
-            sender.text = Senders[index];
-            body.text = Messages[index];
-            positionLabel.text = $"{index + 1} / {Messages.Length}";
+            (sender.text, body.text) = index switch
+            {
+                0 => (GameText.Get("Group chat"), GameText.Get("Nina\nAnyone up for noodles after work? The place by the park reopened.")),
+                1 => (GameText.Get("Puzzle club"), GameText.Get("New challenge\nFind three hidden stars in today's puzzle.")),
+                _ => (GameText.Get("Weekend plans"), GameText.Get("Maya\nI shared the walking route. Meet by the park entrance at nine."))
+            };
+            positionLabel.text = $"{index + 1} / {NotificationCount}";
         }
     }
 }

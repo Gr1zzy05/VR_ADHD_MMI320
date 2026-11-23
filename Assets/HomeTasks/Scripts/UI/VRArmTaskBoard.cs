@@ -29,7 +29,8 @@ namespace HomeTasks
             if (Time.unscaledTime < nextUpdate) return;
             nextUpdate = Time.unscaledTime + 0.1f;
             if (movementLabel != null && movement != null) movementLabel.text = movement.ModeLabel;
-            if (heightLabel != null && heightAdjustment != null) heightLabel.text = $"HEIGHT {heightAdjustment.OffsetCentimeters:+0;-0;0} cm / RESET";
+            if (heightLabel != null && heightAdjustment != null)
+                heightLabel.text = GameText.Format("HEIGHT {0:+0;-0;0} cm / RESET", heightAdjustment.OffsetCentimeters);
         }
 
         public void SetOpen(bool open) { if (content != null) content.SetActive(open); }

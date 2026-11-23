@@ -13,7 +13,7 @@ namespace HomeTasks
         [Range(0.5f, 3)] public float walkingSpeed = 1.5f;
         public bool rememberChoice = true;
         public bool WalkingEnabled { get; private set; }
-        public string ModeLabel => WalkingEnabled ? "MOVEMENT: WALK + TELEPORT" : "MOVEMENT: TELEPORT";
+        public string ModeLabel => WalkingEnabled ? GameText.Get("MOVEMENT: WALK + TELEPORT") : GameText.Get("MOVEMENT: TELEPORT");
 
         void Start() => SetWalkingEnabled(rememberChoice && PlayerPrefs.GetInt(WalkingPreference, 0) == 1);
 
@@ -21,7 +21,8 @@ namespace HomeTasks
         {
             SetWalkingEnabled(!WalkingEnabled);
             if (rememberChoice) { PlayerPrefs.SetInt(WalkingPreference, WalkingEnabled ? 1 : 0); PlayerPrefs.Save(); }
-            HomeSession.Instance?.Notify(WalkingEnabled ? "Left stick: walk. Right stick: teleport and snap turn." : "Teleport mode. Push either stick forward, aim at the floor, then release.");
+            HomeSession.Instance?.Notify(WalkingEnabled ? GameText.Get("Left stick: walk. Right stick: teleport and snap turn.") :
+                GameText.Get("Teleport mode. Push either stick forward, aim at the floor, then release."));
         }
 
         public void SetWalkingEnabled(bool enabled)

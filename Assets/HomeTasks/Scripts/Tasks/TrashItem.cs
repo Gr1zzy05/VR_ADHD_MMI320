@@ -14,7 +14,7 @@ namespace HomeTasks
             LockTo(bin);
             IsDisposed = true;
             gameObject.SetActive(false);
-            HomeSession.Instance?.Notify("Rubbish taken outside and placed in the bin.", true);
+            HomeSession.Instance?.Notify(GameText.Get("Rubbish taken outside and placed in the bin."), true);
             return true;
         }
     }

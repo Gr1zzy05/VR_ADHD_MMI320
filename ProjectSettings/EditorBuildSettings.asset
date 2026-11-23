@@ -18,7 +18,9 @@ EditorBuildSettings:
     path: Assets/HomeTasks/Scenes/HomeResults.unity
     guid: 4a2625aecbaf5ac4380038603e28b9c5
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: aee7417e96764174db249f5f1243bed7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: d1118df8ee4ebcb48acd39576fcab764, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5c633dd9210fdae44babc659f23bd6da, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: d54769417577dab4dae587f0a7de6b31, type: 2}
   m_UseUCBPForAssetBundles: 0

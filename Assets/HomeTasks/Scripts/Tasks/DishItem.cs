@@ -33,7 +33,8 @@ namespace HomeTasks
                 dirtMarks[i].transform.localScale = originalDirtSizes[i] * Mathf.Lerp(1, 0.15f, WashProgress);
                 dirtMarks[i].enabled = !IsClean;
             }
-            if (IsClean) HomeSession.Instance?.Notify($"{kind} washed. Finish washing every dish to unlock organizing.", true);
+            if (IsClean) HomeSession.Instance?.Notify(GameText.Format("{0} washed. Finish washing every dish to unlock organizing.",
+                GameText.Get(kind.ToString())), true);
         }
 
         public bool Store(Transform slot)
@@ -42,7 +43,7 @@ namespace HomeTasks
             if (HomeSession.Instance != null && !HomeSession.Instance.IsQuestActive(HomeQuest.Organizing)) return false;
             LockTo(slot);
             IsStored = true;
-            HomeSession.Instance?.Notify($"Clean {kind.ToString().ToLower()} organized.", true);
+            HomeSession.Instance?.Notify(GameText.Format("Clean {0} organized.", GameText.Get(kind.ToString().ToLowerInvariant())), true);
             return true;
         }
     }

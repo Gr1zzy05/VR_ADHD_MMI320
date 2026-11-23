@@ -1,0 +1,876 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Home Focus Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Home Focus
+  m_TableCollectionNameGuidString: 42c658b131a757844ae7dc4e0d7758e2
+  m_Entries:
+  - m_Id: 1135628288
+    m_Key: '01   {0}<pos=80%>{1}/{2}
+
+      02   {3}<pos=80%>{4}/{2}
+
+      03  
+      {5}<pos=80%>{6}/{7}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1177571328
+    m_Key: 01  Wash dishes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765632
+    m_Key: 02  Organize dishes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765633
+    m_Key: 03  Take trash outside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765634
+    m_Key: '04   MEETING + QUIZ
+
+      {0} / {1} correct'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765635
+    m_Key: 04  Meeting + quiz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765636
+    m_Key: '<b>{0}</b>
+
+
+      01 Wash    {1}
+
+      02 Organize    {2}
+
+      03
+      Trash    {3}
+
+      04 Meeting    {4}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765637
+    m_Key: 'A little focus.
+
+      A lighter home.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765638
+    m_Key: A red notebook
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765639
+    m_Key: A short meeting, followed by three questions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765640
+    m_Key: A yellow umbrella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765641
+    m_Key: Add meeting segments and quiz questions to the meeting content asset.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765642
+    m_Key: All four quests complete. Your results are ready.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765643
+    m_Key: All four tasks complete. Your home is ready!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765644
+    m_Key: All quests complete. Preparing your results.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765645
+    m_Key: At the front gate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765646
+    m_Key: BOWLS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765647
+    m_Key: Beside the playground
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765648
+    m_Key: Bowl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765649
+    m_Key: Butter squishy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765650
+    m_Key: CALL COMPLETE  /  THANK YOU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765651
+    m_Key: CHECK PHONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765652
+    m_Key: CLEAN - ready to sort
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765653
+    m_Key: CLOSE PHONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765654
+    m_Key: CUPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765655
+    m_Key: Carry three bags through the doorway to the bin.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765656
+    m_Key: Clean plates, bowls and cups on matching shelves.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765657
+    m_Key: Clean {0} organized.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765658
+    m_Key: 'Click meeting buttons  |  WASD: leave the chair'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765659
+    m_Key: Click the game to look around
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765660
+    m_Key: 'Click the game to look around  |  Tab: mouse for screen buttons'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765661
+    m_Key: 'Click: pick up Fidget Cube'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765662
+    m_Key: 'Click: pick up {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765663
+    m_Key: Complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765664
+    m_Key: Complete the four quests to see your progress here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765665
+    m_Key: Construction site
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765666
+    m_Key: Cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765667
+    m_Key: 'DESKTOP TESTING
+
+      WASD walk / mouse look / click grab or release.
+
+      E
+      use / Q drop / scroll reach / R rotate.
+
+      Hold E with the sponge aimed
+      at a dish to scrub.
+
+      Tab frees the cursor for buttons; 1 / 2 / 3 answer
+      the quiz.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765668
+    m_Key: DIRTY - washed {0:P0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765669
+    m_Key: DISTRACTIONS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765670
+    m_Key: DONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765671
+    m_Key: 'E: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765672
+    m_Key: FINISH THE EARLIER QUESTS TO JOIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765673
+    m_Key: 'Fidget Cube  |  Click / drag: play  |  Right drag / arrows: turn  | 
+      Q: drop'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765674
+    m_Key: Fidget cube
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765675
+    m_Key: Find their place
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765676
+    m_Key: Four quests. Well done.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765677
+    m_Key: Group chat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765678
+    m_Key: HEIGHT {0:+0;-0;0} cm / RESET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765679
+    m_Key: HOME COMPLETE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765680
+    m_Key: HOME FOCUS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765681
+    m_Key: 'HOME FOCUS   {0}/4
+
+      {1}
+
+      Wash {2}/{3}   Sort {4}/{3}   Trash
+      {5}/{6}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765682
+    m_Key: HOME FOCUS  /  DAILY LIVING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765683
+    m_Key: HOME FOCUS  /  SESSION RESULTS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765684
+    m_Key: 'Hold E: scrub {0} in the running sink  |  Washed {1:P0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765685
+    m_Key: 'Holding {0}  |  Click / Q: release  |  Scroll: reach  |  R: rotate'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765686
+    m_Key: Home complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765687
+    m_Key: Inside the tea shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765688
+    m_Key: JOIN MEETING  /  ONE ATTEMPT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765689
+    m_Key: Join the meeting, listen to the full briefing, then answer three questions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765690
+    m_Key: LANGUAGE  /  {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765691
+    m_Key: LEAVE CHAIR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765692
+    m_Key: LISTEN FIRST. ANSWER ONCE AT THE END.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765693
+    m_Key: LISTENING  {0:P0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765694
+    m_Key: LIVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765695
+    m_Key: LIVE CALL  /  MAYA IS SPEAKING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765696
+    m_Key: LOCKED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765697
+    m_Key: LOCKED  /  COMPLETE QUESTS 1-3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765698
+    m_Key: LOCKED  |  {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765699
+    m_Key: 'Left stick: walk. Right stick: teleport and snap turn.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765700
+    m_Key: Listen to Maya's briefing. The questions unlock when the call ends.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765701
+    m_Key: Listen. Then answer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765702
+    m_Key: Listening
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765703
+    m_Key: Listening target reached.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765704
+    m_Key: 'Listening target: {0}/{1} correct.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765705
+    m_Key: Loose items returned to their starting places. Completed tasks are kept.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765706
+    m_Key: M
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765707
+    m_Key: MEETING READY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765708
+    m_Key: 'META QUEST
+
+      Grip to grab or press the gold tap control.
+
+      Point
+      + trigger for screen buttons.
+
+      Right stick forward: aim teleport; release
+      to travel.
+
+      Right stick sideways: snap turn.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765709
+    m_Key: 'MOVEMENT: TELEPORT'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765710
+    m_Key: 'MOVEMENT: WALK + TELEPORT'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765711
+    m_Key: 'Maya
+
+      I shared the walking route. Meet by the park entrance at
+      nine.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765712
+    m_Key: Maya  /  Host                          You  /  At home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765713
+    m_Key: 'Maya: Before we finish, here is the plan once more. Saturday at ten thirty
+      in the morning. Bring the blue folder, and meet us at the front gate. Thanks
+      for listening. The briefing is over, and you can now answer the three questions
+      on the screen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765714
+    m_Key: 'Maya: First, the schedule. Our community garden event is on Saturday.
+      Please arrive at ten thirty in the morning. That is Saturday at ten thirty
+      A M. We will plant herbs together and then share a short tea break.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765715
+    m_Key: 'Maya: Hi, welcome to our neighbourhood check-in. I am Maya, your host.
+      Thanks for joining from home. Keep listening as you work. At the end, I will
+      ask you three short questions about our community garden event.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765716
+    m_Key: 'Maya: Next, what to bring. Please bring the blue folder with your volunteer
+      notes. You only need to remember the blue folder. Meet the group at the front
+      gate of the community garden. The front gate is our meeting point.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765717
+    m_Key: Meeting + quiz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765718
+    m_Key: Meeting complete. Preparing your results.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765719
+    m_Key: Meeting finished. Return to the screen for the listening quiz.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765720
+    m_Key: 'Meeting score: --'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765721
+    m_Key: NEXT NOTIFICATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765722
+    m_Key: NO COMPLETED SESSION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765723
+    m_Key: NOTIFICATIONS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765724
+    m_Key: Neighbour chatter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765725
+    m_Key: Neighbour party
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765726
+    m_Key: Neighbourhood check-in
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765727
+    m_Key: 'New challenge
+
+      Find three hidden stars in today''s puzzle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765728
+    m_Key: 'Nina
+
+      Anyone up for noodles after work? The place by the park reopened.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765729
+    m_Key: ONE SPACE. FOUR SMALL WINS.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765730
+    m_Key: OUTDOOR BIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765731
+    m_Key: One attempt recorded. All four quests are complete.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765732
+    m_Key: One meeting and one quiz attempt per session.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765733
+    m_Key: One space. Four small wins.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765734
+    m_Key: Organize dishes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765735
+    m_Key: PLATES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765736
+    m_Key: Phone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765737
+    m_Key: Plate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765738
+    m_Key: Plushie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765739
+    m_Key: Puzzle club
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765740
+    m_Key: QUEST 4  /  LOCKED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765741
+    m_Key: QUEST {0} OF 4  /  {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765742
+    m_Key: QUESTION {0} / {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765743
+    m_Key: QUIZ
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765744
+    m_Key: 'Quest 1/4: Wash all {0} dishes in the running sink.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765745
+    m_Key: 'Quest 2/4: Put all clean dishes on their matching shelves.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765746
+    m_Key: 'Quest 3/4: Take all {0} bags to the outdoor bin.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765747
+    m_Key: 'Quest 4/4: Join the meeting. Listen, then answer once.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765748
+    m_Key: 'Quest 4/4: Select the chair at the desk to sit and listen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765749
+    m_Key: 'Quest 4/4: Stay seated and answer on the meeting screen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765750
+    m_Key: 'Quest 4/4: Stay seated and listen to the meeting.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765751
+    m_Key: Quiz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765752
+    m_Key: READY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765753
+    m_Key: RECOVER ITEMS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765754
+    m_Key: RECOVER LOOSE ITEMS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765755
+    m_Key: RESTART
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765756
+    m_Key: RESTART SESSION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765757
+    m_Key: Rainbow pop-it
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765758
+    m_Key: Ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765759
+    m_Key: 'Release each bag inside.
+
+      Thank you for keeping it tidy.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765760
+    m_Key: Rubbish taken outside and placed in the bin.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765761
+    m_Key: Running water + sponge. Six dishes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765762
+    m_Key: SIMULATED CALL  /  AUDIO + CAPTIONS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765763
+    m_Key: SIT IN CHAIR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765764
+    m_Key: SIT IN THE CHAIR TO START
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765765
+    m_Key: START NEW SESSION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765766
+    m_Key: STAY SEATED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765767
+    m_Key: Saturday at 10:30 AM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765768
+    m_Key: Saturday at 2:00 PM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765769
+    m_Key: Select the chair at the desk. Stay seated through the briefing and the
+      quiz.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765770
+    m_Key: Select the chair at the meeting desk to sit and start listening.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765771
+    m_Key: Sit in the chair when the meeting opens.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765772
+    m_Key: Start a new session when you are ready.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765773
+    m_Key: Stay seated and answer the quiz on the screen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765774
+    m_Key: Sunday at 9:00 AM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765775
+    m_Key: TIME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765776
+    m_Key: TRY QUIZ AGAIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765777
+    m_Key: TURN OFF TV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765778
+    m_Key: Take the trash outside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765779
+    m_Key: Take trash outside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765780
+    m_Key: Teleport mode. Push either stick forward, aim at the floor, then release.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765781
+    m_Key: Television
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765782
+    m_Key: 'Thanks for listening.
+
+      See you at the neighbourhood event!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765783
+    m_Key: The blue folder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765784
+    m_Key: The briefing has ended. What do you remember?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765785
+    m_Key: This shelf is for {0}.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765786
+    m_Key: USES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765787
+    m_Key: 'WASD: walk  |  Mouse: look'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765788
+    m_Key: 'WASD: walk  |  Mouse: look  |  Click: grab  |  E: use  |  Tab: screen
+      buttons'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765789
+    m_Key: WATCH TV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765790
+    m_Key: Wash dishes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765791
+    m_Key: Wash the dishes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765792
+    m_Key: Wash this dish before organizing it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765793
+    m_Key: Water off.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765794
+    m_Key: Water on. Rub a dish in the sink with the sponge.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765795
+    m_Key: Weekend plans
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765796
+    m_Key: What should you bring to the event?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765797
+    m_Key: When should you arrive at the community garden?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765798
+    m_Key: Where will the group meet?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765799
+    m_Key: 'Y: show/hide  |  Right trigger: press  |  Right stick: teleport'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765800
+    m_Key: YOUR PACE  {0:00}:{1:00}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765801
+    m_Key: YOUR TIME   {0:00}:{1:00}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765802
+    m_Key: You left the chair. Sit again to restart the briefing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765803
+    m_Key: Your session results
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765804
+    m_Key: bowl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765805
+    m_Key: bowls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765806
+    m_Key: check phone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765807
+    m_Key: close door
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765808
+    m_Key: close phone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765809
+    m_Key: cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765810
+    m_Key: cups
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765811
+    m_Key: open door
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765812
+    m_Key: plate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765813
+    m_Key: plates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765814
+    m_Key: plushie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765815
+    m_Key: rubbish bag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765816
+    m_Key: see how to join the meeting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765817
+    m_Key: sit in the meeting chair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765818
+    m_Key: sponge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765819
+    m_Key: turn off tv
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765820
+    m_Key: turn the water on / off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765821
+    m_Key: watch tv
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765822
+    m_Key: '{0}  |  {1}  |  Click: grab'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765823
+    m_Key: '{0} washed. Finish washing every dish to unlock organizing.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181765824
+    m_Key: '{0}/{1} correct. Your quiz is complete.'
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8037177643822219359
+  references:
+    version: 2
+    RefIds:
+    - rid: 8037177643822219359
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1795436920492

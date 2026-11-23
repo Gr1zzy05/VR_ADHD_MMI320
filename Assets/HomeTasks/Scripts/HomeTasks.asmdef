@@ -3,6 +3,8 @@
   "rootNamespace": "HomeTasks",
   "references": [
     "Unity.InputSystem",
+    "Unity.Localization",
+    "Unity.ResourceManager",
     "Unity.TextMeshPro",
     "Unity.ugui",
     "Unity.XR.Interaction.Toolkit",

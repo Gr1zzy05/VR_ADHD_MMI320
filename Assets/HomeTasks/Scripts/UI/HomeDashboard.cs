@@ -19,13 +19,15 @@ namespace HomeTasks
             if (session == null || Time.unscaledTime < nextUpdate) return;
             nextUpdate = Time.unscaledTime + 0.12f;
             var meeting = session.meeting;
-            status.text = session.Finished ? "HOME COMPLETE" : $"QUEST {(int)session.CurrentQuest + 1} OF 4  /  {session.CurrentQuestName.ToUpperInvariant()}";
+            status.text = session.Finished ? GameText.Get("HOME COMPLETE") : GameText.Format("QUEST {0} OF 4  /  {1}",
+                (int)session.CurrentQuest + 1, session.CurrentQuestName.ToUpperInvariant());
             var seconds = Mathf.FloorToInt(session.Elapsed);
-            timer.text = $"YOUR PACE  {seconds / 60:00}:{seconds % 60:00}";
+            timer.text = GameText.Format("YOUR PACE  {0:00}:{1:00}", seconds / 60, seconds % 60);
             counts[0].text = session.QuestStatus(HomeQuest.Washing, $"{session.Washed} / {session.dishes.Count}");
             counts[1].text = session.QuestStatus(HomeQuest.Organizing, $"{session.Organized} / {session.dishes.Count}");
             counts[2].text = session.QuestStatus(HomeQuest.Trash, $"{session.Disposed} / {session.rubbish.Count}");
-            counts[3].text = session.QuestStatus(HomeQuest.Meeting, meeting.State == MeetingState.Listening ? "LIVE" : meeting.Attended ? "QUIZ" : "READY");
+            counts[3].text = session.QuestStatus(HomeQuest.Meeting, meeting.State == MeetingState.Listening ? GameText.Get("LIVE") :
+                meeting.Attended ? GameText.Get("QUIZ") : GameText.Get("READY"));
             var values = new[] { session.Washed / (float)Mathf.Max(1, session.dishes.Count), session.Organized / (float)Mathf.Max(1, session.dishes.Count), session.Disposed / (float)Mathf.Max(1, session.rubbish.Count), meeting.Completed ? 1 : meeting.Attended ? 0.8f : meeting.ListeningProgress * 0.75f };
             for (var i = 0; i < bars.Length; i++)
             {

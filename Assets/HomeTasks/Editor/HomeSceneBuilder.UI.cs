@@ -238,7 +238,7 @@ namespace HomeTasks.Editor
             button.navigation = navigation;
             var caption = Text(image.transform, "Label", 14, 13, width - 28, height - 19, 23, foreground, label, FontStyles.Bold);
             caption.alignment = TextAlignmentOptions.Center;
-            UnityEventTools.AddPersistentListener(button.onClick, action);
+            if (action != null) UnityEventTools.AddPersistentListener(button.onClick, action);
             return button;
         }
     }

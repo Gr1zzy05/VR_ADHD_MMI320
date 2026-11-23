@@ -36,16 +36,16 @@ namespace HomeTasks
         public string CurrentQuestName => QuestName(CurrentQuest);
         public string CurrentObjective => CurrentQuest switch
         {
-            HomeQuest.Washing => $"Quest 1/4: Wash all {dishes.Count} dishes in the running sink.",
-            HomeQuest.Organizing => "Quest 2/4: Put all clean dishes on their matching shelves.",
-            HomeQuest.Trash => $"Quest 3/4: Take all {rubbish.Count} bags to the outdoor bin.",
+            HomeQuest.Washing => GameText.Format("Quest 1/4: Wash all {0} dishes in the running sink.", dishes.Count),
+            HomeQuest.Organizing => GameText.Get("Quest 2/4: Put all clean dishes on their matching shelves."),
+            HomeQuest.Trash => GameText.Format("Quest 3/4: Take all {0} bags to the outdoor bin.", rubbish.Count),
             HomeQuest.Meeting => meeting != null && meeting.seat != null ? meeting.State switch
             {
-                MeetingState.Listening => "Quest 4/4: Stay seated and listen to the meeting.",
-                MeetingState.Quiz => "Quest 4/4: Stay seated and answer on the meeting screen.",
-                _ => "Quest 4/4: Select the chair at the desk to sit and listen."
-            } : "Quest 4/4: Join the meeting. Listen, then answer once.",
-            _ => "All four quests complete. Your results are ready."
+                MeetingState.Listening => GameText.Get("Quest 4/4: Stay seated and listen to the meeting."),
+                MeetingState.Quiz => GameText.Get("Quest 4/4: Stay seated and answer on the meeting screen."),
+                _ => GameText.Get("Quest 4/4: Select the chair at the desk to sit and listen.")
+            } : GameText.Get("Quest 4/4: Join the meeting. Listen, then answer once."),
+            _ => GameText.Get("All four quests complete. Your results are ready.")
         };
 
         float startedAt;
@@ -102,7 +102,7 @@ namespace HomeTasks
                 finished = true;
                 finishTime = Time.time - startedAt;
                 LastResult = new HomeSessionResult(this);
-                Notify("All four tasks complete. Your home is ready!", true);
+                Notify(GameText.Get("All four tasks complete. Your home is ready!"), true);
                 StartCoroutine(ShowResults());
             }
         }
@@ -118,17 +118,17 @@ namespace HomeTasks
 
         public string QuestStatus(HomeQuest quest, string progress)
         {
-            if (quest > CurrentQuest) return "LOCKED";
-            return quest < CurrentQuest ? "DONE" : progress;
+            if (quest > CurrentQuest) return GameText.Get("LOCKED");
+            return quest < CurrentQuest ? GameText.Get("DONE") : progress;
         }
 
         public static string QuestName(HomeQuest quest) => quest switch
         {
-            HomeQuest.Washing => "Wash dishes",
-            HomeQuest.Organizing => "Organize dishes",
-            HomeQuest.Trash => "Take trash outside",
-            HomeQuest.Meeting => "Meeting + quiz",
-            _ => "Home complete"
+            HomeQuest.Washing => GameText.Get("Wash dishes"),
+            HomeQuest.Organizing => GameText.Get("Organize dishes"),
+            HomeQuest.Trash => GameText.Get("Take trash outside"),
+            HomeQuest.Meeting => GameText.Get("Meeting + quiz"),
+            _ => GameText.Get("Home complete")
         };
 
         IEnumerator ShowResults()
@@ -149,7 +149,7 @@ namespace HomeTasks
             if (finished || restarting) return;
             foreach (var item in FindObjectsByType<HomeItem>(FindObjectsSortMode.None))
                 if (!item.IsHeld && !item.IsLocked) item.ReturnHome();
-            Notify("Loose items returned to their starting places. Completed tasks are kept.");
+            Notify(GameText.Get("Loose items returned to their starting places. Completed tasks are kept."));
         }
 
         public void RestartSession()

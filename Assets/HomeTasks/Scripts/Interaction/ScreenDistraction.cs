@@ -21,6 +21,14 @@ namespace HomeTasks
 
         void Awake() => action = GetComponent<HomeAction>();
 
+        void OnEnable()
+        {
+            GameText.Changed += RefreshLabel;
+            RefreshLabel();
+        }
+
+        void OnDisable() => GameText.Changed -= RefreshLabel;
+
         public void Toggle()
         {
             if (IsOpen)
@@ -62,8 +70,13 @@ namespace HomeTasks
         void SetOpen(bool open)
         {
             content.SetActive(open);
-            var label = open ? activeLabel : inactiveLabel;
-            buttonLabel.text = label;
+            RefreshLabel();
+        }
+
+        void RefreshLabel()
+        {
+            var label = IsOpen ? activeLabel : inactiveLabel;
+            buttonLabel.text = GameText.Get(label);
             if (action != null) action.instruction = label.ToLowerInvariant();
         }
     }

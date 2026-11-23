@@ -8,8 +8,6 @@ namespace HomeTasks
     [RequireComponent(typeof(AudioSource))]
     public sealed class MeetingController : MonoBehaviour
     {
-        const string RestartMessage = "You left the chair. Sit again to restart the briefing.";
-
         public MeetingContent content;
         public HomeTaskSettings settings;
         public MeetingSeat seat;
@@ -20,12 +18,20 @@ namespace HomeTasks
         public int CorrectAnswers { get; private set; }
         public bool Passed => Completed && CorrectAnswers >= RequiredScore;
         public float ListeningProgress { get; private set; }
-        public string CurrentCaption { get; private set; } = "Join the meeting, listen to the full briefing, then answer three questions.";
-        public string Feedback { get; private set; } = string.Empty;
+        public string CurrentCaption => State switch
+        {
+            MeetingState.Listening => GameText.Get(caption),
+            MeetingState.Quiz or MeetingState.Complete => GameText.Get("The briefing has ended. What do you remember?"),
+            _ => GameText.Get("Join the meeting, listen to the full briefing, then answer three questions.")
+        };
+        public string Feedback => Completed ? GameText.Format("{0}/{1} correct. Your quiz is complete.", CorrectAnswers, content.questions.Length) :
+            leftSeat ? GameText.Get("You left the chair. Sit again to restart the briefing.") : string.Empty;
         public ListeningQuestion CurrentQuestion => State == MeetingState.Quiz && QuestionIndex < content.questions.Length ? content.questions[QuestionIndex] : null;
         public int RequiredScore => Mathf.Clamp(settings.correctAnswersRequired, 1, content.questions.Length);
         AudioSource voice;
         Coroutine listening;
+        string caption;
+        bool leftSeat;
 
         void Awake()
         {
@@ -39,7 +45,7 @@ namespace HomeTasks
             if (!CanStart()) return;
             if (seat != null && !seat.IsPlayerInSeat)
             {
-                HomeSession.Instance?.Notify("Select the chair at the meeting desk to sit and start listening.");
+                HomeSession.Instance?.Notify(GameText.Get("Select the chair at the meeting desk to sit and start listening."));
                 return;
             }
 
@@ -52,7 +58,7 @@ namespace HomeTasks
             if (HomeSession.Instance != null && !HomeSession.Instance.CanPerform(HomeQuest.Meeting, true)) return false;
             if (content == null || content.segments.Length == 0 || content.questions.Length == 0)
             {
-                HomeSession.Instance?.Notify("Add meeting segments and quiz questions to the meeting content asset.");
+                HomeSession.Instance?.Notify(GameText.Get("Add meeting segments and quiz questions to the meeting content asset."));
                 return false;
             }
 
@@ -65,14 +71,14 @@ namespace HomeTasks
             Attended = false;
             QuestionIndex = 0;
             CorrectAnswers = 0;
-            Feedback = string.Empty;
+            leftSeat = false;
             ListeningProgress = 0;
             var total = 0f;
             foreach (var segment in content.segments) total += segment.Duration;
             var elapsed = 0f;
             foreach (var segment in content.segments)
             {
-                CurrentCaption = segment.speaker + ": " + segment.transcript;
+                caption = segment.speaker + ": " + segment.transcript;
                 if (segment.voice != null) voice.PlayOneShot(segment.voice, settings.meetingVolume);
                 var segmentElapsed = 0f;
                 while (segmentElapsed < segment.Duration)
@@ -88,9 +94,9 @@ namespace HomeTasks
             listening = null;
             Attended = true;
             ListeningProgress = 1;
-            CurrentCaption = "The briefing has ended. What do you remember?";
             State = MeetingState.Quiz;
-            HomeSession.Instance?.Notify(seat != null ? "Stay seated and answer the quiz on the screen." : "Meeting finished. Return to the screen for the listening quiz.", true);
+            HomeSession.Instance?.Notify(seat != null ? GameText.Get("Stay seated and answer the quiz on the screen.") :
+                GameText.Get("Meeting finished. Return to the screen for the listening quiz."), true);
         }
 
         public void Answer(int option)
@@ -107,16 +113,15 @@ namespace HomeTasks
             QuestionIndex++;
             if (QuestionIndex < content.questions.Length) return;
             State = MeetingState.Complete;
-            Feedback = $"{CorrectAnswers}/{content.questions.Length} correct. Your quiz is complete.";
-            HomeSession.Instance?.Notify("Meeting complete. Preparing your results.", true);
+            HomeSession.Instance?.Notify(GameText.Get("Meeting complete. Preparing your results."), true);
         }
 
         internal void SeatVacated()
         {
             if (State != MeetingState.Listening && State != MeetingState.Quiz) return;
             ResetInProgressMeeting();
-            Feedback = RestartMessage;
-            HomeSession.Instance?.Notify(RestartMessage);
+            leftSeat = true;
+            HomeSession.Instance?.Notify(Feedback);
         }
 
         void ResetInProgressMeeting()
@@ -129,8 +134,8 @@ namespace HomeTasks
             ListeningProgress = 0;
             QuestionIndex = 0;
             CorrectAnswers = 0;
-            Feedback = string.Empty;
-            CurrentCaption = "Join the meeting, listen to the full briefing, then answer three questions.";
+            leftSeat = false;
+            caption = null;
         }
 
         public void RetryQuiz()

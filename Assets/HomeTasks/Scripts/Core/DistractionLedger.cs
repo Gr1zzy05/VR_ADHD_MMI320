@@ -2,7 +2,7 @@ using System;
 
 namespace HomeTasks
 {
-    public enum DistractionKind { FidgetCube, PopIt, Squishy, Television, Plushie, Phone }
+    public enum DistractionKind { FidgetCube, PopIt, Squishy, Television, Plushie, Phone, Conversation, Party, Construction }
 
     public readonly struct DistractionRecord
     {
@@ -11,12 +11,15 @@ namespace HomeTasks
         public float Seconds { get; }
         public string Name => Kind switch
         {
-            DistractionKind.FidgetCube => "Fidget cube",
-            DistractionKind.PopIt => "Rainbow pop-it",
-            DistractionKind.Squishy => "Butter squishy",
-            DistractionKind.Television => "Television",
-            DistractionKind.Plushie => "Plushie",
-            DistractionKind.Phone => "Phone",
+            DistractionKind.FidgetCube => GameText.Get("Fidget cube"),
+            DistractionKind.PopIt => GameText.Get("Rainbow pop-it"),
+            DistractionKind.Squishy => GameText.Get("Butter squishy"),
+            DistractionKind.Television => GameText.Get("Television"),
+            DistractionKind.Plushie => GameText.Get("Plushie"),
+            DistractionKind.Phone => GameText.Get("Phone"),
+            DistractionKind.Conversation => GameText.Get("Neighbour chatter"),
+            DistractionKind.Party => GameText.Get("Neighbour party"),
+            DistractionKind.Construction => GameText.Get("Construction site"),
             _ => Kind.ToString()
         };
 

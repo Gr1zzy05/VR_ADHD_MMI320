@@ -37,7 +37,7 @@ namespace HomeTasks
             if (HomeSession.Instance != null && HomeSession.Instance.Finished)
             {
                 Drop();
-                Prompt = "All quests complete. Preparing your results.";
+                Prompt = GameText.Get("All quests complete. Preparing your results.");
                 SetCapture(false);
                 return;
             }
@@ -59,7 +59,8 @@ namespace HomeTasks
             if (!MouseCaptured)
             {
                 var seated = meeting != null && meeting.seat != null && meeting.seat.IsPlayerInSeat;
-                Prompt = seated ? "Click meeting buttons  |  WASD: leave the chair" : "Click the game to look around  |  Tab: mouse for screen buttons";
+                Prompt = seated ? GameText.Get("Click meeting buttons  |  WASD: leave the chair") :
+                    GameText.Get("Click the game to look around  |  Tab: mouse for screen buttons");
                 if (seated && move != Vector2.zero) MoveCharacter(move);
                 if (mouse.leftButton.wasPressedThisFrame && !PointerIsOverUI(mouse.position.ReadValue())) SetCapture(true);
                 return;
@@ -152,27 +153,30 @@ namespace HomeTasks
 
         void UpdatePrompt()
         {
-            Prompt = held != null ? $"Holding {held.displayName}  |  Click / Q: release  |  Scroll: reach  |  R: rotate" : "WASD: walk  |  Mouse: look  |  Click: grab  |  E: use  |  Tab: screen buttons";
+            Prompt = held != null ? GameText.Format("Holding {0}  |  Click / Q: release  |  Scroll: reach  |  R: rotate", GameText.Get(held.displayName)) :
+                GameText.Get("WASD: walk  |  Mouse: look  |  Click: grab  |  E: use  |  Tab: screen buttons");
             if (!hasHit) return;
             if (held == null && aimHit.collider.TryGetComponent<FidgetCubeController>(out _))
             {
-                Prompt = "Click: pick up Fidget Cube";
+                Prompt = GameText.Get("Click: pick up Fidget Cube");
                 return;
             }
             var action = aimHit.collider.GetComponentInParent<HomeAction>();
-            if (action != null) { Prompt = "E: " + action.instruction; return; }
+            if (action != null) { Prompt = GameText.Format("E: {0}", GameText.Get(action.instruction)); return; }
             var item = aimHit.collider.GetComponentInParent<HomeItem>();
             if (item != null && !item.IsLocked && !item.CanInteract)
             {
-                Prompt = "LOCKED  |  " + HomeSession.Instance?.CurrentObjective;
+                Prompt = GameText.Format("LOCKED  |  {0}", HomeSession.Instance?.CurrentObjective);
                 return;
             }
             if (item is DishItem dish)
             {
-                if (held is SpongeTool) Prompt = $"Hold E: scrub {dish.kind.ToString().ToLower()} in the running sink  |  Washed {dish.WashProgress:P0}";
-                else if (!dish.IsStored) Prompt = $"{dish.kind}  |  {(dish.IsClean ? "CLEAN - ready to sort" : $"DIRTY - washed {dish.WashProgress:P0}")}  |  Click: grab";
+                if (held is SpongeTool) Prompt = GameText.Format("Hold E: scrub {0} in the running sink  |  Washed {1:P0}",
+                    GameText.Get(dish.kind.ToString().ToLowerInvariant()), dish.WashProgress);
+                else if (!dish.IsStored) Prompt = GameText.Format("{0}  |  {1}  |  Click: grab", GameText.Get(dish.kind.ToString()),
+                    dish.IsClean ? GameText.Get("CLEAN - ready to sort") : GameText.Format("DIRTY - washed {0:P0}", dish.WashProgress));
             }
-            else if (item != null && held == null) Prompt = "Click: pick up " + item.displayName;
+            else if (item != null && held == null) Prompt = GameText.Format("Click: pick up {0}", GameText.Get(item.displayName));
         }
 
         void PickUp(HomeItem item)
@@ -209,7 +213,7 @@ namespace HomeTasks
             Physics.IgnoreCollision(cube.GetComponent<BoxCollider>(), controller, true);
             SetCapture(false);
             PositionCube();
-            Prompt = "Fidget Cube  |  Click / drag: play  |  Right drag / arrows: turn  |  Q: drop";
+            Prompt = GameText.Get("Fidget Cube  |  Click / drag: play  |  Right drag / arrows: turn  |  Q: drop");
             return true;
         }
 
@@ -219,7 +223,7 @@ namespace HomeTasks
             {
                 Drop();
                 SetCapture(keyboard.qKey.wasPressedThisFrame);
-                Prompt = MouseCaptured ? "WASD: walk  |  Mouse: look" : "Click the game to look around";
+                Prompt = MouseCaptured ? GameText.Get("WASD: walk  |  Mouse: look") : GameText.Get("Click the game to look around");
                 return;
             }
             if (!Application.isFocused)

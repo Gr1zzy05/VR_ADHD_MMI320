@@ -22,7 +22,19 @@ namespace HomeTasks
             prompt.text = player.Prompt;
             if (Time.unscaledTime < nextUpdate) return;
             nextUpdate = Time.unscaledTime + 0.1f;
-            taskSummary.text = $"<b>{session.CurrentQuestName.ToUpperInvariant()}</b>\n\n01 Wash    {session.QuestStatus(HomeQuest.Washing, $"{session.Washed}/{session.dishes.Count}")}\n02 Organize    {session.QuestStatus(HomeQuest.Organizing, $"{session.Organized}/{session.dishes.Count}")}\n03 Trash    {session.QuestStatus(HomeQuest.Trash, $"{session.Disposed}/{session.rubbish.Count}")}\n04 Meeting    {session.QuestStatus(HomeQuest.Meeting, session.meeting.State.ToString())}";
+            var meetingStatus = session.meeting.State switch
+            {
+                MeetingState.Listening => GameText.Get("Listening"),
+                MeetingState.Quiz => GameText.Get("Quiz"),
+                MeetingState.Complete => GameText.Get("Complete"),
+                _ => GameText.Get("Ready")
+            };
+            taskSummary.text = GameText.Format("<b>{0}</b>\n\n01 Wash    {1}\n02 Organize    {2}\n03 Trash    {3}\n04 Meeting    {4}",
+                session.CurrentQuestName.ToUpperInvariant(),
+                session.QuestStatus(HomeQuest.Washing, $"{session.Washed}/{session.dishes.Count}"),
+                session.QuestStatus(HomeQuest.Organizing, $"{session.Organized}/{session.dishes.Count}"),
+                session.QuestStatus(HomeQuest.Trash, $"{session.Disposed}/{session.rubbish.Count}"),
+                session.QuestStatus(HomeQuest.Meeting, meetingStatus));
             toast.text = session.Toast;
         }
     }

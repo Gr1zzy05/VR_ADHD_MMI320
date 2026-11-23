@@ -19,7 +19,9 @@ namespace HomeTasks
             {
                 nextHint = Time.time + 4;
                 var session = HomeSession.Instance;
-                session?.Notify(!session.IsQuestActive(HomeQuest.Organizing) ? session.CurrentObjective : !dish.IsClean ? "Wash this dish before organizing it." : $"This shelf is for {accepts.ToString().ToLower()}s.");
+                session?.Notify(!session.IsQuestActive(HomeQuest.Organizing) ? session.CurrentObjective :
+                    !dish.IsClean ? GameText.Get("Wash this dish before organizing it.") :
+                    GameText.Format("This shelf is for {0}.", GameText.Get(accepts.ToString().ToLowerInvariant() + "s")));
             }
         }
 

@@ -34,7 +34,7 @@ namespace HomeTasks
             if (HomeSession.Instance != null && !HomeSession.Instance.CanPerform(HomeQuest.Washing, true)) return;
             WaterOn = !WaterOn;
             UpdateWater();
-            HomeSession.Instance?.Notify(WaterOn ? "Water on. Rub a dish in the sink with the sponge." : "Water off.");
+            HomeSession.Instance?.Notify(WaterOn ? GameText.Get("Water on. Rub a dish in the sink with the sponge.") : GameText.Get("Water off."));
         }
 
         void UpdateWater()

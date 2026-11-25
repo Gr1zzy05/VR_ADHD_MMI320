@@ -92,10 +92,10 @@ namespace HomeTasks
             if (keyboard.qKey.wasPressedThisFrame) Drop();
             if (keyboard.rKey.wasPressedThisFrame) itemYaw += 90;
             if (held != null) holdDistance = Mathf.Clamp(holdDistance + mouse.scroll.ReadValue().y * 0.0015f, 0.4f, 1.4f);
-            if (keyboard.eKey.wasPressedThisFrame && hasHit)
+            if (keyboard.eKey.wasPressedThisFrame)
             {
-                var action = aimHit.collider.GetComponentInParent<HomeAction>();
-                if (action != null) action.Use();
+                if (held is BubbleBlaster blaster) blaster.BlowBubbles();
+                else if (hasHit) aimHit.collider.GetComponentInParent<HomeAction>()?.Use();
             }
             UpdateHeldPose(keyboard.eKey.isPressed);
 
@@ -154,6 +154,11 @@ namespace HomeTasks
 
         void UpdatePrompt()
         {
+            if (held is BubbleBlaster)
+            {
+                Prompt = GameText.Get("Press E to blow bubbles  |  Click / Q to release");
+                return;
+            }
             Prompt = held != null ? GameText.Format("Holding {0}  |  Click / Q: release  |  Scroll: reach  |  R: rotate", GameText.Get(held.displayName)) :
                 GameText.Get("WASD: walk  |  Mouse: look  |  Click: grab  |  E: use  |  Tab: screen buttons");
             if (!hasHit) return;

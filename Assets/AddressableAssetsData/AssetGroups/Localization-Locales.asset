@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 8fc049782fa797344b9fa8cae64df912
   m_SerializeEntries:
   - m_GUID: 47678f74bc2ac294e85f1af2b9ab1518
-    m_Address: Second language
+    m_Address: Thai
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale

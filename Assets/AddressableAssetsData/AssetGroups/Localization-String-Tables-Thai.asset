@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Localization-String-Tables-Second language
+  m_Name: Localization-String-Tables-Thai
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
-  m_GroupName: Localization-String-Tables-Second language
-  m_GUID: 8609cad8fa7841f43bc85a606e7f10e9
+  m_GroupName: Localization-String-Tables-Thai
+  m_GUID: 79f4ee2685ed28b47885ba6f98dd3970
   m_SerializeEntries:
   - m_GUID: 39ae913f4ff894c4f81b23bd194f257a
-    m_Address: Home Focus_x-homefocus
+    m_Address: Home Focus_th
     m_ReadOnly: 1
     m_SerializedLabels:
-    - Locale-x-homefocus
+    - Locale-th
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: bcde2c5a38f296e43a26112203e1f77a, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 1219f1c187476bb4897dea664f23784d, type: 2}
-    - {fileID: 11400000, guid: 274ef095b4ec34146a0f3a5c5479257b, type: 2}
-    - {fileID: 11400000, guid: 80ff8350c56392e4eb1f84876169d53e, type: 2}
+    - {fileID: 11400000, guid: 800dac77b0dc0474385a60973cde7b47, type: 2}
+    - {fileID: 11400000, guid: da855711c9403b64fb28810694b0ed72, type: 2}
+    - {fileID: 11400000, guid: 04ac238f35c8cf94bbe3618a7fb31549, type: 2}

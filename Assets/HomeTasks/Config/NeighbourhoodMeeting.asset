@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077672a9565156242a921fb3d20dae3f, type: 3}
   m_Name: NeighbourhoodMeeting
   m_EditorClassIdentifier: HomeTasks::HomeTasks.MeetingContent
-  meetingTitle: Neighbourhood check-in
+  meetingTitle: "\u0E42\u0E1B\u0E2A\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E07\u0E32\u0E19"
+  recording: {fileID: 0}
+  captions: []
   segments:
   - speaker: Maya
     transcript: Hi, welcome to our neighbourhood check-in. I am Maya, your host.

@@ -215,6 +215,10 @@ namespace HomeTasks.Editor
             panel.score.rectTransform.anchoredPosition = new Vector2(42, -456);
             panel.score.rectTransform.sizeDelta = new Vector2(415, 90);
             panel.score.fontSize = 31;
+            panel.score.enableAutoSizing = true;
+            panel.score.fontSizeMin = 22;
+            panel.score.fontSizeMax = 31;
+            panel.score.textWrappingMode = TextWrappingModes.NoWrap;
             panel.feedback.rectTransform.anchoredPosition = new Vector2(42, -554);
             panel.feedback.rectTransform.sizeDelta = new Vector2(415, 104);
             panel.feedback.fontSize = 22;
@@ -238,6 +242,7 @@ namespace HomeTasks.Editor
         static void ResizeDistractionRows(HomeResultsPanel panel)
         {
             var kinds = (DistractionKind[])Enum.GetValues(typeof(DistractionKind));
+            var columnHeight = 22 + kinds.Length * 26;
             panel.distractionNames.text = string.Join("\n", kinds.Select(kind => new DistractionRecord(kind, 0, 0).Name));
             panel.distractionTimes.text = string.Join("\n", Enumerable.Repeat("0:00.0", kinds.Length));
             panel.distractionUses.text = string.Join("\n", Enumerable.Repeat("0", kinds.Length));
@@ -245,8 +250,10 @@ namespace HomeTasks.Editor
             {
                 column.fontSize = 21;
                 column.lineSpacing = 8;
-                column.rectTransform.sizeDelta = new Vector2(column.rectTransform.sizeDelta.x, 256);
+                column.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, columnHeight);
             }
+            var table = (RectTransform)panel.transform.Find("Distraction table");
+            table.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, columnHeight + 126);
         }
     }
 }

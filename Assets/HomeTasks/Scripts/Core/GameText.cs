@@ -11,7 +11,9 @@ namespace HomeTasks
     {
         public const string TableName = "Home Focus";
         public const string EnglishCode = "en";
-        public const string SecondLocaleCode = "x-homefocus";
+        public const string ThaiCode = "th";
+        public const string LanguagePreferenceKey = "home-focus-language";
+        const string PreviousThaiCode = "x-homefocus";
 
         static StringTable activeTable;
         static int loadVersion;
@@ -21,6 +23,8 @@ namespace HomeTasks
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void Reset()
         {
+            if (PlayerPrefs.GetString(LanguagePreferenceKey) == PreviousThaiCode)
+                PlayerPrefs.SetString(LanguagePreferenceKey, ThaiCode);
             activeTable = null;
             loadVersion++;
             IsReady = false;

@@ -870,6 +870,340 @@ MonoBehaviour:
     m_Localized: '{0}/{1} correct. Your quiz is complete.'
     m_Metadata:
       m_Items: []
+  - m_Id: 685070896615424
+    m_Localized: Open House Planning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558464
+    m_Localized: Meeting host    /    You
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558465
+    m_Localized: H
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558466
+    m_Localized: MEETING IN PROGRESS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558467
+    m_Localized: Thanks for listening.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558468
+    m_Localized: The questions open when the recording ends.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558469
+    m_Localized: Hello, everyone. Can you hear me clearly?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558470
+    m_Localized: Today we're going to plan our company's open house.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558471
+    m_Localized: We'll focus on the poster and publicity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558472
+    m_Localized: We'll also cover registration. Let's finalize the plan today.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558473
+    m_Localized: Let's agree who's responsible for each part and when it's due, so
+      everyone can plan their time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558474
+    m_Localized: Let's start with the event details.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558475
+    m_Localized: Our open house will be on December 21.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558476
+    m_Localized: It runs from 9 a.m. to 3 p.m. on the second floor of the activity
+      building.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558477
+    m_Localized: We originally planned to use Room 201, but we've moved to Room 203.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558478
+    m_Localized: The air conditioner in the original room is being repaired.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558479
+    m_Localized: Please use the new room number in all the documents and publicity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558480
+    m_Localized: May sent me the poster yesterday. I've checked it, and it looks
+      good overall.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558481
+    m_Localized: The main image and headline are clear.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558482
+    m_Localized: We need to update the room number and the registration wording.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558483
+    m_Localized: "Use the wording \u201CRegister in advance to reserve a seat.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558484
+    m_Localized: Put the QR code at the bottom and leave some space around it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558485
+    m_Localized: That way, people can easily scan it with their phones.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558486
+    m_Localized: Next is the registration form. Ton will take care of it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558487
+    m_Localized: Collect each person's name, email, and the activity they'd like
+      to join.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558488
+    m_Localized: We have three workshop sessions, each with room for about 20 people.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558489
+    m_Localized: When a session fills up, update the form so people can only choose
+      sessions with space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558490
+    m_Localized: People who only want to see the exhibition can walk in and register
+      on-site.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558491
+    m_Localized: Okay, let's go over the deadlines.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558492
+    m_Localized: Ton, please send me the form link and QR code by noon tomorrow.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558493
+    m_Localized: May, add the code to the poster and send the revised version to
+      the group by 4 p.m. tomorrow.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558494
+    m_Localized: We'll check everything for accuracy on Thursday morning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558495
+    m_Localized: We'll schedule it to go live on the website around 10 a.m. on Friday
+      so it's on time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558496
+    m_Localized: Before publishing, make sure the latest file is in the shared folder.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558497
+    m_Localized: Pay particular attention to the date, time, venue, and QR code.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558498
+    m_Localized: If something needs fixing, leave a comment in that same file.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558499
+    m_Localized: May will gather the feedback and make the edits.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558500
+    m_Localized: Let's also talk about the event photos we'll use in the post.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558501
+    m_Localized: Could the venue team take photos of Room 203 from two or three angles?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558502
+    m_Localized: Show the entrance and the space for the table so the team can plan
+      the registration area.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558503
+    m_Localized: We'll set up the registration table outside the room.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558504
+    m_Localized: Staff should arrive at 8 a.m. to set up the equipment and start
+      welcoming attendees.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558505
+    m_Localized: Now, I'd like you to do the final check on the poster.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558506
+    m_Localized: Check the date, time, and room number.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558507
+    m_Localized: Scan the QR code to make sure the full registration form opens.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558508
+    m_Localized: If everything is in order, let the group know by 11 a.m. tomorrow.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558509
+    m_Localized: Before we wrap up, I have a few questions for you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558510
+    m_Localized: Which room should the latest poster list?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558511
+    m_Localized: What do you need to check?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558512
+    m_Localized: And when do you need to report the result?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558513
+    m_Localized: Thank you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558514
+    m_Localized: Which room should the final poster list?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558515
+    m_Localized: Room 201
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558516
+    m_Localized: Room 203
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558517
+    m_Localized: Room 205
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558518
+    m_Localized: What should you check on the final poster?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558519
+    m_Localized: Headline, colors, and logo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558520
+    m_Localized: Workshop capacity and staff arrival time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558521
+    m_Localized: Date, time, room number, and whether the QR code works
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558522
+    m_Localized: When should you report the result to the group?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558523
+    m_Localized: Tomorrow by 11 a.m.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558524
+    m_Localized: Tomorrow by noon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 685070938558525
+    m_Localized: Tomorrow by 4 p.m.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215312236544
+    m_Localized: Choose how to start this session.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179584
+    m_Localized: 'Could not get a player code.
+
+      Try Start again, or choose
+      Test.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179585
+    m_Localized: "Getting your player code\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179586
+    m_Localized: No study rounds are available. Ask staff to check the device setup,
+      or play without sharing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179587
+    m_Localized: "Participant {0}   \u2022   Rounds available: {1}\nStart records
+      and shares this round with authorized study staff."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179588
+    m_Localized: "Player {0} \u2022 Results will be sent when the round ends."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179589
+    m_Localized: 'Player code: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179590
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179591
+    m_Localized: 'Start shares your results with study staff.
+
+      Test plays without
+      recording.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179592
+    m_Localized: Start VR activity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179593
+    m_Localized: Test
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179594
+    m_Localized: The study round could not be started. Ask staff to check the setup.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693215354179595
+    m_Localized: FOCUS SHIFT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702819144323072
+    m_Localized: Bubble blaster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702819152711680
+    m_Localized: Press the trigger to blow bubbles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702819152711681
+    m_Localized: Press E to blow bubbles  |  Click / Q to release
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

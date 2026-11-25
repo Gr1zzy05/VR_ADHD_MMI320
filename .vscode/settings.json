@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "VR_ADHD_MMI320.slnx"
+    "dotnet.defaultSolution": "VR_ADHD.slnx"
 }

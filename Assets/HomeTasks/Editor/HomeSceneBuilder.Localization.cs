@@ -34,7 +34,7 @@ namespace HomeTasks.Editor
 
             if (!AssetDatabase.IsValidFolder(LocalizationFolder)) AssetDatabase.CreateFolder(Root, "Localization");
             var english = FindOrCreateLocale(GameText.EnglishCode, "English", 0);
-            var second = FindOrCreateLocale(GameText.SecondLocaleCode, "Second language", 1);
+            var second = FindOrCreateLocale(GameText.ThaiCode, "Thai", 1);
             if (!second.Metadata.GetMetadatas<FallbackLocale>().Any(fallback => fallback.Locale == english))
             {
                 second.Metadata.AddMetadata(new FallbackLocale { Locale = english });
@@ -47,7 +47,7 @@ namespace HomeTasks.Editor
                 localization = ScriptableObject.CreateInstance<LocalizationSettings>();
                 var selectors = localization.GetStartupLocaleSelectors();
                 selectors.Clear();
-                selectors.Add(new PlayerPrefLocaleSelector { PlayerPreferenceKey = "home-focus-language" });
+                selectors.Add(new PlayerPrefLocaleSelector { PlayerPreferenceKey = GameText.LanguagePreferenceKey });
                 selectors.Add(new SpecificLocaleSelector { LocaleId = english.Identifier });
                 AssetDatabase.CreateAsset(localization, LocalizationFolder + "/Localization Settings.asset");
                 LocalizationEditorSettings.ActiveLocalizationSettings = localization;
@@ -93,6 +93,7 @@ namespace HomeTasks.Editor
                 foreach (var meeting in FindIn<MeetingController>(home))
                 {
                     keys.UnionWith(meeting.content.segments.Select(segment => segment.speaker + ": " + segment.transcript));
+                    keys.UnionWith(meeting.content.captions.Select(caption => caption.text));
                     keys.UnionWith(meeting.content.questions.SelectMany(question => question.answers.Prepend(question.prompt)));
                 }
 

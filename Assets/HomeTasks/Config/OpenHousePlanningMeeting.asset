@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077672a9565156242a921fb3d20dae3f, type: 3}
+  m_Name: OpenHousePlanningMeeting
+  m_EditorClassIdentifier: HomeTasks::HomeTasks.MeetingContent
+  meetingTitle: Open House Planning
+  recording: {fileID: 8300000, guid: 04d09ab8ededa1440a9b0ca60c0be023, type: 3}
+  captions:
+  - startTime: 0
+    endTime: 4
+    text: Hello, everyone. Can you hear me clearly?
+  - startTime: 4
+    endTime: 9
+    text: Today we're going to plan our company's open house.
+  - startTime: 9
+    endTime: 14
+    text: We'll focus on the poster and publicity.
+  - startTime: 14
+    endTime: 18
+    text: We'll also cover registration. Let's finalize the plan today.
+  - startTime: 18
+    endTime: 25
+    text: Let's agree who's responsible for each part and when it's due, so everyone
+      can plan their time.
+  - startTime: 25
+    endTime: 28
+    text: Let's start with the event details.
+  - startTime: 28
+    endTime: 32
+    text: Our open house will be on December 21.
+  - startTime: 32
+    endTime: 37
+    text: It runs from 9 a.m. to 3 p.m. on the second floor of the activity building.
+  - startTime: 37
+    endTime: 44.8
+    text: We originally planned to use Room 201, but we've moved to Room 203.
+  - startTime: 44.8
+    endTime: 48.8
+    text: The air conditioner in the original room is being repaired.
+  - startTime: 48.8
+    endTime: 54
+    text: Please use the new room number in all the documents and publicity.
+  - startTime: 54
+    endTime: 61
+    text: May sent me the poster yesterday. I've checked it, and it looks good overall.
+  - startTime: 61
+    endTime: 65
+    text: The main image and headline are clear.
+  - startTime: 65
+    endTime: 69
+    text: We need to update the room number and the registration wording.
+  - startTime: 69
+    endTime: 74
+    text: "Use the wording \u201CRegister in advance to reserve a seat.\u201D"
+  - startTime: 74
+    endTime: 80
+    text: Put the QR code at the bottom and leave some space around it.
+  - startTime: 80
+    endTime: 85.5
+    text: That way, people can easily scan it with their phones.
+  - startTime: 86
+    endTime: 93
+    text: Next is the registration form. Ton will take care of it.
+  - startTime: 93
+    endTime: 98
+    text: Collect each person's name, email, and the activity they'd like to join.
+  - startTime: 98
+    endTime: 106
+    text: We have three workshop sessions, each with room for about 20 people.
+  - startTime: 106
+    endTime: 113
+    text: When a session fills up, update the form so people can only choose sessions
+      with space.
+  - startTime: 113
+    endTime: 122
+    text: People who only want to see the exhibition can walk in and register on-site.
+  - startTime: 122
+    endTime: 126
+    text: Okay, let's go over the deadlines.
+  - startTime: 126
+    endTime: 134
+    text: Ton, please send me the form link and QR code by noon tomorrow.
+  - startTime: 134
+    endTime: 142
+    text: May, add the code to the poster and send the revised version to the group
+      by 4 p.m. tomorrow.
+  - startTime: 142
+    endTime: 148
+    text: We'll check everything for accuracy on Thursday morning.
+  - startTime: 148
+    endTime: 157.7
+    text: We'll schedule it to go live on the website around 10 a.m. on Friday so
+      it's on time.
+  - startTime: 158.3
+    endTime: 166
+    text: Before publishing, make sure the latest file is in the shared folder.
+  - startTime: 166
+    endTime: 171
+    text: Pay particular attention to the date, time, venue, and QR code.
+  - startTime: 171
+    endTime: 174
+    text: If something needs fixing, leave a comment in that same file.
+  - startTime: 174
+    endTime: 178
+    text: May will gather the feedback and make the edits.
+  - startTime: 178.5
+    endTime: 185
+    text: Let's also talk about the event photos we'll use in the post.
+  - startTime: 185
+    endTime: 192
+    text: Could the venue team take photos of Room 203 from two or three angles?
+  - startTime: 192
+    endTime: 199
+    text: Show the entrance and the space for the table so the team can plan the
+      registration area.
+  - startTime: 199
+    endTime: 204
+    text: We'll set up the registration table outside the room.
+  - startTime: 204
+    endTime: 212
+    text: Staff should arrive at 8 a.m. to set up the equipment and start welcoming
+      attendees.
+  - startTime: 212
+    endTime: 217
+    text: Now, I'd like you to do the final check on the poster.
+  - startTime: 217
+    endTime: 220
+    text: Check the date, time, and room number.
+  - startTime: 220
+    endTime: 225
+    text: Scan the QR code to make sure the full registration form opens.
+  - startTime: 225
+    endTime: 231
+    text: If everything is in order, let the group know by 11 a.m. tomorrow.
+  - startTime: 231
+    endTime: 235
+    text: Before we wrap up, I have a few questions for you.
+  - startTime: 235
+    endTime: 239
+    text: Which room should the latest poster list?
+  - startTime: 239
+    endTime: 241.6
+    text: What do you need to check?
+  - startTime: 241.6
+    endTime: 245.1
+    text: And when do you need to report the result?
+  - startTime: 245.1
+    endTime: 246.1
+    text: Thank you.
+  segments: []
+  questions:
+  - prompt: Which room should the final poster list?
+    answers:
+    - Room 201
+    - Room 203
+    - Room 205
+    correctAnswer: 1
+    explanation: 
+  - prompt: What should you check on the final poster?
+    answers:
+    - Headline, colors, and logo
+    - Workshop capacity and staff arrival time
+    - Date, time, room number, and whether the QR code works
+    correctAnswer: 2
+    explanation: 
+  - prompt: When should you report the result to the group?
+    answers:
+    - Tomorrow by 11 a.m.
+    - Tomorrow by noon
+    - Tomorrow by 4 p.m.
+    correctAnswer: 0
+    explanation: 

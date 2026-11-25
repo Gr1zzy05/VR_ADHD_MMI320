@@ -5,12 +5,14 @@ namespace HomeTasks
 {
     public sealed class MeetingSeat : MonoBehaviour
     {
+        public const float DefaultSeatRadius = 1.05f;
+
         public MeetingController meeting;
         public PlayerModeRouter player;
         public Collider chairCollider;
         public Transform standPoint;
         [Min(0.6f)] public float seatedEyeHeight = 1.35f;
-        [Min(0.25f)] public float seatRadius = 0.6f;
+        [Min(0.25f)] public float seatRadius = DefaultSeatRadius;
 
         Camera seatedView;
         CharacterController body;

@@ -30,6 +30,7 @@ namespace HomeTasks
             var seated = requiresSeat && meeting.seat.IsPlayerInSeat;
             var listening = state == MeetingState.Listening;
             var answering = state == MeetingState.Quiz;
+            var hasRecording = meeting.content != null && meeting.content.recording != null;
             if (state == MeetingState.Ready && !unlocked)
             {
                 connection.text = GameText.Get("QUEST 4  /  LOCKED");
@@ -47,15 +48,18 @@ namespace HomeTasks
             }
             else
             {
-                connection.text = listening ? GameText.Get("LIVE CALL  /  MAYA IS SPEAKING") : state == MeetingState.Complete ?
+                connection.text = listening ? (hasRecording ? GameText.Get("MEETING IN PROGRESS") : GameText.Get("LIVE CALL  /  MAYA IS SPEAKING")) :
+                    state == MeetingState.Complete ?
                     GameText.Get("CALL COMPLETE  /  THANK YOU") : GameText.Get("SIMULATED CALL  /  AUDIO + CAPTIONS");
                 progress.text = listening ? GameText.Format("LISTENING  {0:P0}", meeting.ListeningProgress) : answering ?
                     GameText.Format("QUESTION {0} / {1}", meeting.QuestionIndex + 1, meeting.content.questions.Length) :
                     GameText.Get("LISTEN FIRST. ANSWER ONCE AT THE END.");
                 if (requiresSeat && (listening || answering)) progress.text += "  /  " + GameText.Get("STAY SEATED");
                 if (answering) body.text = GameText.Get(meeting.CurrentQuestion.prompt);
-                else if (state == MeetingState.Complete) body.text = GameText.Get("Thanks for listening.\nSee you at the neighbourhood event!");
+                else if (state == MeetingState.Complete) body.text = hasRecording ? GameText.Get("Thanks for listening.") :
+                    GameText.Get("Thanks for listening.\nSee you at the neighbourhood event!");
                 else body.text = meeting.settings.showCaptions || state == MeetingState.Ready ? meeting.CurrentCaption :
+                    hasRecording ? GameText.Get("The questions open when the recording ends.") :
                     GameText.Get("Listen to Maya's briefing. The questions unlock when the call ends.");
                 result.text = meeting.Feedback;
             }

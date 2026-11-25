@@ -22,14 +22,15 @@ namespace HomeTasks
         {
             var selected = GameText.IsReady ? LocalizationSettings.SelectedLocaleAsync.Result : null;
             button.interactable = selected != null;
-            label.text = GameText.Format("LANGUAGE  /  {0}", selected == null ? "English" : selected.LocaleName);
+            var language = selected == null ? "English" : selected.Identifier.Code == GameText.ThaiCode ? "ไทย" : selected.LocaleName;
+            label.text = GameText.Format("LANGUAGE  /  {0}", language);
         }
 
         public void ToggleLanguage()
         {
             if (!GameText.IsReady || !button.interactable) return;
             var selected = LocalizationSettings.SelectedLocaleAsync.Result;
-            var code = selected.Identifier.Code == GameText.SecondLocaleCode ? GameText.EnglishCode : GameText.SecondLocaleCode;
+            var code = selected.Identifier.Code == GameText.ThaiCode ? GameText.EnglishCode : GameText.ThaiCode;
             var next = LocalizationSettings.AvailableLocales.GetLocale(code);
             if (next == null) return;
             button.interactable = false;

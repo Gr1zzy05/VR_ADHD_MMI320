@@ -29,6 +29,9 @@ namespace HomeTasks
         public ListeningQuestion CurrentQuestion => State == MeetingState.Quiz && QuestionIndex < content.questions.Length ? content.questions[QuestionIndex] : null;
         public int RequiredScore => Mathf.Clamp(settings.correctAnswersRequired, 1, content.questions.Length);
         AudioSource voice;
+        AudioClip originalClip;
+        float originalVolume;
+        bool originalLoop;
         Coroutine listening;
         string caption;
         bool leftSeat;
@@ -38,6 +41,9 @@ namespace HomeTasks
             voice = GetComponent<AudioSource>();
             voice.playOnAwake = false;
             voice.spatialBlend = 0;
+            originalClip = voice.clip;
+            originalVolume = voice.volume;
+            originalLoop = voice.loop;
         }
 
         public void Begin()
@@ -56,7 +62,8 @@ namespace HomeTasks
         {
             if (State != MeetingState.Ready || !isActiveAndEnabled) return false;
             if (HomeSession.Instance != null && !HomeSession.Instance.CanPerform(HomeQuest.Meeting, true)) return false;
-            if (content == null || content.segments.Length == 0 || content.questions.Length == 0)
+            if (content == null || content.questions.Length == 0 ||
+                (content.recording != null ? content.captions.Length == 0 : content.segments.Length == 0))
             {
                 HomeSession.Instance?.Notify(GameText.Get("Add meeting segments and quiz questions to the meeting content asset."));
                 return false;
@@ -73,6 +80,43 @@ namespace HomeTasks
             CorrectAnswers = 0;
             leftSeat = false;
             ListeningProgress = 0;
+            caption = string.Empty;
+            if (content.recording != null) yield return ListenToRecording();
+            else yield return ListenToSegments();
+
+            StopVoice();
+            listening = null;
+            Attended = true;
+            ListeningProgress = 1;
+            State = MeetingState.Quiz;
+            HomeSession.Instance?.Notify(seat != null ? GameText.Get("Stay seated and answer the quiz on the screen.") :
+                GameText.Get("Meeting finished. Return to the screen for the listening quiz."), true);
+        }
+
+        IEnumerator ListenToRecording()
+        {
+            var recording = content.recording;
+            var captions = content.captions;
+            voice.clip = recording;
+            voice.loop = false;
+            voice.volume = originalVolume * settings.meetingVolume;
+            voice.Play();
+
+            var cueIndex = 0;
+            while (voice.isPlaying)
+            {
+                var seconds = (float)voice.timeSamples / recording.frequency;
+                while (cueIndex < captions.Length && seconds >= captions[cueIndex].endTime) cueIndex++;
+                caption = cueIndex < captions.Length && seconds >= captions[cueIndex].startTime
+                    ? captions[cueIndex].text
+                    : string.Empty;
+                ListeningProgress = Mathf.Clamp01(seconds / recording.length);
+                yield return null;
+            }
+        }
+
+        IEnumerator ListenToSegments()
+        {
             var total = 0f;
             foreach (var segment in content.segments) total += segment.Duration;
             var elapsed = 0f;
@@ -90,13 +134,6 @@ namespace HomeTasks
                     ListeningProgress = Mathf.Clamp01(elapsed / total);
                 }
             }
-            voice.Stop();
-            listening = null;
-            Attended = true;
-            ListeningProgress = 1;
-            State = MeetingState.Quiz;
-            HomeSession.Instance?.Notify(seat != null ? GameText.Get("Stay seated and answer the quiz on the screen.") :
-                GameText.Get("Meeting finished. Return to the screen for the listening quiz."), true);
         }
 
         public void Answer(int option)
@@ -128,7 +165,7 @@ namespace HomeTasks
         {
             if (listening != null) StopCoroutine(listening);
             listening = null;
-            if (voice != null) voice.Stop();
+            StopVoice();
             State = MeetingState.Ready;
             Attended = false;
             ListeningProgress = 0;
@@ -136,6 +173,16 @@ namespace HomeTasks
             CorrectAnswers = 0;
             leftSeat = false;
             caption = null;
+        }
+
+        void StopVoice()
+        {
+            if (voice == null) return;
+            voice.Stop();
+            if (content == null || content.recording == null) return;
+            voice.clip = originalClip;
+            voice.volume = originalVolume;
+            voice.loop = originalLoop;
         }
 
         public void RetryQuiz()

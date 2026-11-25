@@ -2,7 +2,7 @@ using System;
 
 namespace HomeTasks
 {
-    public enum DistractionKind { FidgetCube, PopIt, Squishy, Television, Plushie, Phone, Conversation, Party, Construction }
+    public enum DistractionKind { FidgetCube, PopIt, Squishy, Television, Plushie, Phone, Conversation, Party, Construction, BubbleBlaster }
 
     public readonly struct DistractionRecord
     {
@@ -20,6 +20,7 @@ namespace HomeTasks
             DistractionKind.Conversation => GameText.Get("Neighbour chatter"),
             DistractionKind.Party => GameText.Get("Neighbour party"),
             DistractionKind.Construction => GameText.Get("Construction site"),
+            DistractionKind.BubbleBlaster => GameText.Get("Bubble blaster"),
             _ => Kind.ToString()
         };
 

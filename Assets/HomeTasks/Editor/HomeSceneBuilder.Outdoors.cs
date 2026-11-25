@@ -9,6 +9,8 @@ namespace HomeTasks.Editor
 {
     public static partial class HomeSceneBuilder
     {
+        const string ConstructionAudioPath = Root + "/Audio/freesound_community-construction-35446.mp3";
+
         public static void AddOutdoorDistractions()
         {
             var scene = SceneManager.GetActiveScene();
@@ -28,6 +30,7 @@ namespace HomeTasks.Editor
             MakeNeighbourConversation(outdoor, router, conversation);
             MakeNeighbourParty(outdoor, router, party);
             MakeConstructionSite(outdoor, router, road.bounds.min.z - 4.9f, boundary);
+            ConfigureOutdoorAudio(outdoor);
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
 
@@ -46,6 +49,75 @@ namespace HomeTasks.Editor
             }
         }
 
+        public static void UpdateOutdoorAudio()
+        {
+            var scene = SceneManager.GetActiveScene();
+            if (EditorApplication.isPlaying || scene.path != Root + "/Scenes/NewModel.unity")
+                throw new InvalidOperationException("Open NewModel in Edit mode.");
+            var outdoor = scene.GetRootGameObjects().Single(root => root.name == "Outdoor distractions");
+            ConfigureOutdoorAudio(outdoor.transform);
+            EditorSceneManager.MarkSceneDirty(scene);
+            if (!EditorSceneManager.SaveScene(scene)) throw new InvalidOperationException("NewModel could not be saved.");
+        }
+
+        static void ConfigureOutdoorAudio(Transform outdoor)
+        {
+            if (AssetImporter.GetAtPath(ConstructionAudioPath) is AudioImporter importer && !importer.forceToMono)
+            {
+                importer.forceToMono = true;
+                importer.SaveAndReimport();
+            }
+            var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(ConstructionAudioPath);
+            if (clip == null) throw new InvalidOperationException("The construction audio clip is missing.");
+
+            var building = outdoor.Find("House sound boundary");
+            if (building == null) building = Group("House sound boundary", outdoor, Vector3.zero);
+            // The entry and kitchen walls have different setbacks from the street.
+            var interiors = new[]
+            {
+                IndoorAudioBox(building, "Entry and living rooms", new Vector3(-8f, -0.25f, -3.61f), new Vector3(-1.02f, 5.75f, 16.39f)),
+                IndoorAudioBox(building, "Kitchen and adjoining rooms", new Vector3(-1.02f, -0.25f, -4.91f), new Vector3(7.6f, 5.75f, 16.39f))
+            };
+
+            foreach (var activity in outdoor.GetComponentsInChildren<OutdoorDistraction>(true))
+            {
+                activity.audioInteriors = interiors;
+                var construction = activity.kind == DistractionKind.Construction;
+                if (construction)
+                {
+                    var site = activity.gazeTarget.parent;
+                    if (activity.sound == null)
+                        activity.sound = site.GetComponentsInChildren<AudioSource>(true).FirstOrDefault(source => source.clip == clip);
+                    if (activity.sound == null)
+                        activity.sound = OutdoorSound(site, "Construction sound", new Vector3(0, 1.4f, 0.2f), clip, 0.55f, 3200f);
+                    activity.sound.clip = clip;
+                    activity.sound.volume = 0.55f;
+                }
+                activity.sound.playOnAwake = false;
+                activity.sound.loop = true;
+                activity.sound.spatialBlend = 1f;
+                activity.sound.dopplerLevel = 0f;
+                activity.sound.rolloffMode = AudioRolloffMode.Linear;
+                activity.sound.minDistance = construction ? 18f : 4f;
+                activity.sound.maxDistance = construction ? 105f : 48f;
+                EditorUtility.SetDirty(activity);
+                EditorUtility.SetDirty(activity.sound);
+            }
+        }
+
+        static BoxCollider IndoorAudioBox(Transform parent, string name, Vector3 min, Vector3 max)
+        {
+            var area = parent.Find(name);
+            if (area == null) area = Group(name, parent, Vector3.zero);
+            area.position = (min + max) * 0.5f;
+            area.gameObject.layer = 2; // Ignore Raycast
+            var box = area.GetComponent<BoxCollider>();
+            if (box == null) box = area.gameObject.AddComponent<BoxCollider>();
+            box.isTrigger = true;
+            box.size = max - min;
+            return box;
+        }
+
         static OutdoorDistraction OutdoorArea(Transform parent, string name, DistractionKind kind, PlayerModeRouter player,
             Vector3 position, Vector3 size, float dwell)
         {
@@ -61,9 +133,9 @@ namespace HomeTasks.Editor
             return tracker;
         }
 
-        static AudioSource NeighbourSound(Transform parent, Vector3 position, AudioClip clip, float volume, float lowPass)
+        static AudioSource OutdoorSound(Transform parent, string name, Vector3 position, AudioClip clip, float volume, float lowPass)
         {
-            var emitter = Group("Neighbour sound", parent, position).gameObject;
+            var emitter = Group(name, parent, position).gameObject;
             var source = emitter.AddComponent<AudioSource>();
             source.clip = clip;
             source.playOnAwake = false;
@@ -72,8 +144,6 @@ namespace HomeTasks.Editor
             source.spatialBlend = 1f;
             source.dopplerLevel = 0f;
             source.rolloffMode = AudioRolloffMode.Linear;
-            source.minDistance = 2.5f;
-            source.maxDistance = 11.5f;
             emitter.AddComponent<AudioLowPassFilter>().cutoffFrequency = lowPass;
             return source;
         }
@@ -88,7 +158,7 @@ namespace HomeTasks.Editor
                 Mat("Neighbour coral", "B66D61"), Mat("Umber skin", "9B6C53"), OutdoorCharacterMotion.Activity.Talking, 2.0f);
             var activity = OutdoorArea(parent, "Listen at left wall", DistractionKind.Conversation, player,
                 new Vector3(7.16f, 1.4f, -15.4f), new Vector3(2.05f, 3.4f, 5.7f), 1.1f);
-            activity.sound = NeighbourSound(yard, new Vector3(0, 1.62f, 0), clip, 0.83f, 2350f);
+            activity.sound = OutdoorSound(yard, "Neighbour sound", new Vector3(0, 1.62f, 0), clip, 0.83f, 2350f);
         }
 
         static void MakeNeighbourParty(Transform parent, PlayerModeRouter player, AudioClip clip)
@@ -119,7 +189,7 @@ namespace HomeTasks.Editor
                 Mat("Party gold shirt", "DBA947"), Mat("Warm skin", "CD9779"), OutdoorCharacterMotion.Activity.Dancing, 0.6f);
             var activity = OutdoorArea(parent, "Listen at right wall", DistractionKind.Party, player,
                 new Vector3(-7.41f, 1.4f, -15.4f), new Vector3(2.05f, 3.4f, 5.9f), 1.1f);
-            activity.sound = NeighbourSound(yard, new Vector3(-0.6f, 0.74f, -1.75f), clip, 0.68f, 1940f);
+            activity.sound = OutdoorSound(yard, "Neighbour sound", new Vector3(-0.6f, 0.74f, -1.75f), clip, 0.68f, 1940f);
         }
 
         static void MakeConstructionSite(Transform parent, PlayerModeRouter player, float z, Collider boundary)

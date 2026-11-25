@@ -138,7 +138,11 @@ namespace HomeTasks
             var meeting = session.meeting;
             var distractions = new JArray();
             foreach (var row in result?.Distractions ?? session.SnapshotDistractions())
+            {
+                // The study server accepts the original distraction categories.
+                if (row.Kind == DistractionKind.BubbleBlaster) continue;
                 distractions.Add(new JObject { ["kind"] = row.Kind.ToString(), ["count"] = row.Uses, ["seconds"] = row.Seconds });
+            }
             var dishCount = result?.DishCount ?? session.dishes.Count;
             var trashCount = result?.TrashCount ?? session.rubbish.Count;
             var payload = new JObject

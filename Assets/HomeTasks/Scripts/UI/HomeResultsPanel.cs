@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -54,12 +55,6 @@ namespace HomeTasks
                     + "\n" + GameText.Get("One attempt recorded. All four quests are complete.");
                 if (HomeSession.LastPlayerCode != null)
                     feedback.text += "\n" + GameText.Format("Player code: {0}", HomeSession.LastPlayerCode);
-                if (distractionNames != null)
-                {
-                    distractionNames.text = string.Join("\n", result.Distractions.Select(row => row.Name));
-                    distractionTimes.text = string.Join("\n", result.Distractions.Select(row => FormatTime(row.Seconds)));
-                    distractionUses.text = string.Join("\n", result.Distractions.Select(row => row.Uses));
-                }
             }
             else
             {
@@ -67,10 +62,19 @@ namespace HomeTasks
                 chores.text = GameText.Get("Complete the four quests to see your progress here.");
                 score.text = GameText.Get("Meeting score: --");
                 feedback.text = GameText.Get("Start a new session when you are ready.");
-                if (distractionNames != null)
-                    distractionNames.text = string.Join("\n", new DistractionLedger().Snapshot().Select(row => row.Name));
+            }
+            if (distractionNames != null)
+            {
+                var distractions = result?.Distractions ?? new DistractionLedger().Snapshot();
+                distractionNames.text = FormatDistractionColumn(distractions.Select(row => row.Name));
+                distractionTimes.text = FormatDistractionColumn(distractions.Select(row => FormatTime(row.Seconds)));
+                distractionUses.text = FormatDistractionColumn(distractions.Select(row => row.Uses.ToString()));
             }
         }
+
+        // Keep rows aligned when Thai names and Latin numerals use different font metrics.
+        static string FormatDistractionColumn(IEnumerable<string> rows) =>
+            "<line-height=25>" + string.Join("\n", rows) + "</line-height>";
 
         public void RestartSession()
         {
